@@ -6,7 +6,9 @@ function App() {
 
   return (
     <>
-      <h1 className='flex justify-center items-center text-3xl text-[#246bce] font-bold'>I think i love her</h1>
+      <div className='w-[100%] h-full bg-[#F535A4]'>
+      <h1 className='flex justify-center text-center text-3xl text-[#F0D94F] font-bold'>I think i love her</h1>
+      </div>
     </>
   )
 }
