@@ -5,8 +5,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}"
   ],
   theme: {
-    extend: {},
-  },
-  plugins: [],
+    extend: {
+      backgroundImage: {
+        dining: "url('/src/Images/Dining.png')"
+      },
+    },
+    plugins: [],
+  }
 }
-
