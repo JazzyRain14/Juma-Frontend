@@ -9,7 +9,21 @@ export default {
       backgroundImage: {
         dining: "url('/src/Images/Dining.png')"
       },
+      gridTemplateColumns: {
+          grid1: '40% auto',
+      },
+      gridTemplateRows: {
+        gridRow1: '10% auto'
+      },
+      // textColor: {
+      //   projectRed: '#FF0000'
+      // }
+      colors: {
+        projectRed: '#FF0000',
+        projectBlack:'#424242',
+        projectBorder:'#8a8a8a',
+      }
     },
     plugins: [],
-  }
-}
+  },
+};

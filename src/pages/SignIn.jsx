@@ -1,24 +1,35 @@
-import React from 'react'
+import React, { useState } from 'react'
 import google from '../Images/google-color-icon.png'
-import { FaCartArrowDown } from "react-icons/fa";
+import { FaCartArrowDown, FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link } from 'react-router-dom';
-const SignIn = () => {
-    return (
-        <div className="h-screen w-screen border border-black
-        grid grid-cols-2 gap-5
-        p-8 bg-[#CCCCCC]"
-            style={{ gridTemplateColumns: "40% auto" }}
-        >
-            <div className=' col-span-1 border-2'
-                style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    // backgroundColor:"#CCCCCC"
-                }}
-            >
 
-                {/* logo */}
-                <div className=' flex items-center p-2 pl-6 w-fit'>
+const SignIn = () => {
+    const [type, settype] = useState("password");
+    const [eye, seteye] = useState(FaEyeSlash);
+    const [password, setpassword] = useState("");
+
+
+    const reveal = (e) => {
+        e.preventDefault()
+        if (type === "password") {
+            seteye(FaEye)
+            settype("text")
+        }
+        else {
+            settype("password")
+            seteye(FaEyeSlash)
+        }
+    }
+
+
+
+    return (
+        <>
+            <div className='bg-[#CCCCCC] h-100 min-h-screen  grid grid-flow-row gap-8 px-8 pt-4'>
+                {/* {/* left div */}
+
+                {/* Logo */}
+                <div className=' row-span-1 border-r-2 border-projectRed flex items-center mb-8'>
                     <span className=' text-3xl text-[#1A1110]'>
                         <i>
                             <FaCartArrowDown />
@@ -35,63 +46,61 @@ const SignIn = () => {
                     </span>
                 </div>
 
-                <div style={{
-                    display: "flex", flexDirection: 'column', gap: '35px', justifyContent: 'center', alignItems: 'center'
-                }}>
-                    <div
-                        className=' flex justify-center bg-dining h-[350px] 
-                    w-[450px]'>
-                    </div>
-                    <span className='w-[450px]'>
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur possimus, natus repellendus quibusdam ratione nam ad eveniet explicabo tempora numquam minima.
-                    </span>
-                </div>
-
-
-            </div>
-
-
-            <div className='bg-[#ffffff] p-8 rounded-2xl overflow-hidden col-span-1'>
-
-                <h1 className='text-2xl ml-5'> Welcome to <span className='text-[#FF0000] font-semibold'>Juma</span>
-                </h1>
-                <p className=' text-xs ml-5'>We satisfy your cravings <span></span></p>
-
-                <div className='flex m-5 mb-0 justify-center items-center  w-[500px]'>
-                    <form action="" className=' h-[350px] w-[100%]'>
-
-                        <div className='mt-3 mb-3'>
-                            <label className=' block mb-2 text-[#424242]'>Email</label>
-                            <input
-                                className=' w-[100%] p-2 rounded border border-[#d6d5d5] outline-none'
-                                type="mail"
-                                name='email'
-                                placeholder='info@example.com'
-                            />
+                {/* right div */}
+                <div className=' row-span-6'>
+                    <h1 className='text-4xl'>Welcome Back</h1>
+                    <p className=' font-semibold text-[16px]'><span className=' text-xl text-projectRed'>Sign In</span>, Let's satisfy your cravings</p>
+                    <form action="" className='mt-3'>
+                        <div className='mt-2 mb-4'>
+                            <label className=' block mb-2 text-[#424242] text-[26px]'>Email</label>
+                            <div className='border border-projectBorder p-4 rounded bg-[#ffffff]'>
+                                <input
+                                    type="mail"
+                                    className=' w-full bg-red-30 text-2xl  outline-none bg-transparent'
+                                    name='email'
+                                    placeholder='info@example.com' />
+                            </div>
                         </div>
+                        <div className='mt-2 mb-4'>
+                            <label className=' block mb-2 text-[#424242] text-[26px]'>Password</label>
 
-                        <div className='mb-3'>
-                            <label className='block mb-2 text-[#424242]'> Password</label>
-                            <input
-                                className=' w-[100%] p-2 rounded border border-[#d6d5d5] outline-none'
-                                type="password"
-                                name='password'
-                            placeholder='Password'/>
+                            <div className='border border-projectBorder p-4 rounded flex items-center  bg-[#ffffff]'>
+                                <input
+                                    className=' w-full bg-red-30 text-2xl  outline-none bg-transparent'
+                                    type={type}
+                                    name='password'
+                                    placeholder='Password'
+                                    onChange={(e) => setpassword(e.target.value)}
+                                />
+                                {
+                                    password === "" ?
+                                        <span className='ml-7'></span> :
+                                        <button onClick={reveal}
+                                            type='button'
+                                            className='
+                                             rounded-[50%] flex items-center justify-center w-[30px] h-[100%] cursor-pointer text-[25px]'>
+                                            {eye}
+                                        </button>
+                                }
+                            </div>
                         </div>
-                        <button className=' w-[100%] p-2 mb-3 mt-3 text-lg font-semibold rounded bg-[#d61313] hover:bg-[#d61313f3] text-[#ffffff]'>
+                        <button className=' w-[100%] p-5 mt-2 mb-4 text-2xl font-semibold rounded bg-[#d61313] hover:bg-[#d61313f3] text-[#ffffff]'>
                             Sign In
                         </button>
-                        <button className=' w-[100%] p-2 mt-3 text-[15px] font-semibold border border-[#1A1110] rounded flex justify-center items-center hover:bg-[#f8f8f8]'>
+                        <button className=' w-[100%] p-5 mt-2 mb-4 text-2xl font-semibold border border-projectBlack  text-projectBlack rounded flex justify-center items-center hover:bg-[#f8f8f8]'>
                             <span>
                                 <img src={google} alt="" className='mr-2 w-7' /></span>
                             Continue with Google
                         </button>
                     </form>
+                    <p className=' border text-xl'>Don't have an account? <Link to='/signup' className='text-[#FF0000] font-medium'>Sign Up for free</Link>
+                    </p>
                 </div>
-                <p className='ml-5'>Don't have an account? <Link to='/signup' className='text-[#FF0000] font-medium'>Sign Up for free</Link>
-                </p>
+                <div>
+
+                </div>
             </div>
-        </div>
+        </>
     )
 }
 
