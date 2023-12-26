@@ -1,13 +1,26 @@
 import React, { useState } from 'react'
 import google from '../Images/google-color-icon.png'
 import { FaCartArrowDown, FaEye, FaEyeSlash } from "react-icons/fa";
+import { useFormik } from 'formik';
 import { Link } from 'react-router-dom';
-import dining from '../Images/Dining.png'
+import dining from '../Images/Dining.png';
+import yupValidation from './yupValidation';
 
 const SignUp = () => {
     const [type, settype] = useState("password");
     const [eye, seteye] = useState(FaEyeSlash);
-    const [password, setpassword] = useState("");
+
+    const formik = useFormik({
+        initialValues: {
+            username: "",
+            email: "",
+            password: "",
+        },
+        onSubmit: () => {
+
+        },
+        validationSchema: yupValidation
+    })
 
 
     const reveal = (e) => {
@@ -69,61 +82,95 @@ const SignUp = () => {
                     <p className=' font-semibold text-[16px] md:text-[12px]'>
                         <span className=' text-xl text-projectRed md:text-lg'>Sign Up</span>, Let's satisfy your cravings
                     </p>
-                    <form action="" className='mt-3'>
+                    <form
+                        action=""
+                        className='mt-3'
+                        onSubmit={formik.handleSubmit}
+                    >
 
                         <div className='mt-2 mb-4 md:mt-1 md:mb-3'>
 
                             <label className=' block mb-2 text-[#424242] text-[26px] md:text-[15px]'>Username</label>
-                            <div className='border border-projectBorder p-4 rounded bg-[#ffffff] md:p-2'>
+                            <div
+                                className={`border p-4 rounded bg-[#ffffff] md:p-2 
+                                ${formik.errors.username && formik.touched.username ? 'border-projectRed' : 'border-projectBorder'}
+                                `}
+                            >
                                 <input
                                     type="text"
                                     className=' w-full text-2xl  outline-none bg-transparent md:text-sm'
                                     name='username'
-                                    placeholder='eg: jazzyrain' />
+                                    placeholder='eg: jazzyrain'
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                />
                             </div>
+                            {formik.touched.username ? <small
+                                className='text-projectRed  text-lg md:text-[16px]'>
+                                {formik.errors.username}
+                            </small> : ""}
                         </div>
                         <div className='mt-2 mb-4 md:mt-1 md:mb-3'>
 
                             <label className=' block mb-2 text-[#424242] text-[26px] md:text-[15px]'>Email</label>
-                            <div className='border border-projectBorder p-4 rounded bg-[#ffffff] md:p-2'>
+                            <div
+                                className={`border border-projectBorder p-4 rounded bg-[#ffffff] md:p-2 
+                                ${formik.errors.email && formik.touched.email ? 'border-projectRed' : 'border-projectBorder'}
+                            `}>
                                 <input
                                     type="mail"
                                     className=' w-full text-2xl  outline-none bg-transparent md:text-sm'
                                     name='email'
-                                    placeholder='info@example.com' />
+                                    placeholder='info@example.com'
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                />
                             </div>
+                            {formik.touched.email ? <small
+                                className='text-projectRed text-lg md:text-[16px]'>
+                                {formik.errors.email}
+                            </small> : ""}
                         </div>
                         <div className='mt-2 mb-4 md:mt-1 md:mb-3'>
 
                             <label className=' block mb-2 text-[#424242] text-[26px] md:text-[15px]'>Password</label>
-                            <div className='border border-projectBorder p-4 rounded  flex items-center bg-[#ffffff] md:p-2'>
+                            <div className={`border border-projectBorder p-4 rounded  flex items-center bg-[#ffffff] md:p-2 
+                            ${formik.errors.password && formik.touched.password ? 'border-projectRed' : 'border-projectBorder'}
+                            `}>
                                 <input
                                     type={type}
                                     className=' w-full text-2xl  outline-none bg-transparent md:text-sm'
                                     name='password'
                                     placeholder='enter your password'
-                                    onChange={(e) => setpassword(e.target.value)}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
                                 />
                                 {
-                                    password === "" ?
+                                    formik.values.password === "" ?
                                         <span className='ml-7'></span> :
-                                        <button onClick={reveal}
-                                            type='button'
+                                        <i onClick={reveal}
                                             className='
                                              rounded-[50%] flex items-center justify-center w-[30px] h-[100%] cursor-pointer text-[25px] md:text-[20px]'>
                                             {eye}
-                                        </button>
+                                        </i>
                                 }
                             </div>
+                            {formik.touched.password ? <small
+                                className='text-projectRed  text-lg md:text-[16px]'>
+                                {formik.errors.password}
+                            </small> : ""}
                         </div>
 
 
 
-                        <button className=' w-[100%] p-5 mt-2 mb-4 text-2xl font-semibold rounded bg-[#d61313] hover:bg-[#d61313f3] text-[#ffffff]
+                        <button
+                            disabled={!!formik.errors.email || !!formik.errors.password}
+                            className=' w-[100%] p-5 mt-2 mb-4 text-2xl font-semibold rounded bg-[#d61313] hover:bg-[#d61313f3] text-[#ffffff]
                          md:mt-1 md:mb-3 md:p-3 md:text-lg'>
                             Sign Up
                         </button>
-                        <button className=' w-[100%] p-5 mt-2 mb-4 text-2xl font-semibold border border-projectBlack  text-projectBlack rounded flex justify-center items-center hover:bg-[#f8f8f8] md:p-3 md:mb-3 md:mt-1 md:text-lg'>
+                        <button
+                            className=' w-[100%] p-5 mt-2 mb-4 text-2xl font-semibold border border-projectBlack  text-projectBlack rounded flex justify-center items-center hover:bg-[#f8f8f8] md:p-3 md:mb-3 md:mt-1 md:text-lg'>
                             <span>
                                 <img src={google} alt="" className='mr-2 w-5 md:w-7' /></span>
                             Continue with Google
@@ -131,11 +178,11 @@ const SignUp = () => {
                     </form>
                     <p className='text-xl md:text-sm'>Already have an account? <Link to='/signin' className='text-[#FF0000] font-medium'>Sign In</Link>
                     </p>
-                </div>
+                </div >
                 <div>
 
                 </div>
-            </div>
+            </div >
         </>
     )
 }

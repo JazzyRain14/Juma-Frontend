@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import google from '../Images/google-color-icon.png'
 import { FaCartArrowDown, FaEye, FaEyeSlash } from "react-icons/fa";
 import { useFormik } from 'formik';
-import * as yup from 'yup';
 import { Link } from 'react-router-dom';
 import dining from '../Images/Dining.png'
+import yupValidation from './yupValidation';
 
 const SignIn = () => {
     const [type, settype] = useState("password");
@@ -17,9 +17,7 @@ const SignIn = () => {
         onSubmit: (values) => {
             console.log(values);
         },
-        validationSchema : yup.object({
-            email: yup.string().required('required')
-        })
+        validationSchema : yupValidation
     })
 
     const reveal = (e) => {
@@ -87,27 +85,40 @@ const SignIn = () => {
                     >
                         <div className='mt-2 mb-4 md:mt-1 md:mb-3'>
                             <label className=' block mb-2 text-[#424242] text-[26px] md:text-[15px]'>Email</label>
-                            <div className='border border-projectBorder p-4 rounded bg-[#ffffff] md:p-2'>
+                            <div
+                                className={`border p-4 rounded bg-[#ffffff] md:p-2
+                                ${formik.errors.email &&formik.touched.email?'border-projectRed':'border-projectBorder'}
+                                `}
+                            >
                                 <input
                                     type="mail"
-                                    className=' w-full text-2xl  outline-none bg-transparent md:text-sm'
+                                    className=' w-full text-2xl  outline-none bg-transparent md:text-sm
+                                    '
                                     name='email'
                                     placeholder='info@example.com'
-                                onChange={formik.handleChange}/>
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                />
                             </div>
-                            <small>{ formik.errors.email}</small>
+                            {formik.touched.email ? <small
+                                className='text-projectRed  text-lg md:text-[16px]'>
+                                {formik.errors.email}
+                            </small> : ""}
+                            
                         </div>
                         <div className='mt-2 mb-4 md:mt-1 md:mb-3'>
                             <label className=' block mb-2 text-[#424242] text-[26px] md:text-[15px]'>Password</label>
 
-                            <div className='border border-projectBorder p-4 rounded flex items-center bg-[#ffffff] md:p-2'>
+                            <div className={`border p-4 rounded flex items-center bg-[#ffffff] md:p-2 
+                            ${formik.errors.password && formik.touched.password?'border-projectRed':'border-projectBorder'}`
+                        }>
                                 <input
                                     className=' w-full text-2xl  outline-none bg-transparent md:text-sm'
                                     type={type}
                                     name='password'
-                                    placeholder='Password'
+                                    placeholder='enter your password'
                                     onChange={formik.handleChange}
-
+                                    onBlur={formik.handleBlur}
                                 />
                                 {
                                     formik.values.password === "" ?
@@ -119,15 +130,18 @@ const SignIn = () => {
                                         </i>
                                 }
                             </div>
+                            {formik.touched.password ? <small
+                                className='text-projectRed text-lg md:text-[16px]'>{formik.errors.password}</small> : ""}
                         </div>
                         <button
-                            type='btn'
+                            disabled={!!formik.errors.email || !!formik.errors.password}
                             className=' w-[100%] p-5 mt-2 mb-4 text-2xl font-semibold rounded bg-[#d61313] hover:bg-[#d61313f3] text-[#ffffff]
                          md:mt-1 md:mb-3 md:p-3 md:text-lg'
                         >
                             Sign In
                         </button>
-                        <button className=' w-[100%] p-5 mt-2 mb-4 text-2xl font-semibold border border-projectBlack  text-projectBlack rounded flex justify-center items-center hover:bg-[#f8f8f8] md:p-3 md:mb-3 md:mt-1 md:text-lg'>
+                        <button
+                            className=' w-[100%] p-5 mt-2 mb-4 text-2xl font-semibold border border-projectBlack  text-projectBlack rounded flex justify-center items-center hover:bg-[#f8f8f8] md:p-3 md:mb-3 md:mt-1 md:text-lg'>
                             <span>
                                 <img src={google} alt="" className='mr-2 w-5 md:w-7' /></span>
                             Continue with Google
