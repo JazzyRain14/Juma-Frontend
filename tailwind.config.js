@@ -7,21 +7,22 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        dining: "url('/src/Images/Dining.png')"
+        'linear': 'linear-gradient(to left, rgba(255,255,255,0.15),transparent)'
       },
       gridTemplateColumns: {
-          grid1: '40% auto',
+        grid1: '40% auto',
       },
       gridTemplateRows: {
         gridRow1: '10% auto'
       },
-      // textColor: {
-      //   projectRed: '#FF0000'
-      // }
-      colors: {
-        projectRed: '#FF0000',
-        projectBlack:'#424242',
-        projectBorder:'#8a8a8a',
+        colors: {
+          projectRed: {
+            1: '#FF0000',
+            2: '#EB0029'
+          } ,
+          projectBlack:'#424242',
+          projectBorder: '#8a8a8a',
+          animatedButton: 'linear-gradient(to left, rgba(255,025,055,0.15),transparent)'
       }
     },
     plugins: [],

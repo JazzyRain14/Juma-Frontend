@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import google from '../Images/google-color-icon.png'
+import google from '../assets/Images/google-color-icon.png'
 import { FaCartArrowDown, FaEye, FaEyeSlash } from "react-icons/fa";
 import { useFormik } from 'formik';
 import { Link } from 'react-router-dom';
-import dining from '../Images/Dining.png'
+import dining from '../assets/Images/Dining.png'
 import yupValidation from './yupValidation';
 
 const SignIn = () => {
