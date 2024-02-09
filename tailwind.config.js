@@ -22,8 +22,8 @@ export default {
           } ,
           projectBlack:'#424242',
           projectBorder: '#8a8a8a',
-          animatedButton: 'linear-gradient(to left, rgba(255,025,055,0.15),transparent)'
-      }
+          glass: ''
+        }
     },
     plugins: [],
   },

@@ -1,12 +1,41 @@
-import React from 'react'
+import React, { useEffect, useRef, useState} from 'react'
 import { FaCartArrowDown, FaSearch } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 const NavBar = () => {
+    // const myRef = useRef(null)
+    // useEffect(() => {
+    //     window.addEventListener('scroll', handleScroll);
+    //   return () => {
+    //       window.removeEventListener('scroll', handleScroll);
+    //   }
+    // }, [])
+    // const handleScroll = () => {
+    //     console.log(window.scrollY);
+    //     if (window.scrollY > 500) {
+    //         myRef.current.classList.add('bg-white')
+    //     }
+    //     else if(window.scrollY < 500){
+    //         myRef.current.classList.add('bg-transparent')
+    //         myRef.current.classList.remove('bg-white')
+    //     }
+    // }
+    const [isScrolled, setisScrolled] = useState(false)
+    const handleScroll = () => {
+        const scrollPosition = window.scrollY
+        setisScrolled(scrollPosition>=460)
+    };  
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll)
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [])
+    
     return (
         <>
-            <section className=' z-50 flex absolute w-full justify-around items-center border py-4'>
+            <section
+                className={`flex z-50 w-full justify-around items-center border py-4 top-0 shadow-md fixed transition-colors ease-in-out duration-300 ${isScrolled?'bg-[#140f0f]':'bg-transparent'}`}
+            >
                 {/* Links */}
-                <div className='bg-transparent'>
+                <div className=''>
                     <Link to='/signin'
                     className='border text-white px-4 py-3 mx-2 rounded-lg hover:bg-projectRed-2 transition-colors duration-500 text-lg font-semibold'
                     >Home</Link>
