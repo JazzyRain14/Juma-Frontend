@@ -4,7 +4,7 @@ import burrrito2 from '../assets/Images/pexels-pixabay-461198.jpg'
 
 const projectImport = [
     {
-        burgers: [
+        Product1: [
             {
                 categoryName: "Burgers",
                 categoryLink:'',
@@ -27,7 +27,7 @@ const projectImport = [
                 ]
             }
         ],
-        burritos: [
+        Product2: [
             {
                 categoryName: "Burritos",
                 categoryLink:'',
@@ -46,6 +46,121 @@ const projectImport = [
                     productName: "Portrait Burger With hot spicy Roasted Pork (450g)",
                     productImage: burrrito1,
                     productPrice: "5000"
+                }
+                ]
+            }
+        ],
+        Product3: [
+            {
+                categoryName: "Burgers",
+                categoryLink:'',
+            categories: [
+                {
+                    productName: "Portrait Burger With hot spicy Roasted Pork (450g)",
+                    productImage: burger1,
+                    productPrice: "6500"
+                },
+                {
+                    productName: "Portrait Burger With hot spicy Roasted Pork (450g)",
+                    productImage: burger1,
+                    productPrice: "6500"
+                },
+                {
+                    productName: "Portrait Burger With hot spicy Roasted Pork (450g)",
+                    productImage: burger1,
+                    productPrice: "6500"
+                }
+                ]
+            }
+        ],
+        Product4: [
+            {
+                categoryName: "Burritos",
+                categoryLink:'',
+            categories: [
+                {
+                    productName: "Portrait Burger With hot spicy Roasted Pork (450g)",
+                    productImage: burrrito1,
+                    productPrice: "5000"
+                },
+                {
+                    productName: "Portrait Burger With hot spicy Roasted Pork (450g)",
+                    productImage: burrrito2,
+                    productPrice: "5000"
+                },
+                {
+                    productName: "Portrait Burger With hot spicy Roasted Pork (450g)",
+                    productImage: burrrito1,
+                    productPrice: "5000"
+                }
+                ]
+            }
+        ],
+        Product5: [
+            {
+                categoryName: "Burgers",
+                categoryLink:'',
+            categories: [
+                {
+                    productName: "Portrait Burger With hot spicy Roasted Pork (450g)",
+                    productImage: burger1,
+                    productPrice: "6500"
+                },
+                {
+                    productName: "Portrait Burger With hot spicy Roasted Pork (450g)",
+                    productImage: burger1,
+                    productPrice: "6500"
+                },
+                {
+                    productName: "Portrait Burger With hot spicy Roasted Pork (450g)",
+                    productImage: burger1,
+                    productPrice: "6500"
+                }
+                ]
+            }
+        ],
+        Product6: [
+            {
+                categoryName: "Burritos",
+                categoryLink:'',
+            categories: [
+                {
+                    productName: "Portrait Burger With hot spicy Roasted Pork (450g)",
+                    productImage: burrrito1,
+                    productPrice: "5000"
+                },
+                {
+                    productName: "Portrait Burger With hot spicy Roasted Pork (450g)",
+                    productImage: burrrito2,
+                    productPrice: "5000"
+                },
+                {
+                    productName: "Portrait Burger With hot spicy Roasted Pork (450g)",
+                    productImage: burrrito1,
+                    productPrice: "5000"
+                }
+                ]
+            }
+        ],
+        Product7: [
+            {
+                categoryName: "Burgers",
+                categoryLink:'',
+            categories: [
+                {
+                    productName: "Portrait Burger With hot spicy Roasted Pork (450g)",
+                    productImage: burger1,
+                    productPrice: "6500"
+                },
+                {
+                    productName: "Portrait Burger With hot spicy Roasted Pork (450g)",
+                    productImage: burger1,
+                    productPrice: "6500"
+                },
+                {
+                    productName: "Portrait Burger With hot spicy Roasted Pork (450g)",
+                    productImage: burger1,
+                    productPrice: "6500"
                 }
                 ]
             }

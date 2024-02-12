@@ -4,8 +4,13 @@
     padding: 0 25px;
     outline: none;
 }
-html, body{
-    min-height: 100%;
+ html,body{
+    max-height: 100%;
     margin: 0;
-    border: 3px solid plum;
+    /* border: 3px solid red; */
 }
+.active-navlink{
+    @apply text-white bg-projectRed-2
+}
+
+
