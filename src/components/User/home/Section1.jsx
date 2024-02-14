@@ -7,9 +7,9 @@ const Section1 = () => {
             <div className='border rounded-lg overflow-hidden relative 
             border-indigo-800 h-[500px] w-full'>
                 <video
-                    autoPlay
-                    loop
-                    mute='true'
+                    autoPlay 
+                    loop 
+                    mute='true' 
                     src={burgvideo}
                     className='absolute h-full w-full object-fill'
                 />
