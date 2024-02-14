@@ -1,5 +1,4 @@
 import React from 'react'
-import TopNav from './TopNav'
 import burgvideo from '../../../assets/videos/burgerVid_2.mp4'
 const Section1 = () => {
     return (
