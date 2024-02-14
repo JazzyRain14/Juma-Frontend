@@ -70,7 +70,7 @@ const SideBar = () => {
                         </div>
 
                         <NavLink to='userprofile' className='block border p-4'>Profile</NavLink>
-                        <NavLink className='block border p-4'>Cart</NavLink>
+                        <NavLink to='product cart' className='block border p-4'>Cart</NavLink>
                         <NavLink className='block border p-4'>Account</NavLink>
                         <NavLink className='block border p-4'>Help & Support</NavLink>
                     </div>

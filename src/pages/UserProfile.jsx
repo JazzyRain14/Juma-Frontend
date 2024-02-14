@@ -5,8 +5,7 @@ import profilePics from '../assets/Images/babyChef.jpg'
 import { LiaClipboardListSolid } from "react-icons/lia";
 import { FaAngleRight, FaBell, FaHeart, FaUser } from 'react-icons/fa6';
 import { FaHistory, FaWallet } from 'react-icons/fa';
-import Popup from 'reactjs-popup';
-import 'reactjs-popup/dist/index.css'
+import Modal from 'react-overlays/Modal';
 const UserProfile = () => {
     const ref = useRef()
     const [ifTrue, setifTrue] = useState(true);
@@ -68,7 +67,7 @@ const UserProfile = () => {
                         className='flex text-xl justify-between py-4 items-center transition duration-200 cursor-pointer'>
                         <span className='flex gap-1 items-center'>
                             <FaUser />
-                            My Profile
+                            Edit Profile
                         </span>
                         <FaAngleRight />
                     </div>
@@ -76,60 +75,10 @@ const UserProfile = () => {
                         <div className='flex items-center justify-center gap-x-4 overflow-hidden'>
                             <button className='border p-3 bg-projectRed-2 rounded-lg text-lg font-semibold text-white'>Change Profile Pic</button>
 
-                            {/* <button className='border p-3 bg-projectRed-2 rounded-lg text-lg font-semibold text-white'>Change Details</button> */}
-                            <Popup
-                                trigger={
-                                    <button className='border p-3 bg-projectRed-2 rounded-lg text-lg font-semibold text-white'> Trigger</button>
-                                }
-                                modal
-                                nested
-                            >
-                                {close => (
-                                    <div className="modal">
-                                        <button className="close" onClick={close}>
-                                            &times;
-                                        </button>
-                                        <div className="header"> Modal Title </div>
-                                        <div className="content">
-                                            {' '}
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, a nostrum.
-                                            Dolorem, repellat quidem ut, minima sint vel eveniet quibusdam voluptates
-                                            delectus doloremque, explicabo tempore dicta adipisci fugit amet dignissimos?
-                                            <br />
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur sit
-                                            commodi beatae optio voluptatum sed eius cumque, delectus saepe repudiandae
-                                            explicabo nemo nam libero ad, doloribus, voluptas rem alias. Vitae?
-                                        </div>
-                                        <div className="actions">
-                                            <Popup
-                                                trigger={<button className="button"> Trigger </button>}
-                                                position="top center"
-                                                nested
-                                            >
-                                                <span>
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae
-                                                    magni omnis delectus nemo, maxime molestiae dolorem numquam
-                                                    mollitia, voluptate ea, accusamus excepturi deleniti ratione
-                                                    sapiente! Laudantium, aperiam doloribus. Odit, aut.
-                                                </span>
-                                            </Popup>
-                                            <button
-                                                className="button"
-                                                onClick={() => {
-                                                    console.log('modal closed ');
-                                                    close();
-                                                }}
-                                            >
-                                                close modal
-                                            </button>
-                                        </div>
-                                    </div>
-                                )}
-
-                            </Popup>
-
+                            <button 
+                            className='border p-3 bg-projectRed-2 rounded-lg text-lg font-semibold text-white'
+                            >Change Details</button>
                             <button className='border p-3 bg-projectRed-2 rounded-lg text-lg font-semibold text-white'>Your Wallet</button>
-                            {/* <button></button> */}
                         </div>
                     </div>
 

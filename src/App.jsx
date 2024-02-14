@@ -16,6 +16,7 @@ import Cart4 from './pages/AllCategoriesPage/Cart4.jsx'
 import Cart5 from './pages/AllCategoriesPage/Cart5.jsx'
 import Cart6 from './pages/AllCategoriesPage/Cart6.jsx'
 import Cart7 from './pages/AllCategoriesPage/Cart7.jsx'
+import AllCart from './pages/AllCart.jsx'
 
 function App() {
 
@@ -35,6 +36,7 @@ function App() {
           <Route path='categories/cart5' element={<Cart5 />} />
           <Route path='categories/cart6' element={<Cart6 />} />
           <Route path='categories/cart7' element={<Cart7 />} />
+          <Route path='product cart' element={<AllCart />} />
           <Route path='userprofile' element={<UserProfile />} />
           <Route path='transanction history' element={<TransanctionHistory />} />
         </Route>
