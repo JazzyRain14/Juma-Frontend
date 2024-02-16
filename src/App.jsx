@@ -27,7 +27,7 @@ function App() {
         <Route path="/" element={<Landingpg />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path='/home' element={<SharedLayouts />} >
+        <Route path='home' element={<SharedLayouts />} >
           <Route index element={<HomePage />} />
           <Route path='categories/cart1' element={<Cart1 />} />
           <Route path='categories/cart2' element={<Cart2 />} />

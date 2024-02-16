@@ -36,7 +36,7 @@ const NavBar = () => {
             >
                 {/* Links */}
                 <div className=''>
-                    <Link to='/signin'
+                    <Link to='home'
                     className='border text-white px-4 py-3 mx-2 rounded-lg hover:bg-projectRed-2 transition-colors duration-500 text-lg font-semibold'
                     >Home</Link>
                     <Link to='/signin'
