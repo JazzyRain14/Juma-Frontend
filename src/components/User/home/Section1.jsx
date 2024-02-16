@@ -1,5 +1,5 @@
 import React from 'react'
-import burgvideo from '../../../assets/videos/burgerVid_2.mp4'
+import burgvideo from '../../../../public/videos/burgerVid_2.mp4'
 const Section1 = () => {
     return (
         <section>
