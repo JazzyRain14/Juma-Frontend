@@ -20,14 +20,16 @@ const TopNav = () => {
             <div className=' w-[50%] flex justify-end gap-4'>
                 <div className=' border flex justify-center items-center rounded-full p-2 text-xl w-[40px] h-[40px]'>
                     {/* Profile */}
-                    <Link to='userprofile'>
+                    <Link to='/home/userprofile'>
                         <FaUser />
                     </Link>
                 </div>
 
                 <div className=' border flex justify-center items-center rounded-full p-2 text-xl w-[40px] h-[40px]'>
                     {/* Shopping Cart */}
-                    <FaCartShopping />
+                    <Link to='productcart'>
+                        <FaCartShopping />
+                    </Link>
                 </div>
             </div>
         </section>

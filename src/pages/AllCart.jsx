@@ -1,9 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FaDumpster, FaMinus, FaPlus, FaRecycle, FaTrash } from 'react-icons/fa6'
 import cartImg from '../assets/Images/pexels-horizon-content-3738730-removebg-preview.png'
 import TopNav from '../components/User/home/TopNav'
 
 const AllCart = () => {
+    const [countIncreament, setCountIncreament] = useState(1);
+    const increament = () => {
+        setCountIncreament(countIncreament + 1);
+    }   
+    const decreament = () => {
+        if (countIncreament == 0) {
+            countIncreament == 0
+        } else {
+            setCountIncreament(countIncreament - 1)
+        }
+    }
     return (
         <>
             <section className='px-4 pt-4'>
@@ -12,7 +23,7 @@ const AllCart = () => {
                     <div className=' basis-3/4 rounded-lg bg-gray-400 '>
                         <article className='max-w-full'>
                             <header className='border-b py-1 text-xl px-4'>
-                                Cart(1)
+                                Cart({countIncreament})
                             </header>
                             <div className='flex flex-row mt-1  px-4'>
                                 <div className='max-w-[75px] w-full h-[75px] relative rounded-full object-cover overflow-hidden flex bg-gray-200'>
@@ -34,11 +45,15 @@ const AllCart = () => {
                                     Remove
                                 </button>
                                 <div className='flex items-center gap-2'>
-                                    <button className='bg-projectRed-2 p-2 rounded text-white'>
-                                        <FaPlus />
+                                    <button className='bg-projectRed-2 p-2 rounded text-white'
+                                    onClick={decreament}
+                                    >
+                                        <FaMinus />
                                     </button>
-                                    <span className='text-lg font-semibold'>1</span>
-                                    <button className='bg-projectRed-2 p-2 rounded text-white'><FaMinus /></button>
+                                    <span className='text-lg font-semibold'>{ countIncreament}</span>
+                                    <button className='bg-projectRed-2 p-2 rounded text-white'
+                                    onClick={increament}
+                                    ><FaPlus /></button>
                                 </div>
                             </footer>
                         </article>

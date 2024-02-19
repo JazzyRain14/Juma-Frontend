@@ -93,7 +93,7 @@ const UserProfile = () => {
                     <div className='flex text-xl justify-between  py-4 items-center'>
                         <span className='flex gap-1 items-center'>
                             <FaUser />
-                            Profile
+                            Delete Account
                         </span>
                         <FaAngleRight />
                     </div>

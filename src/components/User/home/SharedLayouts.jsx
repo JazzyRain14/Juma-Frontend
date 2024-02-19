@@ -11,6 +11,9 @@ const SharedLayouts = () => {
                 <SideBar />
                 <div className=' w-full overflow-hidden 
                 rounded-md ml-[300px] border-2 border-fuchsia-700'>
+                    {/* <div className=' pt-4 px-4'>
+                        <TopNav />
+                    </div> */}
                     <Outlet />
                 </div>
             </section>
