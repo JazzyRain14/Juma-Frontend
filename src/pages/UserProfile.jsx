@@ -5,16 +5,21 @@ import profilePics from '../assets/Images/babyChef.jpg'
 import { LiaClipboardListSolid } from "react-icons/lia";
 import { FaAngleRight, FaBell, FaHeart, FaUser } from 'react-icons/fa6';
 import { FaHistory, FaWallet } from 'react-icons/fa';
-import Modal from 'react-overlays/Modal';
+import EditUser from '../components/User/home/Modals';
+// import Modal from 'react-overlays/Modal';
 const UserProfile = () => {
     const ref = useRef()
     const [ifTrue, setifTrue] = useState(true);
+    const [modal, setModal] = useState(false)
     const openAccord = () => {
         if (ifTrue === true) {
             setifTrue(false)
         } else {
             setifTrue(true)
         }
+    }
+    const toggleModal = () => {
+        setModal(!modal )
     }
     return (
         <>
@@ -65,7 +70,8 @@ const UserProfile = () => {
                     <div
                         onClick={openAccord}
                         className='flex text-xl justify-between py-4 items-center transition duration-200 cursor-pointer'>
-                        <span className='flex gap-1 items-center'>
+                        <span
+                            className='flex gap-1 items-center'>
                             <FaUser />
                             Edit Profile
                         </span>
@@ -73,15 +79,19 @@ const UserProfile = () => {
                     </div>
                     <div className={`${ifTrue === true ? 'hidden' : 'block'}`}>
                         <div className='flex items-center justify-center gap-x-4 overflow-hidden'>
-                            <button className='border p-3 bg-projectRed-2 rounded-lg text-lg font-semibold text-white'>Change Profile Pic</button>
+                            <button className='border p-3 bg-projectRed-2 rounded-lg text-lg font-semibold text-white'>
+                                Change Profile Pic
+                            </button>
 
                             <button 
-                            className='border p-3 bg-projectRed-2 rounded-lg text-lg font-semibold text-white'
-                            >Change Details</button>
+                                onClick={toggleModal}
+                                className='border p-3 bg-projectRed-2 rounded-lg text-lg font-semibold text-white'
+                                >Change Details
+                            </button>
                             <button className='border p-3 bg-projectRed-2 rounded-lg text-lg font-semibold text-white'>Your Wallet</button>
                         </div>
                     </div>
-
+                    {modal && (<EditUser toggleModal={ toggleModal} />)}
                     <div className='flex text-xl justify-between  py-4 items-center'>
                         <span className='flex gap-1 items-center'>
                             <FaHistory />
@@ -114,5 +124,4 @@ const UserProfile = () => {
         </>
     )
 }
-
-export default UserProfile
+export default UserProfile;
