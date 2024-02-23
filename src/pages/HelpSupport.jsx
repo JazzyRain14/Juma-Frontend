@@ -3,7 +3,7 @@ import { FaDumpster, FaMinus, FaPlus, FaRecycle, FaTrash } from 'react-icons/fa6
 import TopNav from '../components/User/home/TopNav'
 const HelpSupport = () => {
   return (
-    <section className='px-4 pt-4'>
+    <section className='px-4 py-4'>
       {/* <TopNav /> */}
       <div className='flex flex-col gap'>
         <h1 className='text-[35px]  text-gray-600 ml-[65px] mt-6'>Having  any problem ?</h1>

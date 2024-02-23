@@ -5,21 +5,21 @@ import profilePics from '../assets/Images/babyChef.jpg'
 import { LiaClipboardListSolid } from "react-icons/lia";
 import { FaAngleRight, FaBell, FaHeart, FaUser } from 'react-icons/fa6';
 import { FaHistory, FaWallet } from 'react-icons/fa';
-import EditUser from '../components/User/home/Modals';
+import { EditUserModal, EditUserPhotoModal } from '../components/User/home/Modals';
 // import Modal from 'react-overlays/Modal';
 const UserProfile = () => {
     const ref = useRef()
     const [ifTrue, setifTrue] = useState(true);
-    const [modal, setModal] = useState(false)
+    const [isEditUserOpened, setIsEditUserOpened] = useState(false)
+    const [isEditUserPhotoOpened, setIsEditUserPhotoOpened] = useState(false)
     const openAccord = () => {
-        if (ifTrue === true) {
-            setifTrue(false)
-        } else {
-            setifTrue(true)
-        }
+        setifTrue(!ifTrue)
     }
-    const toggleModal = () => {
-        setModal(!modal )
+    const EditUser = () => {
+        setIsEditUserOpened(!isEditUserOpened)
+    }
+    const EditUserPhoto = () => {
+        setIsEditUserPhotoOpened(!isEditUserPhotoOpened)
     }
     return (
         <>
@@ -67,51 +67,65 @@ const UserProfile = () => {
                 </div>
 
                 <div className='flex flex-col mx-20'>
-                    <div
-                        onClick={openAccord}
-                        className='flex text-xl justify-between py-4 items-center transition duration-200 cursor-pointer'>
-                        <span
-                            className='flex gap-1 items-center'>
-                            <FaUser />
-                            Edit Profile
-                        </span>
-                        <FaAngleRight />
-                    </div>
-                    <div className={`${ifTrue === true ? 'hidden' : 'block'}`}>
-                        <div className='flex items-center justify-center gap-x-4 overflow-hidden'>
-                            <button className='border p-3 bg-projectRed-2 rounded-lg text-lg font-semibold text-white'>
-                                Change Profile Pic
-                            </button>
+                    
+                    <div className='border-b'>
+                        <div
+                            onClick={openAccord}
+                            className='flex text-xl justify-between py-4 items-center transition 
+                        duration-200 cursor-pointer'>
+                            <span
+                                className='flex gap-2 items-center'>
+                                <FaUser />
+                                Edit Profile
+                            </span>
+                            <FaAngleRight />
+                        </div>
+                        <div className={`${ifTrue === true ? 'hidden' : 'block'}`}>
+                            <div className='flex items-center justify-center gap-x-4 mb-1 overflow-hidden'>
 
-                            <button 
-                                onClick={toggleModal}
-                                className='border p-3 bg-projectRed-2 rounded-lg text-lg font-semibold text-white'
+                                <button
+                                    onClick={EditUserPhoto}
+                                    className='border p-3 bg-projectRed-2 rounded-lg text-lg font-semibold text-white'>
+                                    Change Profile Pic
+                                </button>
+                                {isEditUserPhotoOpened && (<EditUserPhotoModal EditUserPhotoModal={EditUserPhoto} />)}
+
+                                <button
+                                    onClick={EditUser}
+                                    className='border p-3 bg-projectRed-2 rounded-lg text-lg font-semibold text-white'
                                 >Change Details
-                            </button>
-                            <button className='border p-3 bg-projectRed-2 rounded-lg text-lg font-semibold text-white'>Your Wallet</button>
+                                </button>
+                                {isEditUserOpened && (<EditUserModal EditUserModal={EditUser} />)}
+
+                                {/* <button className='border p-3 bg-projectRed-2 rounded-lg text-lg font-semibold text-white'>
+                                Your Wallet
+                            </button> */}
+                            </div>
                         </div>
                     </div>
-                    {modal && (<EditUser toggleModal={ toggleModal} />)}
-                    <div className='flex text-xl justify-between  py-4 items-center'>
-                        <span className='flex gap-1 items-center'>
+                    
+                    <NavLink
+                        to="/home/juma wallet"
+                        className='flex border-b text-xl justify-between  py-4 items-center'>
+                        <span className='flex gap-2 items-center'>
+                            <FaWallet />
+                            Juma Wallet
+                        </span>
+                        <FaAngleRight />
+                    </NavLink>
+                    
+                    <div className='flex text-xl justify-between  py-4 items-center border-b'>
+                        <span className='flex gap-2 items-center'>
                             <FaHistory />
                             Transanction History
                         </span>
                         <FaAngleRight />
                     </div>
 
-                    <div className='flex text-xl justify-between  py-4 items-center'>
-                        <span className='flex gap-1 items-center'>
+                    <div className='flex text-xl justify-between  py-4 items-center border-b'>
+                        <span className='flex gap-2 items-center'>
                             <FaUser />
                             Delete Account
-                        </span>
-                        <FaAngleRight />
-                    </div>
-
-                    <div className='flex text-xl justify-between  py-4 items-center'>
-                        <span className='flex gap-1 items-center'>
-                            <FaUser />
-                            Profile
                         </span>
                         <FaAngleRight />
                     </div>

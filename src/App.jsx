@@ -18,6 +18,7 @@ import Cart6 from './pages/AllCategoriesPage/Cart6.jsx'
 import Cart7 from './pages/AllCategoriesPage/Cart7.jsx'
 import AllCart from './pages/AllCart.jsx'
 import HelpSupport from './pages/HelpSupport.jsx'
+import Wallet from './pages/Wallet.jsx'
 
 function App() {
 
@@ -40,6 +41,7 @@ function App() {
           <Route path='userprofile' element={<UserProfile />} />
           <Route path='product cart' exact element={<AllCart />} />
           <Route path='help&support' element={<HelpSupport />} />
+          <Route path='juma wallet' element={<Wallet />} />
           <Route path='transanction history' element={<TransanctionHistory />} />
         </Route>
       </Routes>
