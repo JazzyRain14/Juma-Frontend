@@ -2,21 +2,41 @@ import React, { useState } from 'react'
 import google from '../assets/Images/google-color-icon.png'
 import { FaCartArrowDown, FaEye, FaEyeSlash } from "react-icons/fa";
 import { useFormik } from 'formik';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import dining from '../assets/Images/Dining.png';
 import yupValidation from './yupValidation';
+import axios from 'axios';
 
 const SignUp = () => {
     const [type, settype] = useState("password");
     const [eye, seteye] = useState(FaEyeSlash);
-
+    const endpoints = "http://localhost:3500/auth/signup"
+    const navigate = useNavigate();
     const formik = useFormik({
         initialValues: {
             username: "",
             email: "",
             password: "",
+            adminStatus: false
         },
-        onSubmit: () => {
+        onSubmit: async (values) => {
+            try {
+                let result = await axios.post(endpoints,values);
+                if(result){
+                    console.log(result);
+                    const messages = result.data.message
+                    if(result.data.status===false){
+                        alert(messages);
+                    }else{
+                        localStorage.token="09116087494"
+                        alert(messages);
+                        navigate("/signin");
+                    }
+                }
+            } catch (err) {
+                console.log(err);
+            }
+      
 
         },
         validationSchema: yupValidation
@@ -164,7 +184,7 @@ const SignUp = () => {
 
 
                         <button
-                            disabled={!!formik.errors.email || !!formik.errors.password}
+                            disabled={!!formik.errors.email || !!formik.errors.password} type='submit'
                             className=' w-[100%] p-5 mt-2 mb-4 text-2xl font-semibold rounded bg-[#d61313] hover:bg-[#d61313f3] text-[#ffffff]
                          md:mt-1 md:mb-3 md:p-3 md:text-lg'>
                             Sign Up

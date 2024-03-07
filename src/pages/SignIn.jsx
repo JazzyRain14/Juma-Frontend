@@ -2,20 +2,24 @@ import React, { useState } from 'react'
 import google from '../assets/Images/google-color-icon.png'
 import { FaCartArrowDown, FaEye, FaEyeSlash } from "react-icons/fa";
 import { useFormik } from 'formik';
-import { Link } from 'react-router-dom';
 import dining from '../assets/Images/Dining.png'
 import yupValidation from './yupValidation';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const SignIn = () => {
     const [type, settype] = useState("password");
     const [eye, seteye] = useState(FaEyeSlash);
+    const endpoints = "http://localhost:3500/auth/signin"
+    const navigate = useNavigate();
     const formik = useFormik({
         initialValues: {
             email: "",
             password: "",
         },
-        onSubmit: (values) => {
-            console.log(values);
+        onSubmit: async (values) => {
+           console.log(values)
+           alert(values)
         },
         validationSchema : yupValidation
     })
@@ -92,16 +96,14 @@ const SignIn = () => {
                             >
                                 <input
                                     type="mail"
-                                    className=' w-full text-2xl  outline-none bg-transparent md:text-sm
-                                    '
+                                    className=' w-full text-2xl  outline-none bg-transparent md:text-sm'
                                     name='email'
                                     placeholder='info@example.com'
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
                                 />
                             </div>
-                            {formik.touched.email ? <small
-                                className='text-projectRed  text-lg md:text-[16px]'>
+                            {formik.touched.email ? <small className='text-projectRed  text-lg md:text-[16px]'>
                                 {formik.errors.email}
                             </small> : ""}
                             
@@ -134,7 +136,7 @@ const SignIn = () => {
                                 className='text-projectRed text-lg md:text-[16px]'>{formik.errors.password}</small> : ""}
                         </div>
                         <button
-                            disabled={!!formik.errors.email || !!formik.errors.password}
+                            disabled={!!formik.errors.email || !!formik.errors.password} type='submit'
                             className=' w-[100%] p-5 mt-2 mb-4 text-2xl font-semibold rounded bg-[#d61313] hover:bg-[#d61313f3] text-[#ffffff]
                          md:mt-1 md:mb-3 md:p-3 md:text-lg'
                         >
