@@ -23,7 +23,8 @@ export default {
           projectBlack:'#424242',
           projectBorder: '#8a8a8a',
           glass: ''
-        }
+      },
+    
     },
     plugins: [],
   },

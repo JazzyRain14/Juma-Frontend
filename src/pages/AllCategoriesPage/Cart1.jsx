@@ -1,7 +1,7 @@
 import React from 'react'
 import ComponentBg from '../../assets/Images/YUMMY.png'
 import { FaCartShopping, FaHeart, FaNairaSign } from 'react-icons/fa6'
-import projectImport from '../../components/ProjectImgImport'
+import {projectImport} from '../../components/ProjectImgImport'
 import { Link } from 'react-router-dom'
 const Cart1 = () => {
     return (
