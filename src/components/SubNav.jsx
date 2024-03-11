@@ -30,7 +30,8 @@ const SubNav = ({ items, isOpen }) => {
               : null}
         </div>
       </NavLink>
-      {subnav && items.subItems.map((items, index) => {
+      <div className=' bg-projectBorder'>
+        {subnav && items.subItems.map((items, index) => {
         return (
           <NavLink
             className='flex items-center justify-between mb-2 sideBarRes transition-all duration-100 ease-in-out'
@@ -44,7 +45,7 @@ const SubNav = ({ items, isOpen }) => {
             </div>
           </NavLink>
         )
-      })}
+      })}</div>
     </>
   )
 }

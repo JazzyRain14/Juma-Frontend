@@ -33,14 +33,13 @@ body {
     -moz-box-shadow: 7px 10px 19px -10px rgba(0, 0, 0, 0.63);
 }
 
-.sideBarScroll {
+.sideBarScroll{
     overflow: auto;
-    /* background-color: brown; */
-    /* border: thick solid; */
 }
 
 .sideBarScroll::-webkit-scrollbar {
     width: 6px;
+    height: 6px;
 }
 
 .sideBarScroll::-webkit-scrollbar-track {

@@ -6,8 +6,8 @@ const Wallet = () => {
     return (
         <div className='overflow-hidden flex flex-col h-screen border border-black'>
             <section className='px-4 py-4 bg-white'>
-                <div className=' mx-12 my-6 flex justify-between items-center'>
-                    <div className='relative wallet text-white h-32 grid grid-flow-row grid-rows-2 w-[400px] rounded-lg'>
+                <div className=' mx-12 my-6 max-sm:m-0 flex justify-between items-center'>
+                    <div className='relative wallet text-white h-32 grid grid-flow-row grid-rows-2 w-[400px] rounded-lg max-md:w-full'>
                         <aside className=' row-span-1 ml-4 flex text-lg items-center gap-2'>
                             <h1>Available Balance</h1>
                             <FaEye />
@@ -24,7 +24,7 @@ const Wallet = () => {
                             text-white rounded-lg'>Deposit</button>
                         </div>
                     </div>
-                    <div className='rounded-l-full overflow-hidden w-[400px] h-full'>
+                    <div className='rounded-l-full overflow-hidden w-[400px] h-full max-md:hidden'>
                         <svg className=" w-full h-full shadow-md" viewBox="0 0 904.2488888888889 508.64" xmlns="http://www.w3.org/2000/svg"
                             preserveAspectRatio="none" >
                             <rect class="bg" id="bg" x="0" y="0" width="904.2488888888889" height="508.64" fill="#ffffff"></rect>

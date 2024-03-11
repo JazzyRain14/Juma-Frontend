@@ -1,7 +1,5 @@
 import React from 'react'
-import yummy from '../../assets/Images/YUMMY.png'
 import Section2 from './Section2'
-// import peeps from '../../assets/Images/download (3).jpg'
 const Section1 = () => {
     return (
         <>

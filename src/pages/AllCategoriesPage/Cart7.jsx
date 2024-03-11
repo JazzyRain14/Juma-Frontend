@@ -1,17 +1,18 @@
 import React from 'react'
-import ComponentBg from '../../assets/Images/YUMMY.png'
+import ComponentBg from '/public/Images/YUMMY.png'
 import { FaCartShopping, FaHeart, FaNairaSign } from 'react-icons/fa6'
-import {projectImport} from '../../components/ProjectImgImport'
+import { projectImport } from '../../components/ProjectImgImport'
 import { Link } from 'react-router-dom'
 const Cart7 = () => {
   return (
     <>
       <div className='border relative justify-center items-center h-[300px]'>
         <img
-          className='absolute -z-10 w-full h-full object-cover'
+          className='absolute w-full h-full object-cover'
           src={ComponentBg} alt="" />
         <h1
-          className='text-[5rem] flex justify-center items-center text-white w-full h-full text-center font-semibold tracking-widest'>Desert & Sweets</h1>
+          className=' absolute text-[5rem] flex justify-center items-center 
+           text-white w-full h-full text-center font-semibold tracking-widest z-10'>Desert & Sweets</h1>
       </div>
       <div className='px-4'>
         <section className='py-4'>
@@ -22,7 +23,7 @@ const Cart7 = () => {
                   <h1 className="text-xl font-semibold">{allSnacks.categoryName}</h1>
                   <Link className='text-projectRed-2' to={allSnacks.categoryLink}>see more...</Link>
                 </div>
-                <div className='grid grid-flow-col gap-4 mt-2'>
+                <div className='grid grid-flow-col gap-4 mt-2 overflow-x-auto'>
                   {allSnacks.categories.map((cardInfo, index) => (
                     <div key={index} className='card'>
                       <div className='border border-cyan-700 h-[200px]

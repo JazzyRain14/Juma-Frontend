@@ -40,7 +40,7 @@ const UserProfile = () => {
                     <p className='mt-2 font-semibold text-xl text-white'>@Baby Chef</p>
                     <p className='font-semibold text-xl text-white'>babychef123@gmail.com</p>
 
-                    <div className='flex border justify-around py-4 min-w-[500px]'>
+                    <div className='flex border justify-around py-4 min-w-[500px] max-sm:min-w-full'>
                         <div className=' flex justify-between flex-col font-semibold text-white text-lg items-center'>
                             <LiaClipboardListSolid className='text-3xl' />
                             My Orders
@@ -66,7 +66,7 @@ const UserProfile = () => {
                     </div>
                 </div>
 
-                <div className='flex flex-col mx-20'>
+                <div className='flex flex-col mx-20 border max-sm:mx-0'>
                     
                     <div className='border-b'>
                         <div

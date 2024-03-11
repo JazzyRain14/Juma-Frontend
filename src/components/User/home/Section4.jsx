@@ -13,7 +13,7 @@ const Section4 = () => {
                             <h1 className="text-xl font-semibold">{allSauces.categoryName}</h1>
                             <Link className='text-projectRed-2' to={allSauces.categoryLink}>see more...</Link>
                         </div>
-                        <div className='grid grid-flow-col gap-4 mt-2 max-md:overflow-x-scroll'>
+                        <div className='grid grid-flow-col gap-4 mt-2 sideBarScroll pb-6'>
                             {allSauces.categories.map((cardInfo, index) => (
                                 <div key={index} className='card'>
                                     <div className='border border-cyan-700 h-[200px]
