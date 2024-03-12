@@ -26,20 +26,20 @@ const Section3 = () => {
                             <span className=' text-lg font-semibold mr-2 font'>Flavorful.</span><br />
                             Come, lets satisfy your cravings
                         </p>
-                        <table className='mt-10 flex justify-center'>
-                            <tr className='grid w-fit grid-flow-col gap-4 border p-2  rounded-xl'>
-                                <td
+                        <div className='mt-10 flex justify-center'>
+                            <ul className='grid list-none w-fit grid-flow-col gap-4 border p-2  rounded-xl'>
+                                <li
                                     className='w-[110px] text-center py-2 px-6 border text-lg 
                                     rounded-xl text-[#f5fffa] cursor-pointer bg-projectRed-2 transition ease-in delay-75
-                                    hover:bg-[#f5fffa] hover:text-projectRed-2 font-semibold'>Fast</td>
-                                <td
+                                    hover:bg-[#f5fffa] hover:text-projectRed-2 font-semibold'>Fast</li>
+                                <li
                                     className='w-[110px] text-center py-2 px-6 border text-lg 
-                                    rounded-xl text-[#f5fffa] cursor-pointer bg-projectRed-2 transition ease-in delay-75 hover:bg-[#f5fffa] hover:text-projectRed-2 font-semibold'>Fresh</td>
-                                <td className='w-[110px] text-center py-2 px-6 border text-lg 
+                                    rounded-xl text-[#f5fffa] cursor-pointer bg-projectRed-2 transition ease-in delay-75 hover:bg-[#f5fffa] hover:text-projectRed-2 font-semibold'>Fresh</li>
+                                <li className='w-[110px] text-center py-2 px-6 border text-lg 
                                 rounded-xl text-[#f5fffa] cursor-pointer bg-projectRed-2 transition ease-in delay-75
-                                hover:bg-[#f5fffa] hover:text-projectRed-2 font-semibold'>Flavorful</td>
-                            </tr>
-                        </table>
+                                hover:bg-[#f5fffa] hover:text-projectRed-2 font-semibold'>Flavorful</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <div className=' flex items-center justify-center'>

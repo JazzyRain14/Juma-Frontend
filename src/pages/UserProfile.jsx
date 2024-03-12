@@ -1,10 +1,10 @@
 import React, { useRef, useState } from 'react'
 import SideBar from '../components/SideBar'
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import profilePics from '../assets/Images/babyChef.jpg'
 import { LiaClipboardListSolid } from "react-icons/lia";
 import { FaAngleRight, FaBell, FaHeart, FaUser } from 'react-icons/fa6';
-import { FaHistory, FaWallet } from 'react-icons/fa';
+import { FaAngleLeft, FaHistory, FaWallet } from 'react-icons/fa';
 import { EditUserModal, EditUserPhotoModal } from '../components/User/home/Modals';
 // import Modal from 'react-overlays/Modal';
 const UserProfile = () => {
@@ -21,16 +21,25 @@ const UserProfile = () => {
     const EditUserPhoto = () => {
         setIsEditUserPhotoOpened(!isEditUserPhotoOpened)
     }
+    const navigate = useNavigate()
+
+    const goBack = () =>  navigate(-1)
     return (
         <>
+            <div className=' w-full flex items-center justify-between text-white font-semibold bg-projectBlack py-2'>
+                <aside className='flex items-center ml-3 text-4xl'>
+                    <button onClick={goBack}>
+                        <FaAngleLeft />
+                    </button>
+                </aside>
+                <aside className='flex items-center gap-2 mr-3'>
+                    <FaWallet className='text-green-700' />
+                    &#8358;80.00
+                </aside>
+            </div>
             <div className='flex flex-col gap-6'>
-                <div className='relative flex flex-col bg-projectBlack gap-2 py-6  items-center'>
-                    <div className=' flex items-center gap-2 text-white font-semibold absolute top-5 right-5'>
-                        <FaWallet className='text-green-700' />
-                        &#8358;80.00
-                    </div>
-                    <div className='relative w-[200px] h-[200px] 
-                rounded-full overflow-hidden  object-cover mt-4'>
+                <div className='flex flex-col bg-projectBlack gap-2 py-2  items-center'>
+                    <div className='relative w-[200px] h-[200px] rounded-full overflow-hidden  object-cover mt-4'>
                         <img
                             className='absolute w-full'
                             src={profilePics}
@@ -67,7 +76,7 @@ const UserProfile = () => {
                 </div>
 
                 <div className='flex flex-col mx-20 border max-sm:mx-0'>
-                    
+
                     <div className='border-b'>
                         <div
                             onClick={openAccord}
@@ -96,14 +105,10 @@ const UserProfile = () => {
                                 >Change Details
                                 </button>
                                 {isEditUserOpened && (<EditUserModal EditUserModal={EditUser} />)}
-
-                                {/* <button className='border p-3 bg-projectRed-2 rounded-lg text-lg font-semibold text-white'>
-                                Your Wallet
-                            </button> */}
                             </div>
                         </div>
                     </div>
-                    
+
                     <NavLink
                         to="/home/juma wallet"
                         className='flex border-b text-xl justify-between  py-4 items-center'>
@@ -113,7 +118,7 @@ const UserProfile = () => {
                         </span>
                         <FaAngleRight />
                     </NavLink>
-                    
+
                     <div className='flex text-xl justify-between  py-4 items-center border-b'>
                         <span className='flex gap-2 items-center'>
                             <FaHistory />
