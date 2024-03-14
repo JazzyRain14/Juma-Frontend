@@ -26,11 +26,15 @@ const SignIn = () => {
                 const messages = result.data.message
                 localStorage.token = result.data.token
                 if(result.data.status === true){
-                    if(result.data.adminStatus=== true){
-                       localStorage.email=result.data.email
+                    if(result.data.user.adminStatus === true){
+                       alert(messages);
+                       localStorage.email=result.data.user.email
+                       localStorage.userId=result.data.user._id
                        navigate("/adminhome");
                     }else{
-                        localStorage.email=result.data.email
+                        alert(messages);
+                        localStorage.email=result.data.user.email
+                        localStorage.userId=result.data.user._id
                         navigate("/home");
                     }
                 }else{

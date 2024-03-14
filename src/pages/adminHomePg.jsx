@@ -1,9 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { Link , useNavigate} from 'react-router-dom';
+const AdminHomePg = () => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    setTimeout(() => {
+      alert("yo it the admin");
+    }, 2000);
+  },[])
 
-const adminHomePg = () => {
+  const logout = () =>{
+    localStorage.clear();
+    navigate("/signin");
+  }
+  
   return (
-    <div>Nah me be admin for here oooooo</div>
+    <><p></p>
+    <Link to="/signin" onClick={logout}></Link>
+    </>
   )
 }
 
-export default adminHomePg
+export default AdminHomePg
