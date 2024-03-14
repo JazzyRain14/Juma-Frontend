@@ -3,7 +3,8 @@ import google from '../assets/Images/google-color-icon.png'
 import { FaCartArrowDown, FaEye, FaEyeSlash } from "react-icons/fa";
 import { useFormik } from 'formik';
 import dining from '../assets/Images/Dining.png'
-import yupValidation from './yupValidation';
+import yupSigninValidate from './yupSigninValidate';
+// import yupValidation from './yupValidation';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -18,10 +19,29 @@ const SignIn = () => {
             password: "",
         },
         onSubmit: async (values) => {
-           console.log(values)
-           alert(values)
+           try {
+            let result = await axios.post(endpoints,values);
+            if(result){
+                console.log(result);
+                const messages = result.data.message
+                localStorage.token = result.data.token
+                if(result.data.status === true){
+                    if(result.data.adminStatus=== true){
+                       localStorage.email=result.data.email
+                       navigate("/adminhome");
+                    }else{
+                        localStorage.email=result.data.email
+                        navigate("/home");
+                    }
+                }else{
+                    alert(messages);
+                }
+            }
+           } catch (error) {
+            console.log(error);
+           }
         },
-        validationSchema : yupValidation
+        validationSchema : yupSigninValidate
     })
 
     const reveal = (e) => {
