@@ -1,5 +1,5 @@
 const myCategory = [
-    {cat:""},
+    {cat:"select category"},
     {cat:"snacks"},
     {cat:"saucesAndCondiments"},
     {cat:"ethnicFood"},

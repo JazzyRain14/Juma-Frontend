@@ -1,12 +1,18 @@
 import React, { useEffect, useState} from 'react'
 import { Link , useNavigate} from 'react-router-dom';
 import Enterproduct from '../components/Enterproduct';
-
+import axios from 'axios';
 
 
 const AdminHomePg = () => {
   const navigate = useNavigate();
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
+  const [productImage, setproductimage] = useState("");
+  const [productName, setproductname] = useState("");
+  const [productCategory, setproductcategory] = useState("");
+  const [productdescription, setproductdescription] = useState("")
+  const [productPrice, setproductprice] = useState("");
+    const endpoints="http://localhost:3500/addproduct/newproduct"
   const logout = () =>{
     localStorage.clear();
     navigate("/signin");
@@ -16,8 +22,22 @@ const AdminHomePg = () => {
      setIsOpen(true);
   }
 
-const handleCloseIsOpen = () =>{
-   setIsOpen(false)
+const handleCloseIsOpen = async () =>{
+  let productObj={productImage,productName,productCategory,productdescription,productPrice}
+  console.log(productObj)
+   setIsOpen(false);
+
+   try {
+    let result = await axios.post(endpoints,productObj);
+    if(result){
+      console.log(result);
+      const messages = result.data.message
+      alert(messages);
+    }
+   } catch (error) {
+    
+   }
+  
 }
   
   return (
@@ -34,7 +54,7 @@ const handleCloseIsOpen = () =>{
     </div>
     <Link to="/signin" onClick={logout}>Signout</Link>
     {isOpen && <div className="fixed inset-0 bg-gray-800 opacity-50"></div>}
-    <Enterproduct isOpen={isOpen} setIsOpen={setIsOpen} onClose={handleCloseIsOpen}/>
+    <Enterproduct isOpen={isOpen} setIsOpen={setIsOpen} onClose={handleCloseIsOpen} setproductname={setproductname} setproductimage={setproductimage} setproductcategory={setproductcategory} setproductprice={setproductprice} setproductdescription={setproductdescription}/>
     </>
   )
 }
