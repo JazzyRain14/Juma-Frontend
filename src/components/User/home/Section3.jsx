@@ -1,7 +1,7 @@
 import React from 'react'
 import burger1 from '../../../assets/Images/pexels-horizon-content-3738730.jpg'
 import { FaCartShopping, FaHeart, FaNairaSign } from 'react-icons/fa6'
-import projectImport from '../../ProjectImgImport'
+import {projectImport} from '../../ProjectImgImport'
 import { Link } from 'react-router-dom'
 const Section3 = () => {
     return (
@@ -10,10 +10,10 @@ const Section3 = () => {
                 card.Product2.map((allSnacks, index) => (
                     <div key={index}>
                         <div className='flex items-center justify-between'>
-                            <h1 className="text-xl font-semibold">{allSnacks.categoryName}</h1>
+                            <h1 className="lg:text-xl sm:text-lg max-sm:text-base font-semibold">{allSnacks.categoryName}</h1>
                             <Link className='text-projectRed-2' to={allSnacks.categoryLink}>see more...</Link>
                         </div>
-                        <div className='grid grid-flow-col gap-4 mt-2'>
+                        <div className='grid grid-flow-col gap-4 mt-2 sideBarScroll pb-6'>
                             {allSnacks.categories.map((cardInfo, index) => (
                                 <div key={index} className='card'>
                                     <div className='border border-cyan-700 h-[200px]

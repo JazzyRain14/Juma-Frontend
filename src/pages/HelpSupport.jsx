@@ -7,7 +7,7 @@ const HelpSupport = () => {
       {/* <TopNav /> */}
       <div className='flex flex-col gap'>
         <h1 className='text-[35px]  text-gray-600 ml-[65px] mt-6'>Having  any problem ?</h1>
-        <div className='w-3/4 p-4 m-auto my-6'>
+        <div className='w-3/4 p-4 m-auto my-6 max-sm:w-full'>
           <div className='w-full mb-6'>
             <label>Full name</label>
             <input

@@ -32,28 +32,22 @@ const Footer = () => {
 
                     <div className='text-white flex flex-col'>
                         <h1 className='text-2xl mb-4'>Quick Link</h1>
-
-                        <table>
-                            <tr className=' flex gap-4 flex-col text-sm'>
-                                <Link to="#" className='hover:text-projectRed-2 cursor-pointer w-fit'><td>Home</td></Link>
-                                <Link to="#" className='hover:text-projectRed-2 cursor-pointer w-fit'><td>My Account</td></Link>
-                                <Link to="#" className='hover:text-projectRed-2 cursor-pointer w-fit'><td>Menu</td></Link>
-                                <Link to="#" className='hover:text-projectRed-2 cursor-pointer w-fit'><td>Chefs</td></Link>
-                            </tr>
-                        </table>
+                        <ul className=' flex gap-4 flex-col text-sm list-none'>
+                            <li to="#" className='hover:text-projectRed-2 cursor-pointer w-fit'><Link>Home</Link></li>
+                            <li to="#" className='hover:text-projectRed-2 cursor-pointer w-fit'><Link>My Account</Link></li>
+                            <li to="#" className='hover:text-projectRed-2 cursor-pointer w-fit'><Link> Menu</Link></li>
+                            <li to="#" className='hover:text-projectRed-2 cursor-pointer w-fit'><Link> Chefs</Link></li>
+                        </ul>
                     </div>
 
                     <div className=''>
                         <h1 className=' text-2xl mb-4'>Information</h1>
-
-                        <table>
-                            <tr className=' flex flex-col gap-4 text-sm'>
-                                <Link to="#" className='hover:text-projectRed-2 cursor-pointer w-fit'><td>About Us</td></Link>
-                                <Link to="#" className='hover:text-projectRed-2 cursor-pointer w-fit'><td>Contact Us</td></Link>
-                                <Link to="#" className='hover:text-projectRed-2 cursor-pointer w-fit'><td>Terms and Conditions</td></Link>
-                                <Link to="#" className='hover:text-projectRed-2 cursor-pointer w-fit'><td>Private Policy</td></Link>
-                            </tr>
-                        </table>
+                        <ul className=' flex flex-col gap-4 text-sm'>
+                            <li to="#" className='hover:text-projectRed-2 cursor-pointer w-fit'><Link>About Us</Link></li>
+                            <li to="#" className='hover:text-projectRed-2 cursor-pointer w-fit'><Link>Contact Us</Link></li>
+                            <li to="#" className='hover:text-projectRed-2 cursor-pointer w-fit'><Link>Terms and Conditions</Link></li>
+                            <li to="#" className='hover:text-projectRed-2 cursor-pointer w-fit'><Link>Private Policy</Link></li>
+                        </ul>
                     </div>
 
                     <div>
@@ -63,25 +57,21 @@ const Footer = () => {
                         <div className='flex flex-col gap-2'>
                             <div>
                                 <h1 className='text-lg mb-2'>FrontEnd Developer</h1>
-                                <table>
-                                    <tr className='flex gap-2 text-2xl'>
-                                        <Link to="#" className='hover:text-projectRed-2 cursor-pointer w-fit'><td><FaXTwitter /></td></Link>
-                                        <Link to="#" className='hover:text-projectRed-2 cursor-pointer w-fit'><td><FaInstagram /></td></Link>
-                                        <Link to="#" className='hover:text-projectRed-2 cursor-pointer w-fit'><td><FaLinkedin /></td></Link>
-                                        <Link to="#" className='hover:text-projectRed-2 cursor-pointer w-fit'><td><FaGithub /></td></Link>
-                                    </tr>
-                                </table>
+                                <ul className='flex gap-2 text-2xl'>
+                                    <li to="#" className='hover:text-projectRed-2 cursor-pointer w-fit'><Link><FaXTwitter /></Link></li>
+                                    <li to="#" className='hover:text-projectRed-2 cursor-pointer w-fit'><Link><FaInstagram /></Link></li>
+                                    <li to="#" className='hover:text-projectRed-2 cursor-pointer w-fit'><Link><FaLinkedin /></Link></li>
+                                    <li to="#" className='hover:text-projectRed-2 cursor-pointer w-fit'><Link><FaGithub /></Link></li>
+                                </ul>
                             </div>
                             <div>
                                 <h1 className='text-lg mb-2'>BackEnd Developer</h1>
-                                <table>
-                                    <tr className='flex gap-2 text-2xl'>
-                                        <Link to="#" className='hover:text-projectRed-2 cursor-pointer w-fit'><td><FaXTwitter /></td></Link>
-                                        <Link to="#" className='hover:text-projectRed-2 cursor-pointer w-fit'><td><FaInstagram /></td></Link>
-                                        <Link to="#" className='hover:text-projectRed-2 cursor-pointer w-fit'><td><FaLinkedin /></td></Link>
-                                        <Link to="#" className='hover:text-projectRed-2 cursor-pointer w-fit'><td><FaGithub /></td></Link>
-                                    </tr>
-                                </table>
+                                <ul className='flex gap-2 text-2xl'>
+                                    <li to="#" className='hover:text-projectRed-2 cursor-pointer w-fit'><Link><FaXTwitter /></Link></li>
+                                    <li to="#" className='hover:text-projectRed-2 cursor-pointer w-fit'><Link><FaInstagram /></Link></li>
+                                    <li to="#" className='hover:text-projectRed-2 cursor-pointer w-fit'><Link><FaLinkedin /></Link></li>
+                                    <li to="#" className='hover:text-projectRed-2 cursor-pointer w-fit'><Link><FaGithub /></Link></li>
+                                </ul>
                             </div>
                         </div>
                     </div>

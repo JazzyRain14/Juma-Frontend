@@ -13,27 +13,62 @@ body {
     /* border: 3px solid red; */
 }
 
-.active-navlink {
-    @apply text-white bg-projectRed-2
-}
 
 
 .wallet {
-    background-image: linear-gradient(
-  40deg,
-  hsl(0deg 100% 50%) 0%,
-  hsl(358deg 100% 50%) 11%,
-  hsl(357deg 100% 49%) 20%,
-  hsl(355deg 100% 49%) 28%,
-  hsl(354deg 100% 48%) 35%,
-  hsl(353deg 100% 48%) 41%,
-  hsl(352deg 100% 47%) 49%,
-  hsl(351deg 100% 47%) 60%,
-  hsl(350deg 100% 47%) 76%,
-  hsl(350deg 100% 46%) 100%
-);
+    background-image: linear-gradient(40deg,
+            hsl(0deg 100% 50%) 0%,
+            hsl(358deg 100% 50%) 11%,
+            hsl(357deg 100% 49%) 20%,
+            hsl(355deg 100% 49%) 28%,
+            hsl(354deg 100% 48%) 35%,
+            hsl(353deg 100% 48%) 41%,
+            hsl(352deg 100% 47%) 49%,
+            hsl(351deg 100% 47%) 60%,
+            hsl(350deg 100% 47%) 76%,
+            hsl(350deg 100% 46%) 100%);
 
     box-shadow: 7px 10px 19px -10px rgba(0, 0, 0, 0.63);
     -webkit-box-shadow: 7px 10px 19px -10px rgba(0, 0, 0, 0.63);
     -moz-box-shadow: 7px 10px 19px -10px rgba(0, 0, 0, 0.63);
+}
+
+.sideBarScroll{
+    overflow: auto;
+}
+
+.sideBarScroll::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.sideBarScroll::-webkit-scrollbar-track {
+    background-color: #F5F5F5;
+}
+
+.sideBarScroll::-webkit-scrollbar-thumb {
+    background-color: #C4C4C4;
+    width: 6px;
+    border-radius: 50px;
+}
+
+.sideBarScroll::-webkit-scrollbar-thumb:hover {
+    background-color: #9D9D9D;
+}
+
+/* .sidebarLink:link:active{
+    color: #f1f1f1;
+    background-color: #9D9D9D !important;
+}
+
+.subMenuLink:active{
+    color: #f1f1f1;
+    background-color: #9D9D9D !important;
+} */
+
+.active,.sideBarRes:hover{
+    --tw-bg-opacity: 1;
+    --tw-text-opacity: 1;
+    background-color: rgb(235 0 41 / var(--tw-bg-opacity));
+    color: rgb(255 255 255 / var(--tw-text-opacity));
 }

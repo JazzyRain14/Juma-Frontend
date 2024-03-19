@@ -60,7 +60,7 @@ const HomePage = () => {
                             Juma
                         </span></div>: 
             <div className='pt-4 px-4'>
-                <TopNav />
+                <TopNav/>
                 <hr className='rounded-lg bg-[#585757] h-[2px] my-2' />
                 <div >
                     <Section1 />

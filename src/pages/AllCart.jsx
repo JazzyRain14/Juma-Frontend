@@ -7,7 +7,7 @@ const AllCart = () => {
     const [countIncreament, setCountIncreament] = useState(1);
     const increament = () => {
         setCountIncreament(countIncreament + 1);
-    }   
+    }
     const decreament = () => {
         if (countIncreament == 0) {
             countIncreament == 0
@@ -17,11 +17,11 @@ const AllCart = () => {
     }
     return (
         <>
-            <section className='px-4 pt-4'>
+            <section className='px-4 pt-4 overflow-auto'>
                 <TopNav />
-                <div className='my-4 flex flex-row w-full gap-5'>
+                <div className='my-4 xl:flex flex-row w-full gap-5 lg:grid'>
                     <div className=' basis-3/4 rounded-lg bg-gray-400 '>
-                        <article className='max-w-full'>
+                        <article className='w-full'>
                             <header className='border-b py-1 text-xl px-4'>
                                 Cart({countIncreament})
                             </header>
@@ -46,13 +46,13 @@ const AllCart = () => {
                                 </button>
                                 <div className='flex items-center gap-2'>
                                     <button className='bg-projectRed-2 p-2 rounded text-white'
-                                    onClick={decreament}
+                                        onClick={decreament}
                                     >
                                         <FaMinus />
                                     </button>
-                                    <span className='text-lg font-semibold'>{ countIncreament}</span>
+                                    <span className='text-lg font-semibold'>{countIncreament}</span>
                                     <button className='bg-projectRed-2 p-2 rounded text-white'
-                                    onClick={increament}
+                                        onClick={increament}
                                     ><FaPlus /></button>
                                 </div>
                             </footer>
