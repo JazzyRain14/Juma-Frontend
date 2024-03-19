@@ -2,9 +2,10 @@ import React from 'react'
 import burger from '../../assets/Images/chicken_nuggets 2.png'
 const Section3 = () => {
     return (
-        <>
+        <div>
             <section
-                className='bg-[#050609] h-[450px] flex justify-around text-[#f5fffa] mt-[14rem]'
+                className='bg-[#050609] h-[450px] flex justify-around text-[#f5fffa]'
+                // mt-[14rem]
             >
                 <div className='flex flex-col justify-center w-[50%]'>
                     <div
@@ -48,7 +49,7 @@ const Section3 = () => {
                     </div>
                 </div>
             </section>
-        </>
+        </div>
     )
 }
 

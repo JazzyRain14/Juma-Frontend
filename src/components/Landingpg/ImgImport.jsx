@@ -8,22 +8,27 @@ const Imgimport = [
     {
         image: sandwich,
         width: 150,
+        styleImg: `hidden  max-sm:block sm:block  hover:scale-105 hover:transition-transform duration-200 hover:ease-in-out`
     },
     {
         image: nuggets,
         width: 135,
+        styleImg: `hidden md:block hover:scale-105 hover:transition-transform duration-200 hover:ease-in-out`
     },
     {
         image: burgerDish,
         width: 150,
+        styleImg: `hidden  max-sm:block sm:block hover:scale-105 hover:transition-transform duration-200 hover:ease-in-out`
     },
     {
         image: pizza,
         width: 120,
+        styleImg: `hidden md:block hover:scale-105 hover:transition-transform duration-200 hover:ease-in-out`
     },
     {
         image: burgerDish2,
         width: 150,
+        styleImg: `hidden  max-sm:block sm:block  hover:scale-105 hover:transition-transform duration-200 hover:ease-in-out`
     },
 ]
 
