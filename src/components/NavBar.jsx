@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { FaCartArrowDown, FaSearch } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import NavBarDropdwn from './NavBarDropdwn'
 import { FaBars } from 'react-icons/fa6'
 const NavBar = () => {
@@ -75,8 +75,12 @@ const NavBar = () => {
                             </button>
                         </div>
                         <div className='flex'>
-                            <button className=' bg-white text-projectRed-2 font-semibold hover:bg-projectRed-2 hover:text-white duration-300 py-2 rounded-lg mx-2 sm:px-4 max-sm:px-2'>Sign in</button>
-                            <button className=' bg-projectRed-2 text-white font-semibold hover:bg-white hover:text-projectRed-2 duration-300 py-2 rounded-lg mx-2 sm:px-4 max-sm:px-2'>Sign up</button>
+                            <NavLink
+                                to={'/signin'}
+                                className=' bg-white text-projectRed-2 font-semibold hover:bg-projectRed-2 hover:text-white duration-300 py-2 rounded-lg mx-2 sm:px-4 max-sm:px-2'>Sign in</NavLink>
+                            <NavLink
+                                to={'/signup'}
+                                className=' bg-projectRed-2 text-white font-semibold hover:bg-white hover:text-projectRed-2 duration-300 py-2 rounded-lg mx-2 sm:px-4 max-sm:px-2'>Sign up</NavLink>
                         </div>
                     </div>
                 </div>
