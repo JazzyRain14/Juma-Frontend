@@ -20,18 +20,19 @@ import Cart7 from './pages/AllCategoriesPage/Cart7.jsx'
 import AllCart from './pages/AllCart.jsx'
 import HelpSupport from './pages/HelpSupport.jsx'
 import Wallet from './pages/Wallet.jsx'
+import AdminHomePg from './pages/adminHomePg.jsx'
 
 function App() {
 
 
   return (
     <>
-      <SharedContextProvider>
+     <SharedContextProvider>
         <Routes>
           <Route path="/" element={<Landingpg />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
-
+          <Route path="/adminhome" element={<AdminHomePg/>} />
           <Route path='home' element={<SharedLayouts />} >
             <Route index element={<HomePage />} />
             <Route path='categories/cart1' element={<Cart1 />} />
