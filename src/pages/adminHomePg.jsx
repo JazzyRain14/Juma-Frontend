@@ -12,7 +12,7 @@ const AdminHomePg = () => {
   const [productCategory, setproductcategory] = useState("");
   const [productdescription, setproductdescription] = useState("")
   const [productPrice, setproductprice] = useState("");
-    const endpoints="http://localhost:3500/addproduct/newproduct"
+    const endpoints="https://juma-backend.vercel.app/addproduct/newproduct"
   const logout = () =>{
     localStorage.clear();
     navigate("/signin");

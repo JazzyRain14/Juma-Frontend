@@ -10,7 +10,7 @@ import { Outlet, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 const HomePage = () => {
-    const endpoints = "http://localhost:3500/auth/tokenverify"
+    const endpoints = "https://juma-backend.vercel.app/tokenverify"
     const token = localStorage.token
     const navigate = useNavigate();
     const [loading, setloading] = useState(true);

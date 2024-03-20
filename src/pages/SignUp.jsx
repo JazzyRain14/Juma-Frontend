@@ -6,11 +6,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import dining from '../assets/Images/Dining.png';
 import yupValidation from './yupValidation';
 import axios from 'axios';
-
 const SignUp = () => {
     const [type, settype] = useState("password");
     const [eye, seteye] = useState(FaEyeSlash);
-    const endpoints = "http://localhost:3500/auth/signup"
+    const endpoints = "https://juma-backend.vercel.app/auth/signup"
     const navigate = useNavigate();
     const formik = useFormik({
         initialValues: {
