@@ -6,8 +6,8 @@ const Section2 = () => {
         <>
             <section className='rounded-t-[25%] w-full h-[300px] gap-14 bg-white relative grid grid-flow-row items-center justify-center'>
 
-                <div className='absolute -top-14 max-sm:-top-7 w-full'>
-                    <div className='grid justify-center items-center grid-cols-3 max-sm:grid-cols-3 sm:grid-cols-3 md:grid-cols-5 gap-6 px-12'>
+                <div className='absolute flex justify-center -top-14 max-sm:-top-7 w-full'>
+                    <div className='grid w-full justify-center items-center grid-cols-3 max-sm:grid-cols-3 sm:grid-cols-3 md:grid-cols-5 gap-6 px-12'>
                         {Imgimport.map((images, index) => (
                             <img key={index} src={images.image} alt="" width={images.width} className={images.styleImg} />
                         ))}
