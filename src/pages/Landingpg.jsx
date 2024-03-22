@@ -13,10 +13,10 @@ const Landingpg = () => {
     <div
       className='bg-black'
     >
-      <NavBar/>
+      <NavBar />
       <Section1 />
       <Section3 />
-      {/* <Section4 /> */}
+      <Section4 />
       {/* <Section5 /> */}
       {/* <PFooter/> */}
     </div>

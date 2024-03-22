@@ -14,10 +14,10 @@ const Section4 = () => {
     // }
     return (
         <>
-            <section className='h-[450px] flex items-center bg-slate-100 gap-10'>
-                <div className=' w-full max-w-[500px] flex ml-10 flex-col gap-8'>
-                    <h1 className='text-[2.5rem] font-semibold'>Taste Our New Recipe</h1>
-                    <p className='text-[.8rem] break-words'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestias placeat nostrum dolore consectetur possimus amet, commodi fuga dolorum alias quis tempora, voluptatem quia at quos eum repellendus consequatur aperiam a.</p>
+            <section className='h-[450px] flex items-center bg-slate-100 gap-10 max-sm:gap-4 overflow-hidden'>
+                <div className=' w-full max-sm:w-[40%] sm:w-[50%] flex ml-10 max-sm:ml-5 flex-col gap-8'>
+                    <h1 className='text-[2.5rem] max-sm:text-[1.8rem] font-semibold'>Taste Our New Recipe</h1>
+                    <p className='max-sm:text-[.8rem] break-words'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestias placeat nostrum dolore consectetur possimus amet, commodi fuga dolorum alias quis tempora, voluptatem quia at quos eum repellendus consequatur aperiam a.</p>
                     <div className='flex gap-4'>
                         <button
                             // onClick={ScrollLeft}
@@ -32,15 +32,24 @@ const Section4 = () => {
                     </div>
                 </div>
 
-                <div className='flex min-w-[40%] overflow-hidden transition-transform duration-200 gap-6'
-                    // ref={scrollableDiv}
+                <div className='flex max-sm:w-[250px] sm:w-[50%] gap-6 overflow-x-scroll px-6 max-sm:px-0'
                 >
-                    <div className=" scroll-ml-6 h-[300px] min-w-[200px] bg-[url('/src/assets/Images/milkshake.jpg')] bg-no-repeat bg-cover rounded-lg"></div>
-                    <div className=" scroll-ml-6 h-[300px] min-w-[200px] bg-[url('/src/assets/Images/muffins.jpg')] bg-no-repeat bg-cover rounded-lg"></div>
-                    <div className=" scroll-ml-6 h-[300px] min-w-[200px] bg-[url('/src/assets/Images/burgerDip.jpg')] bg-no-repeat bg-cover rounded-lg"></div>
-                    <div className=" scroll-ml-6 h-[300px] min-w-[200px] bg-[url('/src/assets/Images/burgerStack.jpg')] bg-no-repeat bg-cover rounded-lg"></div>
-                    {/* <div className="h-[300px] min-w-[200px] bg-[url('/src/assets/Images/burgerDip.jpg')] bg-contain rounded-lg"></div>
-                    <div className="h-[300px] min-w-[200px] bg-[url('/src/assets/Images/burgerDip.jpg')] bg-contain rounded-lg"></div> */}
+                    {/* <div className=" border-2 border-red-700 h-[300px] w-full bg-[url('/src/assets/Images/milkshake.jpg')] bg-no-repeat bg-contain rounded-lg"></div> */}
+                    <div className=' h-[400px] min-w-[250px] max-sm:min-w-[200px] relative flex'>
+                        <img
+                            className='absolute top-0 h-full w-full object-cover max-sm:object-contain'
+                            src={milkshake} alt="" />
+                    </div>
+                    <div className=' h-[400px] min-w-[250px] max-sm:min-w-[200px] relative flex'>
+                        <img
+                            className='absolute top-0 h-full w-full object-cover max-sm:object-contain'
+                            src={milkshake} alt="" />
+                    </div>
+                    <div className=' h-[400px] min-w-[250px] max-sm:min-w-[200px] relative flex'>
+                        <img
+                            className='absolute top-0 h-full w-full object-cover max-sm:object-contain'
+                            src={milkshake} alt="" />
+                    </div>
                 </div>
             </section>
         </>

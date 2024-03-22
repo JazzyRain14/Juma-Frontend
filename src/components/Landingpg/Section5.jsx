@@ -13,19 +13,22 @@ const Section5 = () => {
         <>
             <section
                 className='
-                min-h-[450px] w-full flex flex-col gap-8 bg-white'
+                max-h-[500px] border-2 border-black w-full flex flex-col gap-4 bg-white py-4'
             >
-                <h1 className='mt-5 text-center text-lg font-semibold'>Our Professional Chefs</h1>
-                <div className=' flex justify-center mb-6 gap-6 mx-6'>
+                <h1 className=' text-center text-lg font-semibold'>Our Professional Chefs</h1>
 
-                    <div className='
-                    overflow-hidden h-full rounded-lg flex flex-col w-[350px]
+                <div className=' flex justify-center gap-6 mx-6'>
+
+                    <div className=' 
+                    overflow-hidden rounded-lg flex flex-col h-fit w-[250px]
                     hover:shadow-lg hover:shadow-slate-600 hover:transition-shadow
                     hover:duration-300 hover:ease-in-out'>
-                        <img src={chef1} alt=""
-                            className='w-full h-[400px]'
-                        />
-                        <footer className=' py-4 border-t-0 
+                        <div className='relative h-[300px] w-full border'>
+                            <img src={chef1} alt=""
+                                className='absolute top-0 w-full h-full'
+                            />
+                        </div>
+                        <footer className='py-4 border-t-0 
                         rounded-lg rounded-t-none'>
                             <h4 className='text-center mb-2'><b>John Doe</b></h4>
                             <div className='flex justify-center text-2xl gap-6 my-2'>
@@ -50,12 +53,14 @@ const Section5 = () => {
                     </div>
 
                     <div className=' 
-                        overflow-hidden h-full w-[350px] rounded-lg flex flex-col
+                        overflow-hidden rounded-lg flex flex-col h-fit w-[250px]
                         hover:shadow-lg hover:shadow-slate-600 hover:transition-shadow
                         hover:duration-300 hover:ease-in-out'>
-                        <img src={bbyChef} alt=""
-                            className='w-full h-[400px]'
-                        />
+                        <div className='relative h-[300px] w-full border'>
+                            <img src={bbyChef} alt=""
+                                className='absolute top-0 w-full h-full'
+                            />
+                        </div>
                         <footer className='py-4 border-t-0 rounded-lg rounded-t-none '>
                             <h4 className='text-center mb-2'><b>Cute Muffins</b></h4>
                             <div className='flex justify-center text-2xl gap-6 my-2'>
@@ -80,10 +85,14 @@ const Section5 = () => {
                     </div>
 
                     <div className=' 
-                        overflow-hidden h-full w-[350px] rounded-lg flex flex-col hover:shadow-lg hover:shadow-slate-600 hover:transition-shadow hover:duration-300 hover:ease-in-out'>
-                        <img src={chef2} alt=""
-                            className='w-full h-[400px]'
-                        />
+                         overflow-hidden rounded-lg flex flex-col h-fit w-[250px]
+                         hover:shadow-lg hover:shadow-slate-600 hover:transition-shadow
+                         hover:duration-300 hover:ease-in-out'>
+                        <div className='relative h-[300px] w-full border'>
+                            <img src={chef2} alt=""
+                                className='absolute top-0 w-full h-full'
+                            />
+                        </div>
                         <footer className=' py-4 border border-t-0 rounded-lg rounded-t-none '>
                             <h4 className='text-center mb-2'><b>Hwang Min</b></h4>
                             <div className='flex justify-center text-2xl gap-6 my-2'>
