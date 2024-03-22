@@ -11,7 +11,7 @@ import axios from 'axios';
 const SignIn = () => {
     const [type, settype] = useState("password");
     const [eye, seteye] = useState(FaEyeSlash);
-    const endpoints = "https://juma-backend.vercel.app/auth/signin"
+    const endpoints = "https://juma-backend-delta.vercel.app/auth/signin"
     const navigate = useNavigate();
     const formik = useFormik({
         initialValues: {
