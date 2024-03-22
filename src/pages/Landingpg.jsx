@@ -11,14 +11,14 @@ import NavBar from '../components/NavBar'
 const Landingpg = () => {
   return (
     <div
-      className=' bg-[#050609]'
+      className='bg-black'
     >
-      <NavBar/>
+      <NavBar />
       <Section1 />
       <Section3 />
       <Section4 />
-      <Section5 />
-      <PFooter/>
+      {/* <Section5 /> */}
+      {/* <PFooter/> */}
     </div>
   )
 }
