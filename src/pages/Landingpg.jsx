@@ -17,8 +17,8 @@ const Landingpg = () => {
       <Section1 />
       <Section3 />
       <Section4 />
-      {/* <Section5 /> */}
-      {/* <PFooter/> */}
+      <Section5 />/
+      <PFooter />
     </div>
   )
 }
