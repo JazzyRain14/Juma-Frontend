@@ -7,6 +7,7 @@ import yupSigninValidate from './yupSigninValidate';
 // import yupValidation from './yupValidation';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { Toaster, toast } from 'sonner';
 
 const SignIn = () => {
     const [type, settype] = useState("password");
@@ -19,33 +20,37 @@ const SignIn = () => {
             password: "",
         },
         onSubmit: async (values) => {
-           try {
-            let result = await axios.post(endpoints,values);
-            if(result){
-                console.log(result);
-                const messages = result.data.message
-                localStorage.token = result.data.token
-                if(result.data.status === true){
-                    if(result.data.user.adminStatus === true){
-                       alert(messages);
-                       localStorage.email=result.data.user.email
-                       localStorage.userId=result.data.user._id
-                       navigate("/adminhome");
-                    }else{
-                        alert(messages);
-                        localStorage.email=result.data.user.email
-                        localStorage.userId=result.data.user._id
-                        navigate("/home");
+            try {
+                let result = await axios.post(endpoints, values);
+                if (result) {
+                    console.log(result);
+                    const messages = result.data.message
+                    localStorage.token = result.data.token
+                    if (result.data.status === true) {
+                        if (result.data.user.adminStatus === true) {
+                            toast.success(messages);
+                            localStorage.email = result.data.user.email
+                            localStorage.userId = result.data.user._id
+                            setTimeout(() => {
+                                navigate("/adminhome");
+                            }, 3000);
+                        } else {
+                            toast.success(messages);
+                            localStorage.email = result.data.user.email
+                            localStorage.userId = result.data.user._id
+                            setTimeout(() => {
+                                navigate("/home");
+                            }, 3000);
+                        }
+                    } else {
+                        toast.error(messages);
                     }
-                }else{
-                    alert(messages);
                 }
+            } catch (error) {
+                console.log(error);
             }
-           } catch (error) {
-            console.log(error);
-           }
         },
-        validationSchema : yupSigninValidate
+        validationSchema: yupSigninValidate
     })
 
     const reveal = (e) => {
@@ -64,6 +69,7 @@ const SignIn = () => {
 
     return (
         <>
+            <Toaster position='top-center' richColors />
             <div className='bg-[#CCCCCC] h-100 min-h-screen  grid grid-flow-row gap-8 p-6 md:grid-cols-grid1 md:gap-4 md:p-8'>
 
                 {/* {/* left div */}
@@ -92,7 +98,7 @@ const SignIn = () => {
                         <div
                             className='flex justify-center h-[350px] 
                     w-[450px]'>
-                            <img src={dining} alt="" className='h-full w-full object-cover'/>
+                            <img src={dining} alt="" className='h-full w-full object-cover' />
                         </div>
                         <span className=' text-[14px] lg:w-[450px]'>
                             Welcome To <span className='text-[#FF0000]'>Juma</span> Food and Confectionaries, We satisfy your cravings. Be Sure to check out on our <Link>Terms and Conditions</Link>.
@@ -115,7 +121,7 @@ const SignIn = () => {
                             <label className=' block mb-2 text-[#424242] text-[26px] md:text-[15px]'>Email</label>
                             <div
                                 className={`border p-4 rounded bg-[#ffffff] md:p-2
-                                ${formik.errors.email &&formik.touched.email?'border-projectRed':'border-projectBorder'}
+                                ${formik.errors.email && formik.touched.email ? 'border-projectRed' : 'border-projectBorder'}
                                 `}
                             >
                                 <input
@@ -130,14 +136,14 @@ const SignIn = () => {
                             {formik.touched.email ? <small className='text-projectRed  text-lg md:text-[16px]'>
                                 {formik.errors.email}
                             </small> : ""}
-                            
+
                         </div>
                         <div className='mt-2 mb-4 md:mt-1 md:mb-3'>
                             <label className=' block mb-2 text-[#424242] text-[26px] md:text-[15px]'>Password</label>
 
                             <div className={`border p-4 rounded flex items-center bg-[#ffffff] md:p-2 
-                            ${formik.errors.password && formik.touched.password?'border-projectRed':'border-projectBorder'}`
-                        }>
+                            ${formik.errors.password && formik.touched.password ? 'border-projectRed' : 'border-projectBorder'}`
+                            }>
                                 <input
                                     className=' w-full text-2xl  outline-none bg-transparent md:text-sm'
                                     type={type}

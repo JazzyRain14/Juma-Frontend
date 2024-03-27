@@ -32,7 +32,7 @@ const TopNav = () => {
 
                 <div className=' border flex justify-center items-center rounded-full p-2 text-xl w-[40px] h-[40px]'>
                     {/* Shopping Cart */}
-                    <Link to='productcart'>
+                    <Link to='/home/product cart'>
                         <FaCartShopping />
                     </Link>
                 </div>

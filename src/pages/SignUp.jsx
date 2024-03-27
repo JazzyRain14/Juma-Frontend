@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import dining from '../assets/Images/Dining.png';
 import yupValidation from './yupValidation';
 import axios from 'axios';
+import { Toaster, toast } from 'sonner';
 const SignUp = () => {
     const [type, settype] = useState("password");
     const [eye, seteye] = useState(FaEyeSlash);
@@ -25,11 +26,13 @@ const SignUp = () => {
                     console.log(result);
                     const messages = result.data.message
                     if(result.data.status===false){
-                        alert(messages);
+                        toast.error(messages);
                     }else{
                         localStorage.token="09116087494"
-                        alert(messages);
-                        navigate("/signin");
+                        toast.success(messages);
+                        setTimeout(() => {
+                            navigate("/signin");
+                        }, 3000);
                     }
                 }
             } catch (err) {
@@ -58,6 +61,7 @@ const SignUp = () => {
 
     return (
         <>
+            <Toaster position='top-center' richColors/>
             <div className='bg-[#CCCCCC] h-100 min-h-screen grid grid-flow-row gap-8 p-6 md:grid-cols-grid1 md:gap-4 md:p-8'>
 
                 {/* {/* left div */}
@@ -159,7 +163,7 @@ const SignUp = () => {
                                 <input
                                     type={type}
                                     className=' w-full text-2xl  outline-none bg-transparent md:text-sm'
-                                    name='password'
+                                    name={type}
                                     placeholder='enter your password'
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
