@@ -20,7 +20,13 @@ import Cart7 from './pages/AllCategoriesPage/Cart7.jsx'
 import AllCart from './pages/AllCart.jsx'
 import HelpSupport from './pages/HelpSupport.jsx'
 import Wallet from './pages/Wallet.jsx'
-import AdminHomePg from './pages/adminHomePg.jsx'
+import SnackUploadPg from './pages/AdminPages/snacksUploadPg.jsx'
+import SaucesUploadPg from './pages/AdminPages/saucesUploadPg.jsx'
+import EthnicFoodUploadPg from './pages/AdminPages/ethnicFoodUploadPg.jsx'
+import BakeryItmUploadPg from './pages/AdminPages/bakeryItmUploadPg.jsx'
+import SoftDrksUploadPg from './pages/AdminPages/softDrksUploadPg.jsx'
+import AlcoholicBevUploadPg from './pages/AdminPages/alcoholicBevUploadPg.jsx'
+import DesertSwtUploadPg from './pages/AdminPages/desertSwtUploadPg.jsx'
 
 function App() {
 
@@ -32,7 +38,13 @@ function App() {
           <Route path="/" element={<Landingpg />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/adminhome" element={<AdminHomePg/>} />
+          <Route path="/adminhome/snacks" element={<SnackUploadPg/>} />
+          <Route path="/adminhome/saucesAndCondiments" element={<SaucesUploadPg/>} />
+          <Route path="/adminhome/ethnicFood" element={<EthnicFoodUploadPg/>} />
+          <Route path="/adminhome/bakeryItems" element={<BakeryItmUploadPg/>} />
+          <Route path="/adminhome/softDrinks" element={<SoftDrksUploadPg/>} />
+          <Route path="/adminhome/alcoholicBeverages" element={<AlcoholicBevUploadPg/>} />
+          <Route path="/adminhome/desertAndSweets" element={<DesertSwtUploadPg/>} />
           <Route path='home' element={<SharedLayouts />} >
             <Route index element={<HomePage />} />
             <Route path='categories/cart1' element={<Cart1 />} />

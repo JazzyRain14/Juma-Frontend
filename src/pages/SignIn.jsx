@@ -32,7 +32,7 @@ const SignIn = () => {
                             localStorage.email = result.data.user.email
                             localStorage.userId = result.data.user._id
                             setTimeout(() => {
-                                navigate("/adminhome");
+                                navigate("/adminhome/snacks");
                             }, 3000);
                         } else {
                             toast.success(messages);
