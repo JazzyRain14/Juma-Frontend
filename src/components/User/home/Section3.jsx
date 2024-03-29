@@ -16,7 +16,7 @@ const Section3 = () => {
                         <div className='grid grid-flow-col gap-4 mt-2 sideBarScroll pb-6'>
                             {allSnacks.categories.map((cardInfo, index) => (
                                 <div key={index} className='card'>
-                                    <div className='border border-cyan-700 h-[200px]
+                                    <div className=' h-[200px]
                                     relative overflow-hidden'>
                                         <img src={cardInfo.productImage} alt="" className='w-full absolute h-full object-cover' />
                                     </div>

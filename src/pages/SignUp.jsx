@@ -1,17 +1,50 @@
 import React, { useState } from 'react'
 import google from '../assets/Images/google-color-icon.png'
-import { FaCartArrowDown, FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaCartArrowDown, FaEye, FaEyeSlash, FaTimes } from "react-icons/fa";
 import { useFormik } from 'formik';
 import { Link, useNavigate } from 'react-router-dom';
 import dining from '../assets/Images/Dining.png';
 import yupValidation from './yupValidation';
 import axios from 'axios';
 import { Toaster, toast } from 'sonner';
+import { useIsOnline } from 'react-use-is-online';
+import { useEffect } from 'react';
+import { FaCheck, FaExclamation } from 'react-icons/fa6';
 const SignUp = () => {
     const [type, settype] = useState("password");
     const [eye, seteye] = useState(FaEyeSlash);
     const endpoints = "https://juma-backend-delta.vercel.app/auth/signup"
     const navigate = useNavigate();
+    const { isOnline, isOffline } = useIsOnline()
+    const [isDisabled, setisDisabled] = useState(!isOnline)
+    useEffect(() => {
+        if (isOnline) {
+            toast.custom((t) => (
+                <div className='border p-4 bg-[#ECFDF3] relative'>
+                    <div className=' flex gap-2 items-center'>
+                        <FaCheck className='bg-[#008A2E] p-1 text-white text-2xl rounded-full' />
+                        <h1 className='text-lg text-[#008A2E] font-semibold'>You're Connected</h1>
+                    </div>
+                    <p className='text-sm text-[#008A2E]'>Good to have you back online!</p>
+                    {/* <button className='abso' onClick={() => toast.dismiss(t)}><FaTimes/></button> */}
+                </div>
+            ));
+            setisDisabled(false);
+        } else {
+            toast.custom((t)=>(
+                <div className='border p-4 bg-[#FFF0F0] relative'>
+                    <div className=' flex gap-2 items-center'>
+                        <FaExclamation className='bg-projectRed-2 p-1 text-white text-2xl rounded-full' />
+                        <h1 className='text-lg text-projectRed-2 font-semibold'>Uh-oh</h1>
+                    </div>
+                    <p className='text-sm text-projectRed-2'>Looks like you should connect to the internet.</p>
+                    {/* <button className='abso' onClick={() => toast.dismiss(t)}><FaTimes/></button> */}
+                </div>
+            ))
+            setisDisabled(true);
+        }
+    }, [isOnline])
+
     const formik = useFormik({
         initialValues: {
             username: "",
@@ -21,14 +54,14 @@ const SignUp = () => {
         },
         onSubmit: async (values) => {
             try {
-                let result = await axios.post(endpoints,values);
-                if(result){
+                let result = await axios.post(endpoints, values);
+                if (result) {
                     console.log(result);
                     const messages = result.data.message
-                    if(result.data.status===false){
+                    if (result.data.status === false) {
                         toast.error(messages);
-                    }else{
-                        localStorage.token="09116087494"
+                    } else {
+                        localStorage.token = "09116087494"
                         toast.success(messages);
                         setTimeout(() => {
                             navigate("/signin");
@@ -38,12 +71,11 @@ const SignUp = () => {
             } catch (err) {
                 console.log(err);
             }
-      
+
 
         },
         validationSchema: yupValidation
     })
-
 
     const reveal = (e) => {
         e.preventDefault()
@@ -57,11 +89,9 @@ const SignUp = () => {
         }
     }
 
-
-
     return (
         <>
-            <Toaster position='top-center' richColors/>
+            <Toaster position='top-center' expand={true} richColors />
             <div className='bg-[#CCCCCC] h-100 min-h-screen grid grid-flow-row gap-8 p-6 md:grid-cols-grid1 md:gap-4 md:p-8'>
 
                 {/* {/* left div */}
@@ -101,6 +131,7 @@ const SignUp = () => {
 
                 {/* right div */}
                 <div className=' row-span-6'>
+                    {/* {isOnline?<Toaster position='bottom-right' richColors/>:<Toaster position='bottom-right' style={{color:'red'}}/>} */}
                     <h1 className='text-4xl md:text-2xl'>Welcome to <span className=' text-projectRed'>Juma</span></h1>
                     <p className=' font-semibold text-[16px] md:text-[12px]'>
                         <span className=' text-xl text-projectRed md:text-lg'>Sign Up</span>, Let's satisfy your cravings
@@ -183,11 +214,8 @@ const SignUp = () => {
                                 {formik.errors.password}
                             </small> : ""}
                         </div>
-
-
-
                         <button
-                            disabled={!!formik.errors.email || !!formik.errors.password} type='submit'
+                            disabled={!!formik.errors.email || !!formik.errors.password|| isDisabled} type='submit'
                             className=' w-[100%] p-5 mt-2 mb-4 text-2xl font-semibold rounded bg-[#d61313] hover:bg-[#d61313f3] text-[#ffffff]
                          md:mt-1 md:mb-3 md:p-3 md:text-lg'>
                             Sign Up
