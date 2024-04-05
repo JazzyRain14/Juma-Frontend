@@ -244,5 +244,70 @@ const SidebarData = [
         path: "help&support"
     },
 ]
+const AdminSidebarData = [
+    {
+        name: "Home",
+        icon: <FaHouse />,
+        path: "/adminhome"
+    },
+    {
+        name: "All Categories",
+        icon: <FaList />,
+        path: "/#",
+        iconIsOpened: <FaAngleDown />,
+        iconIsClosed: <FaAngleRight />,
+        subItems: [
+            {
+                name: "Snacks",
+                icon: <FaBurger />,
+                path: "/adminhome/snacks"
+                // link:
+            },
+            {
+                name: "Sauces & Condiments",
+                icon: <FaJar />,
+                path: "/adminhome/saucesandcondiments"
+                // link:
+            },
+            {
+                name: "Ethnic Food",
+                icon: <ImSpoonKnife />,
+                path: "/adminhome/ethnicfood"
+                // link:
+            },
+            {
+                name: "Bakery Items",
+                icon: <LuCroissant />,
+                path: "/adminhome/bakeryitems"
+                // link:
+            },
+            {
+                name: "Soft Drinks",
+                icon: <LuCupSoda />,
+                path: "/adminhome/softdrinks"
+                // link:
+            },
+            {
+                name: "Alcoholic Beverages",
+                icon: <FaWineGlass />,
+                path: "/adminhome/alcoholicbeverages"
+                // link:
+            },
+            {
+                name: "Desert & Sweets",
+                icon: <FaIceCream />,
+                path: "/adminhome/desertandsweets"
+                // link:
+            },
+        ]
+    },
+    {
+        name: "Profile",
+        icon: <FaUser />,
+        path: "/adminprofile"
+    }
+]
 
-export { projectImport, SidebarData }
+
+
+export { projectImport, SidebarData, AdminSidebarData }

@@ -39,12 +39,12 @@ function App() {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/adminhome/snacks" element={<SnackUploadPg/>} />
-          <Route path="/adminhome/saucesAndCondiments" element={<SaucesUploadPg/>} />
-          <Route path="/adminhome/ethnicFood" element={<EthnicFoodUploadPg/>} />
-          <Route path="/adminhome/bakeryItems" element={<BakeryItmUploadPg/>} />
-          <Route path="/adminhome/softDrinks" element={<SoftDrksUploadPg/>} />
-          <Route path="/adminhome/alcoholicBeverages" element={<AlcoholicBevUploadPg/>} />
-          <Route path="/adminhome/desertAndSweets" element={<DesertSwtUploadPg/>} />
+          <Route path="/adminhome/saucesandcondiments" element={<SaucesUploadPg/>} />
+          <Route path="/adminhome/ethnicfood" element={<EthnicFoodUploadPg/>} />
+          <Route path="/adminhome/bakeryitems" element={<BakeryItmUploadPg/>} />
+          <Route path="/adminhome/softdrinks" element={<SoftDrksUploadPg/>} />
+          <Route path="/adminhome/alcoholicbeverages" element={<AlcoholicBevUploadPg/>} />
+          <Route path="/adminhome/desertandsweets" element={<DesertSwtUploadPg/>} />
           <Route path='home' element={<SharedLayouts />} >
             <Route index element={<HomePage />} />
             <Route path='categories/cart1' element={<Cart1 />} />

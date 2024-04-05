@@ -72,3 +72,11 @@ body {
     background-color: rgb(235 0 41 / var(--tw-bg-opacity));
     color: rgb(255 255 255 / var(--tw-text-opacity));
 }
+
+.striped > tr:nth-child(even) {
+    background-color: rgb(221, 217, 217);
+  }
+  
+  .striped > tr:nth-child(odd) {
+    background-color: white; /* White for odd rows */
+  }
