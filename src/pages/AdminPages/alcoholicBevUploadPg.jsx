@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Enterproduct from '../../components/Enterproduct';
 import axios from 'axios';
 import AdminSideBar from '../../components/AdminSidebar';
-import ProductTable from './productTable';
+import ProductTable from './ProductTable';
 
 
 const AlcoholicBevUploadPg = () => {
