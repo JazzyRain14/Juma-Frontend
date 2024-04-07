@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import Enterproduct from '../../components/Enterproduct';
 import axios from 'axios';
-import ProductTable from './ProductTable';
+import ProductTable from './productTable';
 import AdminSideBar from '../../components/AdminSidebar';
 
 const BakeryItmUploadPg = () => {
@@ -16,7 +16,23 @@ const BakeryItmUploadPg = () => {
   const [productdescription, setproductdescription] = useState("")
   const [productPrice, setproductprice] = useState("");
   const endpoints = "https://juma-backend-delta.vercel.app/addproduct/newbakeryproduct"
-
+  const productEndpoints = "https://juma-backend-delta.vercel.app/getproduct/getbakeryitm"
+  const [isLoading, setisLoading] = useState(true)
+  useEffect(() => {
+    const getSaucesProduct = async () => {
+      try {
+        const response = await axios.get(productEndpoints);
+        // console.log(response.data.bakeryItmProdut);
+        setSelectedData(response.data.bakeryItmProduct)
+      }
+      catch (error) {
+        console.log(error);
+      } finally {
+        setisLoading(false)
+      }
+    }
+    getSaucesProduct()
+  }, [])
 
   const handleIsOpen = () => {
     setIsModalOpened(!isModalOpened);
@@ -49,21 +65,16 @@ const BakeryItmUploadPg = () => {
     ${isOpen ? 'sm:translate-x-[220px] max-sm:translate-x-[220px]' : 'sm:ml-0 max-sm:ml-0'}`}>
           <h2 className='text-center mt-5 text-5xl font-semibold'>Add New Snacks Product</h2>
           <div className='flex justify-evenly mt-10 mb-10'>
-            {/* <Link to="/adminhome/snacks"><button className='w-[180px] h-[50px] bg-[#FE0000] text-[white] rounded-xl text-xl font-semibold'>Snacks</button></Link> */}
-            {/* <Link to="/adminhome/saucesAndCondiments"><button className='w-[180px] h-[50px] bg-[#FE0000] text-[white] rounded-xl text-xl font-semibold'>Sauces and cond</button></Link> */}
-            {/* <Link to="/adminhome/ethnicFood"><button className='w-[180px] h-[50px] bg-[#FE0000] text-[white] rounded-xl text-xl font-semibold'>Ethn food</button></Link> */}
+
             <Link to="/adminhome/bakeryItems"><button className='w-[180px] h-[50px] bg-[#FE0000] text-[white] rounded-xl text-xl font-semibold'>Bakery itm</button></Link>
-            {/* <Link to="/adminhome/softDrinks"><button className='w-[180px] h-[50px] bg-[#FE0000] text-[white] rounded-xl text-xl font-semibold'>Soft drk</button></Link> */}
-            {/* <Link to="/adminhome/alcoholicBeverages"><button className='w-[180px] h-[50px] bg-[#FE0000] text-[white] rounded-xl text-xl font-semibold'>Alcoholic bev</button></Link> */}
-            {/* <Link to="/adminhome/desertAndSweets"><button className='w-[180px] h-[50px] bg-[#FE0000] text-[white] rounded-xl text-xl font-semibold'>Desert and swts</button></Link> */}
+
           </div>
 
           <button className='w-fit h-[50px] p-2 bg-[#FE0000] text-[white] rounded-xl text-xl font-semibold' onClick={handleIsOpen}>Add Product</button>
           <ProductTable selectedData={selectedData} />
         </div>
       </div>
-      {/* {isOpen && <div className="fixed inset-0 bg-gray-800 opacity-50"></div>}
-    <Enterproduct isOpen={isOpen} setIsOpen={setIsOpen} onClose={handleCloseIsOpen} setproductname={setproductname} setproductimage={setproductimage} setproductcategory={setproductcategory} setproductprice={setproductprice} setproductdescription={setproductdescription}/> */}
+
       {isModalOpened && (<Enterproduct Enterproduct={handleIsOpen} setproductname={setproductname} setproductimage={setproductimage} setproductprice={setproductprice} setproductdescription={setproductdescription} />)}
     </>
   )
