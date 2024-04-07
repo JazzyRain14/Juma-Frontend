@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import Enterproduct from '../../components/Enterproduct';
 import axios from 'axios';
-import AdminSideBar from '../../components/AdminSidebar';
 import ProductTable from './productTable';
-import { SharedContext } from '../../components/User/home/SharedContextProvider';
+import AdminSideBar from '../../components/AdminSidebar';
 const SaucesUploadPg = () => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
