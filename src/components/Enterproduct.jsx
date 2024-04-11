@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import myCategory from './category'
 import { FaCamera } from 'react-icons/fa6'
 
-const Enterproduct = ({ Enterproduct, onClose, setproductname, setproductimage, setproductcategory, setproductprice, setproductdescription }) => {
+const Enterproduct = ({ Enterproduct, isClose, setproductname, setproductimage, setproductcategory, setproductprice, setproductdescription }) => {
 
 
   const fileChange = (e) => {
@@ -46,7 +46,7 @@ const Enterproduct = ({ Enterproduct, onClose, setproductname, setproductimage, 
               close
             </button>
           </div>
-          <form action="">
+         
             {/* <div className='gri'> */}
             <div
               className="grid my-2">
@@ -57,15 +57,14 @@ const Enterproduct = ({ Enterproduct, onClose, setproductname, setproductimage, 
                   className="file:hidden w-full cursor-pointer py-2 bg-transparent placeholder:text-[#3a3a3a]  text-[#3a3a3a] font-semibold outline-projectRed-2"
                   type="file"
                   src=""
-                  alt="" accept="image/*" />
+                  alt="" accept="image/*"  onChange={(e)=>fileChange(e)}/>
               </div>
             </div>
-            <input type="text" placeholder='Enter product name' className=' my-2 py-2 px-2 w-full bg-slate-200  placeholder:text-[#3a3a3a]  text-[#3a3a3a] font-semibold outline-projectRed-2' />
+            <input type="text" placeholder='Enter product name' className=' my-2 py-2 px-2 w-full bg-slate-200  placeholder:text-[#3a3a3a]  text-[#3a3a3a] font-semibold outline-projectRed-2' onChange={(e)=>setproductname(e.target.value)}/>
             <textarea id="" rows="10" placeholder='Product Description'
-              className=' my-2 py-2 px-2 w-full bg-slate-200  placeholder:text-[#3a3a3a] text-[#3a3a3a] font-semibold outline-projectRed-2 max-h-[150px] h-full' />
-            <input type="text" placeholder='Enter product price' className=' my-2 py-2 px-2 w-full bg-slate-200  placeholder:text-[#3a3a3a]  text-[#3a3a3a] font-semibold outline-projectRed-2' />
-            <button className=' my-2  mt-4 py-2 px-2 w-full bg-projectRed-2 text-lg rounded-lg  placeholder:text-[#3a3a3a] text-white font-semibold outline-projectRed-2'>Submit</button>
-          </form>
+              className=' my-2 py-2 px-2 w-full bg-slate-200  placeholder:text-[#3a3a3a] text-[#3a3a3a] font-semibold outline-projectRed-2 max-h-[150px] h-full' onChange={(e)=>setproductdescription(e.target.value)}/>
+            <input type="text" placeholder='Enter product price' className=' my-2 py-2 px-2 w-full bg-slate-200  placeholder:text-[#3a3a3a]  text-[#3a3a3a] font-semibold outline-projectRed-2' onChange={(e)=>setproductprice(e.target.value)}/>
+            <button className=' my-2  mt-4 py-2 px-2 w-full bg-projectRed-2 text-lg rounded-lg  placeholder:text-[#3a3a3a] text-white font-semibold outline-projectRed-2' onClick={isClose}>Submit</button>
         </div>
       </div>
     </>

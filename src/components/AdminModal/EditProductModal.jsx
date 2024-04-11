@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 
-const EditProductModal = ({ editProduct, itemData, productName, setHandleProductName, productCategory, setHandleProductCategory, productImage, setProductImage, productPrice, setHandleProductPrice }) => {
+const EditProductModal = ({ editProduct, itemData, handleProductName, setHandleProductName, handleProductCategory, setHandleProductCategory, handleProductImage, setProductImage, handleProductPrice, setHandleProductPrice,updateProduct }) => {
 
     return (
         <>
@@ -18,18 +18,18 @@ const EditProductModal = ({ editProduct, itemData, productName, setHandleProduct
                         </button>
                     </div>
                     {itemData && (
-                        <form action="">
+                        <>
                             {/* <div className='gri'> */}
                             {/* <div className="flex">
                                 <input type="text" value={productImage} onChange={(e) => setProductImage(e.target.value)} className=' my-2 py-2 px-2 w-full bg-slate-200  placeholder:text-[#3a3a3a]  text-[#3a3a3a] font-semibold outline-projectRed-2' />
                                 <input type="image" src="" alt="" className="my-2 py-2 px-2" />
                             </div> */}
-                            <input type="text" value={productName} onChange={(e) => setHandleProductName(e.target.value)} className=' my-2 py-2 px-2 w-full bg-slate-200  placeholder:text-[#3a3a3a]  text-[#3a3a3a] font-semibold outline-projectRed-2' />
-                            <input type="text" value={productCategory} onChange={(e) => setHandleProductCategory(e.target.value)} className=' my-2 py-2 px-2 w-full bg-slate-200  placeholder:text-[#3a3a3a]  text-[#3a3a3a] font-semibold outline-projectRed-2' />
-                            <input type="text" value={productPrice} onChange={(e) => setHandleProductPrice(e.target.value)} className=' my-2 py-2 px-2 w-full bg-slate-200  placeholder:text-[#3a3a3a]  text-[#3a3a3a] font-semibold outline-projectRed-2' />
+                            <input type="text" value={handleProductName} onChange={(e) => setHandleProductName(e.target.value)} className=' my-2 py-2 px-2 w-full bg-slate-200  placeholder:text-[#3a3a3a]  text-[#3a3a3a] font-semibold outline-projectRed-2' />
+                            <input type="text" value={handleProductCategory} onChange={(e) => setHandleProductCategory(e.target.value)} className=' my-2 py-2 px-2 w-full bg-slate-200  placeholder:text-[#3a3a3a]  text-[#3a3a3a] font-semibold outline-projectRed-2' />
+                            <input type="text" value={handleProductPrice} onChange={(e) => setHandleProductPrice(e.target.value)} className=' my-2 py-2 px-2 w-full bg-slate-200  placeholder:text-[#3a3a3a]  text-[#3a3a3a] font-semibold outline-projectRed-2' />
 
-                            <button className=' my-2  mt-4 py-2 px-2 w-full bg-projectRed-2 text-lg rounded-lg  placeholder:text-[#3a3a3a] text-white font-semibold outline-projectRed-2'>Submit</button>
-                        </form>
+                            <button className=' my-2  mt-4 py-2 px-2 w-full bg-projectRed-2 text-lg rounded-lg  placeholder:text-[#3a3a3a] text-white font-semibold outline-projectRed-2' onClick={updateProduct}>Submit</button>
+                        </>
                     )}
                 </div>
             </div>
