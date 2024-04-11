@@ -3,7 +3,7 @@ import loading from '../../assets/LoadingTxt.svg'
 import { FaTrash, FaUserEdit } from 'react-icons/fa'
 import EditProductModal from '../../components/AdminModal/EditProductModal'
 import axios from 'axios'
-const productTable = ({ selectedData,getSnacksProduct }) => {
+const productTable = ({ selectedData,getProduct }) => {
     const [isTrue, setIsTrue] = useState(false)
     const [selectedItemData, setSelectedItemData] = useState(null);
     const [handleProductImage, setHandleProductImage] = useState('')
@@ -12,8 +12,7 @@ const productTable = ({ selectedData,getSnacksProduct }) => {
     const [handleProductCategory, setHandleProductCategory] = useState('')
     const [handleProductId, setHandleProductId] = useState('')
     const deleteEndpoints = "https://juma-backend-delta.vercel.app/productcontrol/deleteproduct"
-    // const editEndpoints = "https://juma-backend-delta.vercel.app/productcontrol/editproduct"
-    const editEndpoints = "http://localhost:3500/productcontrol/editproduct"
+    const editEndpoints = "https://juma-backend-delta.vercel.app/productcontrol/editproduct"
     // const editProduct = (index) => {
     //     setIsTrue(!isTrue)
     //     let filterArray = selectedData.filter((item, ind) => index === ind);
@@ -41,7 +40,7 @@ const productTable = ({ selectedData,getSnacksProduct }) => {
                 const messages = result.data.message
                 console.log(result);
                 alert(messages);
-                getSnacksProduct()
+                getProduct()
             }
         } catch (error) {
             console.log(error);
@@ -60,7 +59,7 @@ const productTable = ({ selectedData,getSnacksProduct }) => {
                 const messages = result.data.message
                 console.log(result.data);
                 alert(messages);
-                getSnacksProduct()
+                getProduct()
             }
         } catch (error) {
             console.log(error);

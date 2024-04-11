@@ -17,7 +17,6 @@ const SnackUploadPg = () => {
   const [first, setfirst] = useState([])
   const endpoints = "https://juma-backend-delta.vercel.app/addproduct/newproduct"
   const productEndpoints = "https://juma-backend-delta.vercel.app/getproduct/getsnacks"
-  // const [selectedData, setSelectedData] = useState();
   const [isLoading, setisLoading] = useState(true)
 
   useEffect(() => {
@@ -69,7 +68,7 @@ const SnackUploadPg = () => {
           </div>
 
           <button className='w-fit h-[50px] p-2 bg-[#FE0000] text-[white] rounded-xl text-xl font-semibold' onClick={handleIsOpen}>Add Product</button>
-          <ProductTable selectedData={first} getSnacksProduct={getSnacksProduct}/>
+          <ProductTable selectedData={first} getProduct={getSnacksProduct}/>
         </div>
       </div>
       {isModalOpened && (<Enterproduct Enterproduct={handleIsOpen} setproductname={setproductname} setproductimage={setproductimage} setproductprice={setproductprice} setproductdescription={setproductdescription} isClose={handleIsClose}/>)}
