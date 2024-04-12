@@ -14,7 +14,7 @@ const SnackUploadPg = () => {
   const [productCategory, setproductcategory] = useState("");
   const [productdescription, setproductdescription] = useState("")
   const [productPrice, setproductprice] = useState("");
-  const [first, setfirst] = useState([])
+  const [first, setfirst] = useState([]);
   const endpoints = "https://juma-backend-delta.vercel.app/addproduct/newproduct"
   const productEndpoints = "https://juma-backend-delta.vercel.app/getproduct/getsnacks"
   const [isLoading, setisLoading] = useState(true)
