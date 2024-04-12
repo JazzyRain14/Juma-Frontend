@@ -12,70 +12,66 @@ const BakeryItmUploadPg = () => {
   const [productImage, setproductimage] = useState("");
   const [productName, setproductname] = useState("");
   const [productCategory, setproductcategory] = useState("");
-  const [selectedData, setSelectedData] = useState([]);
   const [productdescription, setproductdescription] = useState("")
   const [productPrice, setproductprice] = useState("");
+  const [first, setfirst] = useState([])
   const endpoints = "https://juma-backend-delta.vercel.app/addproduct/newbakeryproduct"
   const productEndpoints = "https://juma-backend-delta.vercel.app/getproduct/getbakeryitm"
-  const [isLoading, setisLoading] = useState(true)
-  useEffect(() => {
-    const getSaucesProduct = async () => {
-      try {
-        const response = await axios.get(productEndpoints);
-        // console.log(response.data.bakeryItmProdut);
-        setSelectedData(response.data.bakeryItmProduct)
-      }
-      catch (error) {
-        console.log(error);
-      } finally {
-        setisLoading(false)
-      }
-    }
-    getSaucesProduct()
-  }, [])
+  const [isLoading, setisLoading] = useState(true);
 
+  useEffect(() => {
+    getBakeryItmProduct()
+  }, []);
+  const getBakeryItmProduct = async () => {
+    try {
+      const response = await axios.get(productEndpoints);
+      console.log(response.data.bakeryItmProduct)
+      setfirst(response.data.bakeryItmProduct)
+    }
+    catch (error) {
+      console.log(error)
+    } finally {
+      setisLoading(false)
+    }
+  }
   const handleIsOpen = () => {
     setIsModalOpened(!isModalOpened);
   }
-
-  const handleCloseIsOpen = async () => {
+  const handleIsClose = async () => {
     let productCategory = "bakeryItems"
-    let productObj = { productImage, productName, productCategory, productdescription, productPrice }
-    console.log(productObj);
-    setIsOpen(false);
+    let productObj = {productImage,productName,productCategory,productdescription, productPrice }
+    console.log(productObj)
+    setIsModalOpened(!isModalOpened);
 
     try {
-      let result = await axios.post(endpoints, productObj);
-      if (result) {
+      let result = await axios.post(endpoints,productObj);
+      if(result){
         console.log(result);
         const messages = result.data.message
         alert(messages);
+        getBakeryItmProduct()
       }
     } catch (error) {
-
+      console.log(error);
     }
 
   }
-
   return (
     <>
       <div className='flex gap-4 justify-between h-full w-full'>
         <AdminSideBar />
         <div className={`w-full overflow-hidden rounded-md sm:ml-20 max-sm:ml-20 lg:ml-[300px] transition-all duration-300 ease-in-out 
     ${isOpen ? 'sm:translate-x-[220px] max-sm:translate-x-[220px]' : 'sm:ml-0 max-sm:ml-0'}`}>
-          <h2 className='text-center mt-5 text-5xl font-semibold'>Add New Snacks Product</h2>
+          <h2 className='text-center mt-5 text-5xl font-semibold'>Add New Bakery Itm Product</h2>
           <div className='flex justify-evenly mt-10 mb-10'>
-
             <Link to="/adminhome/bakeryItems"><button className='w-[180px] h-[50px] bg-[#FE0000] text-[white] rounded-xl text-xl font-semibold'>Bakery itm</button></Link>
-
           </div>
 
           <button className='w-fit h-[50px] p-2 bg-[#FE0000] text-[white] rounded-xl text-xl font-semibold' onClick={handleIsOpen}>Add Product</button>
-          <ProductTable selectedData={selectedData} />
+          <ProductTable selectedData={first} getProduct={getBakeryItmProduct}/>
         </div>
       </div>
-
-      {isModalOpened && (<Enterproduct Enterproduct={handleIsOpen} setproductname={setproductname} setproductimage={setproductimage} setproductprice={setproductprice} setproductdescription={setproductdescription} />)}
+      {isModalOpened && (<Enterproduct Enterproduct={handleIsOpen} setproductname={setproductname} setproductimage={setproductimage} setproductprice={setproductprice} setproductdescription={setproductdescription} isClose={handleIsClose}/>)}
     </>
   )
 }
