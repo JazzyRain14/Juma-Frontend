@@ -5,40 +5,57 @@ import axios from 'axios';
 import AdminSideBar from '../../components/AdminSidebar';
 import ProductTable from './ProductTable';
 
-
 const AlcoholicBevUploadPg = () => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
-  const [isModalOpened, setIsOModalOpened] = useState(false);
+  const [isModalOpened, setIsModalOpened] = useState(false);
   const [productImage, setproductimage] = useState("");
   const [productName, setproductname] = useState("");
   const [productCategory, setproductcategory] = useState("");
-  const [selectedData, setSelectedData] = useState([]);
   const [productdescription, setproductdescription] = useState("")
   const [productPrice, setproductprice] = useState("");
+  const [first, setfirst] = useState([])
   const endpoints = "https://juma-backend-delta.vercel.app/addproduct/newalcoholicproduct"
   const productEndpoints = "https://juma-backend-delta.vercel.app/getproduct/getalcoholicbev"
   const [isLoading, setisLoading] = useState(true)
 
   useEffect(() => {
-    const getSaucesProduct = async () => {
-      try {
-        const response = await axios.get(productEndpoints);
-        // console.log(response.data);
-        setSelectedData(response.data.alcoholicBevProduct)
-      }
-      catch (error) {
-        console.log(error);
-      } finally {
-        setisLoading(false)
-      }
+    getAlchoBevProduct()
+  }, []);
+  const getAlchoBevProduct = async () => {
+    try {
+      const response = await axios.get(productEndpoints);
+      console.log(response.data.alcoholicBevProduct)
+      setfirst(response.data.alcoholicBevProduct)
     }
-    getSaucesProduct()
-  }, [])
-
-  const handleIsOpen = () => {
-    setIsOModalOpened(true);
+    catch (error) {
+      console.log(error)
+    } finally {
+      setisLoading(false)
+    }
   }
+  const handleIsOpen = () => {
+    setIsModalOpened(!isModalOpened);
+  }
+  const handleIsClose = async () =>{
+    let productCategory = "alcoholicBeverages"
+    let productObj = {productImage,productName,productCategory,productdescription, productPrice }
+    console.log(productObj)
+    setIsModalOpened(!isModalOpened);
+
+    try {
+      let result = await axios.post(endpoints,productObj);
+      if(result){
+        console.log(result);
+        const messages = result.data.message
+        alert(messages);
+        getAlchoBevProduct()
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    
+  } 
 
   return (
     <>
@@ -46,16 +63,16 @@ const AlcoholicBevUploadPg = () => {
         <AdminSideBar />
         <div className={`w-full overflow-hidden rounded-md sm:ml-20 max-sm:ml-20 lg:ml-[300px] transition-all duration-300 ease-in-out 
     ${isOpen ? 'sm:translate-x-[220px] max-sm:translate-x-[220px]' : 'sm:ml-0 max-sm:ml-0'}`}>
-          <h2 className='text-center mt-5 text-5xl font-semibold'>Add New Snacks Product</h2>
+          <h2 className='text-center mt-5 text-5xl font-semibold'>Add New Alcholic Bev Product</h2>
           <div className='flex justify-evenly mt-10 mb-10'>
             <Link to="/adminhome/alcoholicBeverages"><button className='w-[180px] h-[50px] bg-[#FE0000] text-[white] rounded-xl text-xl font-semibold'>Alcoholic bev</button></Link>
           </div>
 
           <button className='w-fit h-[50px] p-2 bg-[#FE0000] text-[white] rounded-xl text-xl font-semibold' onClick={handleIsOpen}>Add Product</button>
-          <ProductTable selectedData={selectedData} />
+          <ProductTable selectedData={first} getProduct={getAlchoBevProduct} />
         </div>
       </div>
-      {isModalOpened && (<Enterproduct Enterproduct={handleIsOpen} setproductname={setproductname} setproductimage={setproductimage} setproductprice={setproductprice} setproductdescription={setproductdescription} />)}
+      {isModalOpened && (<Enterproduct Enterproduct={handleIsOpen} setproductname={setproductname} setproductimage={setproductimage} setproductprice={setproductprice} setproductdescription={setproductdescription} isClose={handleIsClose}/>)}
     </>
   )
 }

@@ -14,35 +14,50 @@ const SoftDrksUploadPg = () => {
   const [productCategory, setproductcategory] = useState("");
   const [productdescription, setproductdescription] = useState("")
   const [productPrice, setproductprice] = useState("");
-  const [selectedData, setSelectedData] = useState([]);
+  const [first, setfirst] = useState([]);
   const endpoints = "https://juma-backend-delta.vercel.app/addproduct/newsoftdrinksproduct"
   const productEndpoints = "https://juma-backend-delta.vercel.app/getproduct/getsoftdrks"
   const [isLoading, setisLoading] = useState(true)
 
   useEffect(() => {
-    const getSaucesProduct = async () => {
-      try {
-        const response = await axios.get(productEndpoints);
-        console.log(response.data);
-        setSelectedData(response.data.softDrksProduct)
-      }
-      catch (error) {
-        console.log(error);
-      } finally {
-        setisLoading(false)
-      }
+    getSoftDrksProduct()
+  }, []);
+  const getSoftDrksProduct = async () => {
+    try {
+      const response = await axios.get(productEndpoints);
+      console.log(response.data.softDrksProduct)
+      setfirst(response.data.softDrksProduct)
     }
-    getSaucesProduct()
-  }, [])
-
+    catch (error) {
+      console.log(error)
+    } finally {
+      setisLoading(false)
+    }
+  }
   const handleIsOpen = () => {
     setIsModalOpened(!isModalOpened);
   }
+  const handleIsClose = async () =>{
+    let productCategory = "softDrinks"
+    let productObj = {productImage,productName,productCategory,productdescription, productPrice }
+    console.log(productObj)
+    setIsModalOpened(!isModalOpened);
 
+    try {
+      let result = await axios.post(endpoints,productObj);
+      if(result){
+        console.log(result);
+        const messages = result.data.message
+        alert(messages);
+        getSoftDrksProduct();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    
+  }
   return (
     <>
-
-
       <div className='flex gap-4 justify-between h-full w-full'>
         <AdminSideBar />
         <div className={`w-full overflow-hidden rounded-md sm:ml-20 max-sm:ml-20 lg:ml-[300px] transition-all duration-300 ease-in-out 
@@ -51,16 +66,15 @@ const SoftDrksUploadPg = () => {
           <div className='flex justify-evenly mt-10 mb-10'>
             <Link to="/adminhome/softDrinks">
               <button
-                // onClick={() => handleSelectedCategory(data.snacks)}
                 className='w-[180px] h-[50px] bg-[#FE0000] text-[white] rounded-xl text-xl font-semibold'>Soft drk</button>
             </Link>
           </div >
 
           <button className='w-fit h-[50px] p-2 bg-[#FE0000] text-[white] rounded-xl text-xl font-semibold' onClick={handleIsOpen}>Add Product</button>
-          <ProductTable selectedData={selectedData} />
+          <ProductTable selectedData={first} getProduct={getSoftDrksProduct}/>
         </div>
       </div>
-      {isModalOpened && (<Enterproduct Enterproduct={handleIsOpen} setproductname={setproductname} setproductimage={setproductimage} setproductprice={setproductprice} setproductdescription={setproductdescription} />)}
+      {isModalOpened && (<Enterproduct Enterproduct={handleIsOpen} setproductname={setproductname} setproductimage={setproductimage} setproductprice={setproductprice} setproductdescription={setproductdescription} isClose={handleIsClose}/>)}
     </>
   )
 }
