@@ -1,7 +1,7 @@
 import React from 'react'
 import ComponentBg from '/public/Images/YUMMY.png'
 import { FaCartShopping, FaHeart, FaNairaSign } from 'react-icons/fa6'
-import {projectImport} from '../../components/ProjectImgImport'
+import { projectImport } from '../../components/ProjectImgImport'
 import { Link } from 'react-router-dom'
 const Cart4 = () => {
   return (
@@ -11,7 +11,7 @@ const Cart4 = () => {
           className='absolute w-full h-full object-cover'
           src={ComponentBg} alt="" />
         <h1
-            className=' absolute text-[5rem] flex justify-center items-center 
+          className=' absolute max-md:text-[3rem] md:text-[5rem] flex justify-center items-center 
             text-white w-full h-full text-center font-semibold tracking-widest z-10'>Bakery Items</h1>
       </div>
 

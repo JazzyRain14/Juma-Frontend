@@ -12,10 +12,8 @@ const HomePage = () => {
     return (
 
         <>
-        
+
             <div className='pt-4 px-4'>
-                <TopNav/>
-                <hr className='rounded-lg bg-[#585757] h-[2px] my-2' />
                 <div >
                     <Section1 />
                     <hr className='rounded-lg bg-[#585757] h-[2px] my-4' />

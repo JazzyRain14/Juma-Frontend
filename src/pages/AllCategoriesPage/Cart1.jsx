@@ -11,7 +11,7 @@ const Cart1 = () => {
                     className='absolute w-full h-full object-cover'
                     src={ComponentBg} alt="make_me_moan" />
                 <h1
-                    className=' absolute text-[5rem] flex justify-center items-center 
+                    className=' absolute max-md:text-[3rem] md:text-[5rem] flex justify-center items-center 
                     text-white w-full h-full text-center font-semibold tracking-widest z-10'>Snacks</h1>
             </div>
             <div className='px-4'>

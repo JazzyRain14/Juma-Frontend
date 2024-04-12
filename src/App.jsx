@@ -27,6 +27,7 @@ import BakeryItmUploadPg from './pages/AdminPages/bakeryItmUploadPg.jsx'
 import SoftDrksUploadPg from './pages/AdminPages/softDrksUploadPg.jsx'
 import AlcoholicBevUploadPg from './pages/AdminPages/alcoholicBevUploadPg.jsx'
 import DesertSwtUploadPg from './pages/AdminPages/desertSwtUploadPg.jsx'
+import AdminHome from './pages/AdminPages/AdminHome.jsx'
 
 function App() {
 
@@ -38,6 +39,7 @@ function App() {
           <Route path="/" element={<Landingpg />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/adminhome" element={<AdminHome/>} />
           <Route path="/adminhome/snacks" element={<SnackUploadPg/>} />
           <Route path="/adminhome/saucesandcondiments" element={<SaucesUploadPg/>} />
           <Route path="/adminhome/ethnicfood" element={<EthnicFoodUploadPg/>} />

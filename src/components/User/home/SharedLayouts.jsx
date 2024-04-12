@@ -43,8 +43,8 @@ const SharedLayouts = () => {
 
 
     const { isOpen, toggleOpen } = useContext(SharedContext);
-    const styleRes = `w-full overflow-hidden rounded-md sm:ml-20 max-sm:ml-20 lg:ml-[300px] transition-all duration-300 ease-in-out 
-    ${isOpen ? 'sm:translate-x-[220px] max-sm:translate-x-[220px]' : 'sm:ml-0 max-sm:ml-0'}`
+    const styleRes = `w-full overflow-hidden rounded-md sm:ml-0 max-sm:ml-0 lg:ml-[300px] transition-all duration-300 ease-in-out 
+    ${isOpen ? 'sm:translate-x-[300px] max-sm:translate-x-[300px]' : 'sm:ml-0 max-sm:ml-0'}`
     return (
         <>
             {
@@ -123,6 +123,10 @@ const SharedLayouts = () => {
                     <section className='flex gap-4 justify-between h-full w-full '>
                         <SideBar />
                         <div className={styleRes}>
+                            <div className='px-4 pt-4'>
+                                <TopNav />
+                                <hr className='rounded-lg bg-[#585757] h-[2px] my-2' />
+                            </div>
                             <Outlet />
                         </div>
                     </section>
