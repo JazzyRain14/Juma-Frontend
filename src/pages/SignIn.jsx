@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import google from '../assets/Images/google-color-icon.png'
-import { FaCartArrowDown, FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaCartArrowDown, FaTimes, FaCheck, FaEye, FaEyeSlash } from "react-icons/fa";
 import { useFormik } from 'formik';
 import dining from '../assets/Images/Dining.png'
+import { useIsOnline } from 'react-use-is-online';
 import yupSigninValidate from './yupSigninValidate';
 // import yupValidation from './yupValidation';
 import { Link, useNavigate } from 'react-router-dom';
@@ -14,6 +15,37 @@ const SignIn = () => {
     const [eye, seteye] = useState(FaEyeSlash);
     const endpoints = "https://juma-backend-delta.vercel.app/auth/signin"
     const navigate = useNavigate();
+    const { isOnline, isOffline } = useIsOnline()
+    // const [isDisabled, setisDisabled] = useState(!isOnline)
+
+    // useEffect(() => {
+    //     if (isOnline) {
+    //         toast.custom((t) => (
+    //             <div className='border py-4 px-8 bg-[#ECFDF3] relative rounded-lg overflow-hidden'>
+    //                 <div className=' flex gap-2 items-center'>
+    //                     <FaCheck className='bg-[#008A2E] p-1 text-white text-2xl rounded-full' />
+    //                     <h1 className='text-lg text-[#008A2E] font-semibold'>You're Connected</h1>
+    //                 </div>
+    //                 <p className='text-sm text-[#008A2E]'>Good to have you back online!</p>
+    //                 <button className='absolute right-2 top-2' onClick={() => toast.dismiss(t)}><FaTimes /></button>
+    //             </div>
+    //         ));
+    //         setisDisabled(false);
+    //     } else {
+    //         toast.custom((t) => (
+    //             <div className='border p-4 bg-[#FFF0F0] relative'>
+    //                 <div className=' flex gap-2 items-center'>
+    //                     <FaExclamation className='bg-projectRed-2 p-1 text-white text-2xl rounded-full' />
+    //                     <h1 className='text-lg text-projectRed-2 font-semibold'>Uh-oh</h1>
+    //                 </div>
+    //                 <p className='text-sm text-projectRed-2'>Looks like you should connect to the internet.</p>
+    //                 <button className='absolute right-2 top-2' onClick={() => toast.dismiss(t)}><FaTimes /></button>
+    //             </div>
+    //         ))
+    //         setisDisabled(true);
+    //     }
+    // }, [isOnline])
+
     const formik = useFormik({
         initialValues: {
             email: "",
@@ -47,7 +79,7 @@ const SignIn = () => {
                     }
                 }
             } catch (error) {
-                console.log(error);
+                toast.error(error);
             }
         },
         validationSchema: yupSigninValidate
@@ -69,7 +101,7 @@ const SignIn = () => {
 
     return (
         <>
-            <Toaster position='top-center' richColors />
+            <Toaster position='top-center' expand={true} richColors />
             <div className='bg-[#CCCCCC] h-100 min-h-screen  grid grid-flow-row gap-8 p-6 md:grid-cols-grid1 md:gap-4 md:p-8'>
 
                 {/* {/* left div */}
