@@ -9,7 +9,7 @@ const AdminSideBar = () => {
     const location = useLocation()
     const { isOpen, toggleOpen } = useContext(SharedContext);
 
-    const stylesSideBar = `fixed top-0 flex flex-col sideBarScroll h-full  border-r shadow sm:w-20 max-sm:w-20 lg:w-[300px] transition-all duration-300 ease-in-out ${isOpen ? 'sm:w-[300px] max-sm:w-[300px]' : 'sm:w-0 max-sm:w-0'}`
+    const stylesSideBar = `fixed top-0 flex flex-col sideBarScroll h-full  border-r shadow max-lg:w-0 lg:w-[300px] transition-all duration-300 ease-in-out ${isOpen ? 'sm:w-[300px] max-sm:w-[300px]' : 'sm:w-0 max-sm:w-0'}`
     return (
         <>
             <section

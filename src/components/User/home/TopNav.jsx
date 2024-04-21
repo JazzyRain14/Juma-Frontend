@@ -8,7 +8,7 @@ const TopNav = () => {
     return (
         <section className='border-projectBorder flex justify-between w-full max-sm:flex-col'>
             <div className='flex items-center'>
-                <i className={`cursor-pointer ${isOpen?'hidden':'block mr-2'}`} onClick={toggleOpen}>
+                <i className={`cursor-pointer lg:hidden ${isOpen?'max-lg:hidden mr-2':'max-lg:block mr-2'}`} onClick={toggleOpen}>
                     <FaBars className='text-[25px]' />
                 </i>
                 <div className='border w-[400px] rounded-[15px] bg-white overflow-hidden flex gap-2 max-sm:w-full'>
