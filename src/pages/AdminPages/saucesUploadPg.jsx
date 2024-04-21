@@ -19,20 +19,20 @@ const SaucesUploadPg = () => {
   const productEndpoints = "https://juma-backend-delta.vercel.app/getproduct/getsaucescod"
   const [isLoading, setisLoading] = useState(false)
 
-  useEffect(() => {
-    const getSaucesProduct = async () => {
-      setisLoading(true)
-      try {
-        const response = await axios.get(productEndpoints);
-        console.log(response.data.saucesCodProduct);
-        setfirst(response.data.saucesCodProduct);
-      }
-      catch (error) {
-        console.log(error)
-      } finally {
-        setisLoading(false)
-      }
+  const getSaucesProduct = async () => {
+    setisLoading(true)
+    try {
+      const response = await axios.get(productEndpoints);
+      console.log(response.data.saucesCodProduct);
+      setfirst(response.data.saucesCodProduct);
     }
+    catch (error) {
+      console.log(error)
+    } finally {
+      setisLoading(false)
+    }
+  }
+  useEffect(() => {
     getSaucesProduct();
   }, [])
   const handleIsOpen = () => {
