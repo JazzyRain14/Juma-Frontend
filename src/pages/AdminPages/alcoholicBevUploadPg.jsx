@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Enterproduct from '../../components/Enterproduct';
 import axios from 'axios';
 import AdminSideBar from '../../components/AdminSidebar';
-import ProductTable from './ProductTable';
+import ProductTable from './productTable';
 
 const AlcoholicBevUploadPg = () => {
   const navigate = useNavigate();
@@ -38,15 +38,15 @@ const AlcoholicBevUploadPg = () => {
   const handleIsOpen = () => {
     setIsModalOpened(!isModalOpened);
   }
-  const handleIsClose = async () =>{
+  const handleIsClose = async () => {
     let productCategory = "alcoholicBeverages"
-    let productObj = {productImage,productName,productCategory,productdescription, productPrice }
+    let productObj = { productImage, productName, productCategory, productdescription, productPrice }
     console.log(productObj)
     setIsModalOpened(!isModalOpened);
 
     try {
-      let result = await axios.post(endpoints,productObj);
-      if(result){
+      let result = await axios.post(endpoints, productObj);
+      if (result) {
         console.log(result);
         const messages = result.data.message
         alert(messages);
@@ -55,8 +55,8 @@ const AlcoholicBevUploadPg = () => {
     } catch (error) {
       console.log(error);
     }
-    
-  } 
+
+  }
 
   return (
     <>
@@ -68,10 +68,10 @@ const AlcoholicBevUploadPg = () => {
             <h2 className='text-center mt-5 text-5xl font-semibold'>Add New Alcoholic Drinks</h2>
             <button className='w-fit h-[50px] p-2 bg-[#FE0000] text-[white] rounded-xl text-xl font-semibold' onClick={handleIsOpen}>Add Product</button>
           </div>
-            <ProductTable isLoading={isLoading} selectedData={first} getProduct={getAlchoBevProduct} />
+          <ProductTable isLoading={isLoading} selectedData={first} getProduct={getAlchoBevProduct} />
         </div>
       </div>
-      {isModalOpened && (<Enterproduct Enterproduct={handleIsOpen} setproductname={setproductname} setproductimage={setproductimage} setproductprice={setproductprice} setproductdescription={setproductdescription} isClose={handleIsClose}/>)}
+      {isModalOpened && (<Enterproduct Enterproduct={handleIsOpen} setproductname={setproductname} setproductimage={setproductimage} setproductprice={setproductprice} setproductdescription={setproductdescription} isClose={handleIsClose} />)}
     </>
   )
 }
