@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import Enterproduct from '../../components/Enterproduct';
 import axios from 'axios';
-import ProductTable from '../../components/ProductTable';
 import AdminSideBar from '../../components/AdminSidebar';
+import ProductTable from '../../components/ProductTable';
 
 const SaucesUploadPg = () => {
   const navigate = useNavigate();
