@@ -65,4 +65,6 @@ const EditUserPhotoModal = ({ EditUserPhotoModal }) => {
         </div>
     )
 }
+
+
 export { EditUserModal, EditUserPhotoModal }

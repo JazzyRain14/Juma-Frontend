@@ -4,6 +4,7 @@ import Enterproduct from '../../components/Enterproduct';
 import axios from 'axios';
 import AdminSideBar from '../../components/AdminSidebar';
 import ProductTable from '../../components/ProductTable';
+import { Toaster, toast } from 'sonner';
 
 const SnackUploadPg = () => {
   const navigate = useNavigate();
@@ -31,7 +32,7 @@ const SnackUploadPg = () => {
       setfirst(response.data.snacksProduct)
     }
     catch (error) {
-      console.log(error)
+      toast.error(error.message)
     } finally {
       setisLoading(false)
     }
@@ -54,12 +55,13 @@ const SnackUploadPg = () => {
         getSnacksProduct();
       }
     } catch (error) {
-      console.log(error);
+      toast.error(error.message);
     }
 
   }
   return (
     <>
+      <Toaster position='top-center' richColors />
       <div className='flex gap-4 justify-between w-full'>
         <AdminSideBar />
         <div className={`w-full overflow-hidden h-screen rounded-md sm:ml-20 max-sm:ml-20 lg:ml-[300px] flex flex-col transition-all duration-300 ease-in-out 

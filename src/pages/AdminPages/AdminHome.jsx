@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import AdminSideBar from '../../components/AdminSidebar'
 import TopNav from '../../components/User/home/TopNav';
 import { SharedContext } from '../../components/User/home/SharedContextProvider';
-import AdminHomeSection1 from '../../components/AdminModal/AdminHomeSection1';
+import AdminHomeSection1 from '../../components/Admin/AdminHomeSection1';
 const AdminHome = () => {
     // const [isOpen, setIsOpen] = useState(false);
     const { isOpen, toggleOpen } = useContext(SharedContext);
@@ -17,7 +17,7 @@ const AdminHome = () => {
                         <hr className='rounded-lg bg-[#585757] h-0.5 my-2' />
                     </div>
                     <div className='py-4 px-4'>
-                        <AdminHomeSection1/>
+                        <AdminHomeSection1 />
                     </div>
                 </div>
             </section>

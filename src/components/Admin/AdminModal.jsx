@@ -1,6 +1,6 @@
 import React, { useState } from "react"
-
-const EditProductModal = ({ editProduct, itemData, handleProductName, setHandleProductName, handleProductCategory, setHandleProductCategory, handleProductImage, setProductImage, handleProductPrice, setHandleProductPrice,updateProduct }) => {
+import Success from '../../assets/Images/Success.gif'
+const EditProductModal = ({ editProduct, itemData, handleProductName, setHandleProductName, handleProductCategory, setHandleProductCategory, handleProductImage, setProductImage, handleProductPrice, setHandleProductPrice, updateProduct }) => {
 
     return (
         <>
@@ -37,4 +37,42 @@ const EditProductModal = ({ editProduct, itemData, handleProductName, setHandleP
     )
 }
 
-export default EditProductModal
+const UpdateProductSuccessModal = ({ messages }) => {
+    return (
+        <>
+            <div className='w-full h-full'>
+                <div
+                    className="w-full h-full top-0 left-0 right-0 bottom-0 fixed bg-[rgba(49,49,49,0.8)]"></div>
+                <div className='absolute top-[40%] left-[50%] -translate-x-2/4 -translate-y-2/4 w-fit max-md:max-w-lg max-sm:max-w-[20rem] transition-all duration-200 ease-out bg-white p-4 rounded-lg overflow-hidden'>
+                    <img src={Success} alt="" />
+                    <h1 className="text-center text-lg font-semibold">{messages}</h1>
+                </div>
+            </div>
+        </>
+    )
+}
+
+const DeleteProductModal = ({ deleteProduct, index, deleteModal }) => {
+    return (
+        <div className='w-full h-full'>
+            <div
+                className="w-full h-full top-0 left-0 right-0 bottom-0 fixed bg-[rgba(49,49,49,0.8)]"></div>
+            <div className='absolute top-[40%] left-[50%] -translate-x-2/4 -translate-y-2/4 w-fit max-md:max-w-lg max-sm:max-w-[20rem] transition-all duration-200 ease-out bg-white p-4 rounded-lg overflow-hidden'>
+                <h1 className="text-xl mb-4">Are you sure you want to delete this product?</h1>
+                <div className="flex justify-evenly">
+                    <button className="py-4 px-8 border-2 border-projectBorder rounded-lg text-lg font-semibold bg-white hover:text-projectRed-2 cursor-pointer" onClick={deleteModal}>
+                        Cancel
+                    </button>
+                    <button className="py-4 px-8 border-2 border-projectBorder rounded-lg text-lg font-semibold bg-projectRed-2 hover:text-white cursor-pointer" onClick={() => deleteProduct(index)}>
+                        Delete
+                    </button>
+                </div>
+                {/* <h1 className="text-center text-lg font-semibold">{messages}</h1> */}
+            </div>
+        </div>
+    )
+}
+
+export {
+    EditProductModal, UpdateProductSuccessModal, DeleteProductModal
+}
