@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import loading from '../../assets/LoadingTxt.svg'
+import Loading from '../../assets/LoadingTxt.svg'
 import { FaTrash, FaUserEdit } from 'react-icons/fa'
 import EditProductModal from './AdminModal/EditProductModal'
 import filenotfound from '../../assets/Images/File-Not-Found.jpeg'
@@ -85,7 +85,7 @@ const ProductTable = ({ selectedData, isLoading, getProduct }) => {
                             isLoading ? (
                                 <tr>
                                     <td colSpan={7} >
-                                        <div className=''><img width={150} src={loading} alt="loading..." /></div>
+                                        <div className=''><img width={150} src={Loading} alt="Loading..." /></div>
                                     </td>
                                 </tr>
                             ) : selectedData.length > 0 ? (
