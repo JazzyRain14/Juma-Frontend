@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import Loading from '../../assets/LoadingTxt.svg'
+import Loading from '../assets/LoadingTxt.svg'
 import { FaTrash, FaUserEdit } from 'react-icons/fa'
 import EditProductModal from './AdminModal/EditProductModal'
-import filenotfound from '../../assets/Images/File-Not-Found.jpeg'
+import filenotfound from '../assets/Images/File-Not-Found.jpeg'
 import axios from 'axios'
 const ProductTable = ({ selectedData, isLoading, getProduct }) => {
     const [isTrue, setIsTrue] = useState(false)
