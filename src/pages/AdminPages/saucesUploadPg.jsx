@@ -64,13 +64,13 @@ const SaucesUploadPg = () => {
         <div className={`w-full overflow-hidden h-screen rounded-md sm:ml-20 max-sm:ml-20 lg:ml-[300px] flex flex-col transition-all duration-300 ease-in-out 
     ${isOpen ? 'sm:translate-x-[220px] max-sm:translate-x-[220px]' : 'sm:ml-0 max-sm:ml-0'}`}>
           <div className='border py-4 px-4'>
-            <h2 className='text-center mt-5 text-5xl font-semibold'>Add New Sauces & Condiments Product</h2>
+            <h2 className='text-center mt-z5 text-5xl font-semibold'>Add New Sauces & Condiments Product</h2>
             <button className='w-fit h-[50px] p-2 bg-[#FE0000] text-[white] rounded-xl text-xl font-semibold' onClick={handleIsOpen}>Add Product</button>
           </div>
           <ProductTable isLoading={isLoading} selectedData={first} getProduct={getSaucesProduct} />
         </div>
       </div>
-      {isModalOpened && (<Enterproduct Enterproduct={handleIsOpen} setproductname={setproductname} setproductimage={setproductimage} setproductprice={setproductprice} setproductdescription={setproductdescription} isClose={handleIsClose} />)}
+      {isModalOpened && (<Enterproduct Entzerproduct={handleIsOpen} setproductname={setproductname} setproductimage={setproductimage} setproductprice={setproductprice} setproductdescription={setproductdescription} isClose={handleIsClose} />)}
     </>
   )
 }
