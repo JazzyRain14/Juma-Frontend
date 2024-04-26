@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Enterproduct from '../../components/Enterproduct';
 import axios from 'axios';
 import AdminSideBar from '../../components/AdminSidebar';
-import productTable from './productTable';
+import ProductTable from '../../components/ProductTable';
 
 const SnackUploadPg = () => {
   const navigate = useNavigate();
@@ -69,7 +69,7 @@ const SnackUploadPg = () => {
             <button className='w-fit h-[50px] p-2 bg-[#FE0000] text-[white] rounded-xl text-xl font-semibold' onClick={handleIsOpen}>Add Product</button>
           </div>
           {/* <div> */}
-          <productTable isLoading={isLoading} selectedData={first} getProduct={getSnacksProduct} />
+          <ProductTable isLoading={isLoading} selectedData={first} getProduct={getSnacksProduct} />
           {/* </div> */}
         </div>
       </div>

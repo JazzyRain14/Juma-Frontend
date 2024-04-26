@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import loading from '../../assets/LoadingTxt.svg'
 import { FaTrash, FaUserEdit } from 'react-icons/fa'
-import EditProductModal from '../../components/AdminModal/EditProductModal'
+import EditProductModal from './AdminModal/EditProductModal'
 import filenotfound from '../../assets/Images/File-Not-Found.jpeg'
 import axios from 'axios'
-const productTable = ({ selectedData, isLoading, getProduct }) => {
+const ProductTable = ({ selectedData, isLoading, getProduct }) => {
     const [isTrue, setIsTrue] = useState(false)
     const [selectedItemData, setSelectedItemData] = useState(null);
     const [handleProductImage, setHandleProductImage] = useState('')
@@ -124,4 +124,4 @@ const productTable = ({ selectedData, isLoading, getProduct }) => {
 }
 
 
-export default productTable
+export default ProductTable
