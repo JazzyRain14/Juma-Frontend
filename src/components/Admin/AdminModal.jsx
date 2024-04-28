@@ -56,7 +56,7 @@ const DeleteProductModal = ({ deleteProduct, index, deleteModal }) => {
     return (
         <div className='w-full h-full'>
             <div
-                className="w-full h-full top-0 left-0 right-0 bottom-0 fixed bg-[rgba(49,49,49,0.8)]"></div>
+                className="w-full h-full top-0 left-0 right-0 bottom-0 fixed bg-[rgba(49,49,49,0.2)]"></div>
             <div className='absolute top-[40%] left-[50%] -translate-x-2/4 -translate-y-2/4 w-fit max-md:max-w-lg max-sm:max-w-[20rem] transition-all duration-200 ease-out bg-white p-4 rounded-lg overflow-hidden'>
                 <h1 className="text-xl mb-4">Are you sure you want to delete this product?</h1>
                 <div className="flex justify-evenly">

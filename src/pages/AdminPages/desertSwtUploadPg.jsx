@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import Enterproduct from '../../components/Enterproduct';
 import axios from 'axios';
 import ProductTable from '../../components/ProductTable';
 import AdminSideBar from '../../components/AdminSidebar';
+import { SharedContext } from '../../components/User/home/SharedContextProvider';
+import AdminTopNav from '../../components/Admin/AdminTopNav';
 
 const DesertSwtUploadPg = () => {
   const navigate = useNavigate();
-  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
+  const { isOpen, toggleOpen } = useContext(SharedContext);
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [productImage, setproductimage] = useState("");
   const [productName, setproductname] = useState("");
@@ -61,10 +64,11 @@ const DesertSwtUploadPg = () => {
     <>
       <div className='flex gap-4 justify-between h-full w-full'>
         <AdminSideBar />
-        <div className={`w-full overflow-hidden h-screen rounded-md sm:ml-20 max-sm:ml-20 lg:ml-[300px] flex flex-col transition-all duration-300 ease-in-out 
-    ${isOpen ? 'sm:translate-x-[220px] max-sm:translate-x-[220px]' : 'sm:ml-0 max-sm:ml-0'}`}>
-          <div className='border py-4 px-4'>
-            <h2 className='text-center mt-5 text-5xl font-semibold'>Add New Desert & Sweet Product</h2>
+        <div className={`w-full border overflow-hidden rounded-md sm:ml-0 max-sm:ml-0 lg:ml-[300px] transition-all duration-300 ease-in-out  h-screen flex flex-col
+    ${isOpen ? 'sm:translate-x-[300px] max-sm:translate-x-[300px]' : 'sm:ml-0 max-sm:ml-0'}`}>
+          <div className='border py-4 px-4 h-[25%]'>
+            <AdminTopNav />
+            <h2 className='text-center mt-5 text-5xl font-semibold sm:text-2xl transition-all duration-200 ease-out max-sm:text-2xl'>Add New Desert & Sweet Product</h2>
             <button className='w-fit h-[50px] p-2 bg-[#FE0000] text-[white] rounded-xl text-xl font-semibold' onClick={handleIsOpen}>Add Product</button>
           </div>
           <ProductTable isLoading={isLoading} selectedData={first} getProduct={getDesertSwtProduct} />

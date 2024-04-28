@@ -11,6 +11,7 @@ const ProductTable = ({ selectedData, isLoading, getProduct }) => {
     const [deleteModalOpened, setDeleteModalOpened] = useState(false)
     const [message, setMessage] = useState('')
     const [selectedItemData, setSelectedItemData] = useState(null);
+    const [selectedItemDataID, setSelectedItemDataID] = useState(null);
     const [handleProductImage, setHandleProductImage] = useState('')
     const [handleProductName, setHandleProductName] = useState('')
     const [handleProductPrice, setHandleProductPrice] = useState('')
@@ -52,11 +53,12 @@ const ProductTable = ({ selectedData, isLoading, getProduct }) => {
         }
     }
     const deleteProductModal = (index) => {
+        setSelectedItemDataID(index)
         setDeleteModalOpened(!deleteModalOpened);
     }
 
     const deleteProduct = async (index) => {
-        let filterArray = selectedData.filter((item, ind) => index === ind);
+        let filterArray = selectedData.filter((item, ind) => selectedItemDataID === ind);
         let productId = filterArray[0]._id
         let productCategory = filterArray[0].productCategory
         // alert(productCategory)
@@ -66,8 +68,12 @@ const ProductTable = ({ selectedData, isLoading, getProduct }) => {
             if (result) {
                 const messages = result.data.message
                 console.log(result.data);
-                alert(messages);
+                setMessage(messages);
+                setModalOpened(!modalOpened)
                 getProduct()
+                setTimeout(() => {
+                    setModalOpened(false)
+                }, 2000);
                 setDeleteModalOpened(false)
             }
         } catch (error) {
@@ -115,21 +121,7 @@ const ProductTable = ({ selectedData, isLoading, getProduct }) => {
                                             <td className='px-6 py-4'><FaTrash className=' cursor-pointer text-lg' onClick={() => deleteProductModal(index)}
                                             /></td>
                                         </tr>
-                                        {deleteModalOpened && <div className='w-full h-full'>
-                                            <div
-                                                className="w-full h-full top-0 left-0 right-0 bottom-0 fixed bg-[rgba(49,49,49,0.8)]"></div>
-                                            <div className='absolute top-[40%] left-[50%] -translate-x-2/4 -translate-y-2/4 w-fit max-md:max-w-lg max-sm:max-w-[20rem] transition-all duration-200 ease-out bg-white p-4 rounded-lg overflow-hidden'>
-                                                <h1 className="text-xl mb-4">Are you sure you want to delete this product?</h1>
-                                                <div className="flex justify-evenly">
-                                                    <button className="py-4 px-8 border-2 border-projectBorder rounded-lg text-lg font-semibold bg-white hover:text-projectRed-2 cursor-pointer" onClick={deleteProductModal}>
-                                                        Cancel
-                                                    </button>
-                                                    <button className="py-4 px-8 border-2 border-projectBorder rounded-lg text-lg font-semibold bg-projectRed-2 hover:text-white cursor-pointer" onClick={() => deleteProduct(index)}>
-                                                        Delete
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>}
+                                        {deleteModalOpened && <DeleteProductModal deleteModal={deleteProductModal} deleteProduct={deleteProduct} index={index} />}
                                     </>
                                 ))
                             ) : (
