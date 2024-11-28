@@ -10,7 +10,7 @@ const Enterproduct = ({ Enterproduct, isClose, setproductname, setproductimage, 
     let reader = new FileReader();
     reader.readAsDataURL(myImage);
     reader.onload = () => {
-      setproductimage(reader.result);
+      setproductimage(reader.result)
     }
   }
 
@@ -33,6 +33,7 @@ const Enterproduct = ({ Enterproduct, isClose, setproductname, setproductimage, 
           {/* <div className='gri'> */}
           <div
             className="grid my-2">
+
             <span className='text-lg font-semibold'>Select Image</span>
             <div className=" w-full cursor-pointer rounded bg-white shadow outline-projectRed-2 py-1 flex items-center">
               <FaCamera className="mx-2" />
@@ -43,10 +44,14 @@ const Enterproduct = ({ Enterproduct, isClose, setproductname, setproductimage, 
                 alt="" accept="image/*" onChange={(e) => fileChange(e)} />
             </div>
           </div>
+
           <input type="text" placeholder='Enter product name' className=' my-2 py-2 px-2 w-full bg-slate-200  placeholder:text-[#3a3a3a]  text-[#3a3a3a] font-semibold outline-projectRed-2' onChange={(e) => setproductname(e.target.value)} />
+
           <textarea id="" rows="10" placeholder='Product Description'
             className='sideBarScroll my-2 py-2 px-2 w-full bg-slate-200  placeholder:text-[#3a3a3a] text-[#3a3a3a] font-semibold outline-projectRed-2 max-h-[150px] h-full' onChange={(e) => setproductdescription(e.target.value)} />
+
           <input type="text" placeholder='Enter product price' className=' my-2 py-2 px-2 w-full bg-slate-200  placeholder:text-[#3a3a3a]  text-[#3a3a3a] font-semibold outline-projectRed-2' onChange={(e) => setproductprice(e.target.value)} />
+
           <button className=' my-2  mt-4 py-2 px-2 w-full bg-projectRed-2 text-lg rounded-lg  placeholder:text-[#3a3a3a] text-white font-semibold outline-projectRed-2' onClick={isClose}>Submit</button>
         </div>
       </div>

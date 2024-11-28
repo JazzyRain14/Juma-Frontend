@@ -28,25 +28,26 @@ import SoftDrksUploadPg from './pages/AdminPages/softDrksUploadPg.jsx'
 import AlcoholicBevUploadPg from './pages/AdminPages/alcoholicBevUploadPg.jsx'
 import DesertSwtUploadPg from './pages/AdminPages/desertSwtUploadPg.jsx'
 import AdminHome from './pages/AdminPages/AdminHome.jsx'
+import ProductDetailspg from './pages/AdminPages/ProductDetailspg.jsx'
 
 function App() {
 
 
   return (
     <>
-     <SharedContextProvider>
+      <SharedContextProvider>
         <Routes>
           <Route path="/" element={<Landingpg />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/adminhome" element={<AdminHome/>} />
-          <Route path="/adminhome/snacks" element={<SnackUploadPg/>} />
-          <Route path="/adminhome/saucesandcondiments" element={<SaucesUploadPg/>} />
-          <Route path="/adminhome/ethnicfood" element={<EthnicFoodUploadPg/>} />
-          <Route path="/adminhome/bakeryitems" element={<BakeryItmUploadPg/>} />
-          <Route path="/adminhome/softdrinks" element={<SoftDrksUploadPg/>} />
-          <Route path="/adminhome/alcoholicbeverages" element={<AlcoholicBevUploadPg/>} />
-          <Route path="/adminhome/desertandsweets" element={<DesertSwtUploadPg/>} />
+          <Route path="/adminhome" element={<AdminHome />} />
+          <Route path="/adminhome/snacks" element={<SnackUploadPg />} />
+          <Route path="/adminhome/saucesandcondiments" element={<SaucesUploadPg />} />
+          <Route path="/adminhome/ethnicfood" element={<EthnicFoodUploadPg />} />
+          <Route path="/adminhome/bakeryitems" element={<BakeryItmUploadPg />} />
+          <Route path="/adminhome/softdrinks" element={<SoftDrksUploadPg />} />
+          <Route path="/adminhome/alcoholicbeverages" element={<AlcoholicBevUploadPg />} />
+          <Route path="/adminhome/desertandsweets" element={<DesertSwtUploadPg />} />
           <Route path='home' element={<SharedLayouts />} >
             <Route index element={<HomePage />} />
             <Route path='categories/cart1' element={<Cart1 />} />
@@ -58,6 +59,7 @@ function App() {
             <Route path='categories/cart7' element={<Cart7 />} />
             <Route path='userprofile' element={<UserProfile />} />
             <Route path='product cart' exact element={<AllCart />} />
+            <Route path=':itemCategory/:item_id' element={<ProductDetailspg />} />
             <Route path='help&support' element={<HelpSupport />} />
             <Route path='juma wallet' element={<Wallet />} />
             <Route path='transanction history' element={<TransanctionHistory />} />

@@ -1,61 +1,55 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaDumpster, FaMinus, FaPlus, FaRecycle, FaTrash } from 'react-icons/fa6'
 import cartImg from '../assets/Images/pexels-horizon-content-3738730-removebg-preview.png'
 import TopNav from '../components/User/home/TopNav'
+import Burger from '../assets/Images/pexels-horizon-content-3738730-removebg-preview.png'
+import { LiaTimesSolid } from "react-icons/lia";
 
 const AllCart = () => {
-    const [countIncreament, setCountIncreament] = useState(1);
-    const increament = () => {
-        setCountIncreament(countIncreament + 1);
-    }
-    const decreament = () => {
-        if (countIncreament == 0) {
-            countIncreament == 0
-        } else {
-            setCountIncreament(countIncreament - 1)
-        }
-    }
+    const [countIncreament, setCountIncreament] = useState(0);
+    const [AllCart, setAllCart] = useState([])
+    useEffect(() => {
+        const retrievedData = localStorage.getItem('AllMyCart');
+        const parsedData = retrievedData ? JSON.parse(retrievedData) : [];
+        setAllCart(parsedData)
+    }, [])
+    // /usercontrol/addtoocart
+
     return (
         <>
             <section className='px-4 pt-4 overflow-auto'>
-                <TopNav />
                 <div className='my-4 xl:flex flex-row w-full gap-5 lg:grid'>
-                    <div className=' basis-3/4 rounded-lg bg-gray-400 '>
+                    <div className=' basis-3/4'>
                         <article className='w-full'>
                             <header className='border-b py-1 text-xl px-4'>
                                 Cart({countIncreament})
                             </header>
-                            <div className='flex flex-row mt-1  px-4'>
-                                <div className='max-w-[75px] w-full h-[75px] relative rounded-full object-cover overflow-hidden flex bg-gray-200'>
-                                    <img
-                                        className='abolute m-auto w-full'
-                                        src={cartImg} alt="" />
+                            {AllCart.map((Cart, index) => (
+                                <div className='flex border-b flex-row mt-1 justify-between w-full' key={index}>
+                                    <div className='flex flex-row flex-1 items-center p-4'>
+                                        <div className='max-w-[120px] w-full h-[120px] relative rounded-full object-cover overflow-hidden flex bg-gray-200'>
+                                            <img
+                                                className='abolute m-auto w-full'
+                                                src={Cart.productImage} alt="" />
+                                        </div>
+                                        <div className='w-full overflow-hidden px-3'>
+                                            <h1 className='truncate text-lg font-semibold uppercase'>{Cart.productName}</h1>
+                                            <p className='text-sm font-normal uppercase'>{Cart.productCategory}</p>
+                                            <h1 className=' text-base text-projectBorder font-semibold'><span className='mr-0.5'>&#8358;</span>{Cart.productPrice}.00</h1>
+                                            <div className='flex gap-6 items-center'>
+                                                <h1 className='font-semibold uppercase text-sm'>Quantity</h1> <div className='flex gap-1 justify-center items-center'><FaMinus className='text-sm cursor-pointer' /><span className='bg-gray-200 px-1 text-center'>1</span><FaPlus className='text-sm cursor-pointer' /></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className='text-lg text-end h-fit p-2'>
+                                        <LiaTimesSolid />
+                                    </div>
                                 </div>
-                                <div className='w-full overflow-hidden px-3'>
-                                    <h1 className='truncate'>Life Full Burger Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, voluptatibus?</h1>
-                                    <p>Bakery Items</p>
-                                </div>
-                                <div className='max-w-[30%] text-end w-[30%]'>
-                                    <h1 className=' text-lg'><span className='mr-2'>&#8358;</span>5000.00</h1>
-                                </div>
-                            </div>
-                            <footer className='px-4 my-3 flex justify-between items-center'>
-                                <button className='flex items-center py-2 px-3 bg-projectRed-2 text-white gap-2 rounded'>
-                                    <FaTrash />
-                                    Remove
-                                </button>
-                                <div className='flex items-center gap-2'>
-                                    <button className='bg-projectRed-2 p-2 rounded text-white'
-                                        onClick={decreament}
-                                    >
-                                        <FaMinus />
-                                    </button>
-                                    <span className='text-lg font-semibold'>{countIncreament}</span>
-                                    <button className='bg-projectRed-2 p-2 rounded text-white'
-                                        onClick={increament}
-                                    ><FaPlus /></button>
-                                </div>
-                            </footer>
+                            ))}
+
+
+
+
                         </article>
                     </div>
 

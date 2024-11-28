@@ -27,6 +27,7 @@ const SnackUploadPg = () => {
   const [isLoading, setisLoading] = useState(false)
 
 
+
   useEffect(() => {
     getSnacksProduct();
   }, []);

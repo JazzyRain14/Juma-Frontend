@@ -12,10 +12,11 @@ const ProductTable = ({ selectedData, isLoading, getProduct }) => {
     const [message, setMessage] = useState('')
     const [selectedItemData, setSelectedItemData] = useState(null);
     const [selectedItemDataID, setSelectedItemDataID] = useState(null);
-    const [handleProductImage, setHandleProductImage] = useState('')
-    const [handleProductName, setHandleProductName] = useState('')
-    const [handleProductPrice, setHandleProductPrice] = useState('')
-    const [handleProductCategory, setHandleProductCategory] = useState('')
+    const [handleProductImage, setHandleProductImage] = useState('');
+    const [handleProductName, setHandleProductName] = useState('');
+    const [handleProductPrice, setHandleProductPrice] = useState('');
+    const [handleProductCategory, setHandleProductCategory] = useState('');
+    const [handleProductDescription, setHandleProductDescription] = useState('');
     const [handleProductId, setHandleProductId] = useState('')
     const deleteEndpoints = "https://juma-backend-delta.vercel.app/productcontrol/deleteproduct"
     const editEndpoints = "https://juma-backend-delta.vercel.app/productcontrol/editproduct"
@@ -23,23 +24,24 @@ const ProductTable = ({ selectedData, isLoading, getProduct }) => {
 
     const editProduct = (index) => {
         let filterArray = selectedData.filter((item, ind) => index === ind);
-        console.log(filterArray);
         setSelectedItemData(filterArray)
         setIsTrue(!isTrue)
         setHandleProductImage(filterArray[0].productImage);
         setHandleProductName(filterArray[0].productName);
         setHandleProductPrice(filterArray[0].productPrice);
         setHandleProductCategory(filterArray[0].productCategory);
+        setHandleProductDescription(filterArray[0].productdescription);
         setHandleProductId(filterArray[0]._id)
     }
 
     const updateProduct = async () => {
-        let editedObj = { handleProductName, handleProductCategory, handleProductPrice, handleProductId }
-        console.log(editedObj)
+        let editedObj = { handleProductName, handleProductCategory, handleProductDescription, handleProductPrice, handleProductId }
+        // console.log(editedObj)
         setIsTrue(!isTrue);
         try {
             let result = await axios.post(editEndpoints, editedObj);
             if (result) {
+                console.log(result)
                 const messages = result.data.message
                 setMessage(messages)
                 setModalOpened(!modalOpened)
@@ -142,7 +144,7 @@ const ProductTable = ({ selectedData, isLoading, getProduct }) => {
             </div>
             {modalOpened && (<UpdateProductSuccessModal messages={message} />)}
             {/* <DeleteProductModal deleteProduct={deleteProduct} /> */}
-            {isTrue && (<EditProductModal editProduct={editProduct} handleProductImage={handleProductImage} setProductImage={setHandleProductImage} handleProductCategory={handleProductCategory} setHandleProductCategory={setHandleProductCategory} handleProductName={handleProductName} setHandleProductName={setHandleProductName} handleProductPrice={handleProductPrice} setHandleProductPrice={setHandleProductPrice} itemData={selectedItemData} updateProduct={updateProduct} />)}
+            {isTrue && (<EditProductModal editProduct={editProduct} handleProductImage={handleProductImage} setProductImage={setHandleProductImage} handleProductCategory={handleProductCategory} setHandleProductCategory={setHandleProductCategory} handleProductDesc={handleProductDescription} setHandleProductDesc={setHandleProductDescription} handleProductName={handleProductName} setHandleProductName={setHandleProductName} handleProductPrice={handleProductPrice} setHandleProductPrice={setHandleProductPrice} itemData={selectedItemData} updateProduct={updateProduct} />)}
         </>
     )
 }
