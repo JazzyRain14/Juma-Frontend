@@ -35,19 +35,19 @@ const Section5 = () => {
   const AddToCart = async (index) => {
     let filteredArray = newProduct.filter((item, ind) => index == ind)
     if (filteredArray.length > 0) {
-      let user_Id = localStorage.getItem('userId')
+      let userId = localStorage.getItem('userId')
       let productName = filteredArray[0].productName
       let productCategory = filteredArray[0].productCategory
       let productPrice = filteredArray[0].productPrice
       let productdescription = filteredArray[0].productdescription
       let productImage = filteredArray[0].productImage
       let productOBJ = {
-        user_Id,
         productImage,
         productName,
         productCategory,
         productdescription,
-        productPrice
+        productPrice,
+        userId
       };
       console.log(productOBJ)
       try {
