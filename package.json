@@ -30,6 +30,7 @@
     "react-overlays": "^5.2.1",
     "react-router-dom": "^6.21.0",
     "react-spinners": "^0.14.1",
+    "react-toastify": "^10.0.6",
     "react-use-is-online": "^1.2.2",
     "reactjs-popup": "^2.0.6",
     "sonner": "^1.4.41",

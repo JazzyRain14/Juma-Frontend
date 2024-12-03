@@ -29,6 +29,7 @@ import AlcoholicBevUploadPg from './pages/AdminPages/alcoholicBevUploadPg.jsx'
 import DesertSwtUploadPg from './pages/AdminPages/desertSwtUploadPg.jsx'
 import AdminHome from './pages/AdminPages/AdminHome.jsx'
 import ProductDetailspg from './pages/AdminPages/ProductDetailspg.jsx'
+import SavedItems from './components/SavedItems.jsx'
 
 function App() {
 
@@ -57,6 +58,7 @@ function App() {
             <Route path='categories/cart5' element={<Cart5 />} />
             <Route path='categories/cart6' element={<Cart6 />} />
             <Route path='categories/cart7' element={<Cart7 />} />
+            <Route path='saveditems' element={<SavedItems />} />
             <Route path='userprofile' element={<UserProfile />} />
             <Route path='product cart' exact element={<AllCart />} />
             <Route path=':itemCategory/:item_id' element={<ProductDetailspg />} />
