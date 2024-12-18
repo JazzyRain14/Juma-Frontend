@@ -49,6 +49,7 @@ const Section5 = (props) => {
       let productPrice = filteredArray[0].productPrice;
       let productdescription = filteredArray[0].productdescription;
       let productImage = filteredArray[0].productImage;
+      let quantityOfProduct = '1'
       let productOBJ = {
         productImage,
         productName,
@@ -56,6 +57,7 @@ const Section5 = (props) => {
         productdescription,
         productPrice,
         userId,
+        quantityOfProduct,
       };
       console.log(productOBJ);
       try {

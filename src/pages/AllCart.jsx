@@ -13,6 +13,8 @@ import { LiaTimesSolid } from "react-icons/lia";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { CheckOutModal } from "../components/User/home/Modals";
+import { stringify } from "postcss";
+import { number } from "yup";
 
 const AllCart = () => {
   const [countIncreament, setCountIncreament] = useState(1);
@@ -20,12 +22,29 @@ const AllCart = () => {
   const [checkoutModalIsTrue, setCheckoutModalIsTrue] = useState(false);
   const navigate = useNavigate();
   const [AllCart, setAllCart] = useState([]);
+  // const [cart, setCart] = useState("");
+  // let AllCart = []
   const endpoint =
     "https://juma-backend-delta.vercel.app/usercontrol/getcartproduct";
   const deleteEndpoint =
     "https://juma-backend-delta.vercel.app/usercontrol/deleteallitems";
   const deleteEachEndpoint =
     "https://juma-backend-delta.vercel.app/usercontrol/deleteoneproductincart";
+  const updateProductQuantity =
+    "https://juma-backend-delta.vercel.app/usercontrol/updatequantityofproduct";
+
+  useEffect(() => {
+    const getCart = async () => {
+      let userId = localStorage.getItem("userId");
+      let userOBJ = { userId };
+      let productCart = await axios.post(endpoint, userOBJ);
+      console.log(productCart);
+      setAllCart(productCart.data.cartProducts);
+      // AllCart = productCart.data.cartProducts
+      // console.log(AllCart)
+    };
+    getCart();
+  }, []);
 
   const deleteALLContent = async () => {
     let userId = localStorage.getItem("userId");
@@ -64,29 +83,52 @@ const AllCart = () => {
     setCheckoutModalIsTrue(!checkoutModalIsTrue);
   };
 
-  const increment = () => {
-    setCountIncreament(countIncreament + 1);
+  const increment = async (index) => {
+    let item = AllCart[index];
+    if (item) {
+      let currentQuantity = parseInt(item.quantityOfProduct);
+      let Id = item._id;
+      if (!isNaN(currentQuantity)) {
+        item.quantityOfProduct = currentQuantity + 1;
+        const quantityOfProduct = JSON.stringify(item.quantityOfProduct);
+        // console.log(quantityOfProduct);
+        let incrementedProduct = await axios.patch(updateProductQuantity, {
+          Id,
+          quantityOfProduct,
+        });
+        console.log(incrementedProduct);
+      } else {
+        console.log("invalid quantity");
+      }
+    } else {
+      console.log("item not found at:", index);
+    }
   };
-  const decrement = () => {
-    setCountIncreament(countIncreament - 1);
-    if (countIncreament === 1) {
-      setCountIncreament(1);
+
+  const decrement = async (index) => {
+    let item = AllCart[index];
+    if (item) {
+      let currentQuantity = parseInt(item.quantityOfProduct);
+      let Id = item._id;
+      if (!isNaN(currentQuantity) && item.quantityOfProduct > 1) {
+        item.quantityOfProduct = currentQuantity - 1;
+        const quantityOfProduct = JSON.stringify(item.quantityOfProduct);
+        // console.log(quantityOfProduct);
+        let incrementedProduct = await axios.patch(updateProductQuantity, {
+          Id,
+          quantityOfProduct,
+        });
+        console.log(incrementedProduct);
+      } else {
+        console.log("invalid quantity:product reduced to 1");
+      }
+    } else {
+      console.log("item not found at:", index);
     }
   };
 
   const prices = AllCart.map((product) => parseInt(product.productPrice));
   const totalPrices = prices.reduce((a, b) => a + b, 0);
-
-  useEffect(() => {
-    const getCart = async () => {
-      let userId = localStorage.getItem("userId");
-      let userOBJ = { userId };
-      let productCart = await axios.post(endpoint, userOBJ);
-      console.log(productCart);
-      setAllCart(productCart.data.cartProducts);
-    };
-    getCart();
-  }, []);
 
   return (
     <>
@@ -128,14 +170,14 @@ const AllCart = () => {
                           </h1>{" "}
                           <div className="flex gap-1 justify-center items-center">
                             <FaMinus
-                              onClick={decrement}
+                              onClick={() => decrement(index)}
                               className="text-sm cursor-pointer"
                             />
                             <span className="bg-gray-200 px-1 text-center">
-                              {countIncreament}
+                              {Cart.quantityOfProduct}
                             </span>
                             <FaPlus
-                              onClick={increment}
+                              onClick={() => increment(index)}
                               className="text-sm cursor-pointer"
                             />
                           </div>
