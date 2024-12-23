@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import burger1 from "../../../assets/Images/pexels-horizon-content-3738730.jpg";
 import { FaCartShopping, FaHeart, FaNairaSign } from "react-icons/fa6";
@@ -7,23 +7,33 @@ import { Link, json, useNavigate } from "react-router-dom";
 import { LoadingScreen } from "./Modals";
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useCart } from "../../../CartContext";
 const Section5 = (props) => {
-  const productEndpoints =
-    "https://juma-backend-delta.vercel.app/getproduct/getethnicfood";
   const [newProduct, setnewProduct] = useState([]);
+  const { dispatch } = useCart();
   const [message, setMessage] = useState("");
   const [isTrue, setisTrue] = useState(false);
+
+  const productEndpoints =
+    "https://juma-backend-delta.vercel.app/getproduct/getethnicfood";
   const addToCartEndPoints =
     "https://juma-backend-delta.vercel.app/usercontrol/addtocart";
+
   const savedItemsEndPoints =
     "https://juma-backend-delta.vercel.app/usercontrol/saveditems";
+
   const navigate = useNavigate();
   useEffect(() => {
-    const shoco = async () => {
-      let product = await axios.get(productEndpoints);
-      setnewProduct(product.data.ethnicFoodProduct);
+    const fetchProduct = async () => {
+      try {
+        const product = await fetch(productEndpoints);
+        const data = await product.json();
+        setnewProduct(data.ethnicFoodProduct);
+      } catch (error) {
+        console.error("Failed to fetch products:", error);
+      }
     };
-    shoco();
+    fetchProduct();
   }, []);
 
   const goToDetails = (index) => {
@@ -41,49 +51,26 @@ const Section5 = (props) => {
   };
 
   const AddToCart = async (index) => {
-    let filteredArray = newProduct.filter((item, ind) => index == ind);
-    if (filteredArray.length > 0) {
-      let userId = localStorage.getItem("userId");
-      let productName = filteredArray[0].productName;
-      let productCategory = filteredArray[0].productCategory;
-      let productPrice = filteredArray[0].productPrice;
-      let productdescription = filteredArray[0].productdescription;
-      let productImage = filteredArray[0].productImage;
-      let quantityOfProduct = '1'
-      let productOBJ = {
-        productImage,
-        productName,
-        productCategory,
-        productdescription,
-        productPrice,
-        userId,
-        quantityOfProduct,
-      };
-      console.log(productOBJ);
-      try {
-        let result = await axios.post(addToCartEndPoints, productOBJ);
-        if (result) {
-          // console.log(result);
-          // setMessage(result.data.message);
-          toast.success(result.data.message, {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-            // transition: Bounce,
-          });
-        } else {
-          console.log(error);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    } else {
-      console.log("No matching record");
+    const findProduct = newProduct.find((item, ind) => index === ind);
+    console.log(findProduct);
+    const userId = localStorage.getItem("userId");
+    const quantityOfProduct = "1";
+    const productOBJ = {
+      productImage: findProduct.productImage,
+      productName: findProduct.productName,
+      productCategory: findProduct.productCategory,
+      productdescription: findProduct.productdescription,
+      productPrice: findProduct.productPrice,
+      userId,
+      quantityOfProduct,
+    };
+    try {
+      const response = await axios.post(addToCartEndPoints, productOBJ);
+      toast(response.data.message);
+
+      dispatch({ type: "ADD_TO_CART", payload: findProduct });
+    } catch (error) {
+      console.error("Failed to add to cart:", error);
     }
   };
 
@@ -133,7 +120,7 @@ const Section5 = (props) => {
         </div>
         <div>
           <div className="grid grid-flow-col gap-4 mt-2 sideBarScroll pb-6">
-            {newProduct.map((card, index) => (
+            {newProduct.map((product, index) => (
               <div key={index} className="card">
                 <div onClick={() => goToDetails(index)}>
                   <div
@@ -141,18 +128,18 @@ const Section5 = (props) => {
                             relative overflow-hidden"
                   >
                     <img
-                      src={card.productImage}
+                      src={product.productImage}
                       alt=""
                       className="w-full absolute h-full object-contain"
                     />
                   </div>
                   <div className="cardTitle">
                     <h1 className="truncate font-semibold">
-                      {card.productName}
+                      {product.productName}
                     </h1>
                     <p className="flex items-center font-semibold text-[14px]">
                       <FaNairaSign className=" text-[14px] text-[#434242]" />
-                      {card.productPrice}
+                      {product.productPrice}
                     </p>
                   </div>
                 </div>

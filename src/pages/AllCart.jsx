@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   FaDumpster,
   FaMinus,
@@ -15,17 +15,19 @@ import { useNavigate } from "react-router-dom";
 import { CheckOutModal } from "../components/User/home/Modals";
 import { stringify } from "postcss";
 import { number } from "yup";
+import { CartProvider, CartContext, useCart } from "../CartContext";
 
 const AllCart = () => {
   const [countIncreament, setCountIncreament] = useState(1);
   const [isTrue, setisTrue] = useState(false);
   const [checkoutModalIsTrue, setCheckoutModalIsTrue] = useState(false);
   const navigate = useNavigate();
-  const [AllCart, setAllCart] = useState([]);
+  const { cart, dispatch } = useCart();
+  // const [AllCart, setAllCart] = useState([]);
   // const [cart, setCart] = useState("");
   // let AllCart = []
-  const endpoint =
-    "https://juma-backend-delta.vercel.app/usercontrol/getcartproduct";
+  // const endpoint =
+  //   "https://juma-backend-delta.vercel.app/usercontrol/getcartproduct";
   const deleteEndpoint =
     "https://juma-backend-delta.vercel.app/usercontrol/deleteallitems";
   const deleteEachEndpoint =
@@ -33,18 +35,18 @@ const AllCart = () => {
   const updateProductQuantity =
     "https://juma-backend-delta.vercel.app/usercontrol/updatequantityofproduct";
 
-  useEffect(() => {
-    const getCart = async () => {
-      let userId = localStorage.getItem("userId");
-      let userOBJ = { userId };
-      let productCart = await axios.post(endpoint, userOBJ);
-      console.log(productCart);
-      setAllCart(productCart.data.cartProducts);
-      // AllCart = productCart.data.cartProducts
-      // console.log(AllCart)
-    };
-    getCart();
-  }, []);
+  // useEffect(() => {
+  //   const getCart = async () => {
+  //     let userId = localStorage.getItem("userId");
+  //     let userOBJ = { userId };
+  //     let productCart = await axios.post(endpoint, userOBJ);
+  //     console.log(productCart);
+  //     setAllCart(productCart.data.cartProducts);
+  //     // AllCart = productCart.data.cartProducts
+  //     // console.log(AllCart)
+  //   };
+  //   getCart();
+  // }, []);
 
   const deleteALLContent = async () => {
     let userId = localStorage.getItem("userId");
@@ -55,19 +57,22 @@ const AllCart = () => {
   };
 
   const deleteEachProduct = async (index) => {
-    let filteredArray = AllCart.filter((item, ind) => index == ind);
-    let Id = filteredArray[0]._id;
-    let filteredObject = { Id };
-    console.log(filteredObject);
+    let filteredArray = cart.find((item, ind) => index === ind);
+    const Id = filteredArray._id
     let oneProductdeleted = await axios.post(
       deleteEachEndpoint,
-      filteredObject
+      {Id}
     );
-    window.location.reload();
+    console.log(oneProductdeleted);
+    dispatch({ type: "REMOVE_FROM_CART", payload: filteredArray });
+    // let Id = filteredArray[0]._id;
+    // let filteredObject = { Id };
+    // console.log(filteredObject);
+    // window.location.reload();
   };
 
   const goToDetails = (index) => {
-    let filteredArray = AllCart.filter((item, ind) => index == ind);
+    let filteredArray = cartItems.filter((item, ind) => index == ind);
     localStorage.setItem("ProductDesc", JSON.stringify(filteredArray));
     let itemCategory = filteredArray[0].productCategory;
     let item_id = filteredArray[0]._id;
@@ -84,7 +89,7 @@ const AllCart = () => {
   };
 
   const increment = async (index) => {
-    let item = AllCart[index];
+    let item = cartItems[index];
     if (item) {
       let currentQuantity = parseInt(item.quantityOfProduct);
       let Id = item._id;
@@ -106,7 +111,7 @@ const AllCart = () => {
   };
 
   const decrement = async (index) => {
-    let item = AllCart[index];
+    let item = cartItems[index];
     if (item) {
       let currentQuantity = parseInt(item.quantityOfProduct);
       let Id = item._id;
@@ -127,19 +132,87 @@ const AllCart = () => {
     }
   };
 
-  const prices = AllCart.map((product) => parseInt(product.productPrice));
+  const prices = cart.map((product) => parseInt(product.productPrice));
   const totalPrices = prices.reduce((a, b) => a + b, 0);
 
   return (
     <>
+      {/* <CartProvider> */}
       <section className="px-4 pt-4 overflow-auto">
         <div className="my-4 xl:flex flex-row w-full gap-5 lg:grid">
           <div className=" basis-3/4">
             <article className="w-full">
               <header className="border-b py-1 text-xl px-4">
-                Cart({AllCart.length})
+                Cart({cart.length})
               </header>
-              {AllCart.map((Cart, index) => (
+              {/* {error ? <h1>{error}</h1> : null} */}
+              {/* {Loading ? (
+                  <h1>Loading</h1>
+                ) : ( */}
+              {cart.length === 0 ? (
+                <p>Your cart is empty</p>
+              ) : (
+                cart.map((item, index) => (
+                  <div
+                    className="flex border-b flex-row mt-1 justify-between w-full"
+                    key={item._id}
+                  >
+                    <div className="flex flex-row flex-1 items-center p-4">
+                      <div className="max-w-[120px] w-full h-[120px] relative rounded-full object-cover overflow-hidden flex bg-gray-200">
+                        <img
+                          className="abolute m-auto w-full"
+                          src={item.productImage}
+                          alt=""
+                        />
+                      </div>
+                      <div className="w-full overflow-hidden px-3">
+                        <h1 className="truncate text-lg font-semibold uppercase">
+                          {item.productName}
+                        </h1>
+                        <p className="text-sm font-normal uppercase">
+                          {item.productCategory}
+                        </p>
+                        <h1 className=" text-base text-projectBorder font-semibold">
+                          <span className="mr-0.5">&#8358;</span>
+                          {item.productPrice}.00
+                        </h1>
+                        <div className="flex gap-6 items-center">
+                          <h1 className="font-semibold uppercase text-sm">
+                            Quantity
+                          </h1>{" "}
+                          <div className="flex gap-1 justify-center items-center">
+                            <FaMinus
+                              onClick={() => decrement(item._id)}
+                              className="text-sm cursor-pointer"
+                            />
+                            <span className="bg-gray-200 px-1 text-center">
+                              {item.quantityOfProduct}
+                            </span>
+                            <FaPlus
+                              onClick={() => increment(item._id)}
+                              className="text-sm cursor-pointer"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="text-lg text-end p-2 grid">
+                      <LiaTimesSolid
+                        onClick={() => deleteEachProduct(index)}
+                        className="cursor-pointer"
+                      />
+                      <button
+                        onClick={() => goToDetails(index)}
+                        className="text-[16px] text-projectRed-2 underline"
+                      >
+                        view details
+                      </button>
+                    </div>
+                  </div>
+                ))
+              )}
+
+              {/* {cartItems.map((Cart, index) => (
                 <>
                   <div
                     className="flex border-b flex-row mt-1 justify-between w-full"
@@ -198,7 +271,7 @@ const AllCart = () => {
                     </div>
                   </div>
                 </>
-              ))}
+              ))} */}
             </article>
             <button
               onClick={deleteALLContent}
@@ -235,6 +308,7 @@ const AllCart = () => {
         </div>
         {checkoutModalIsTrue && <CheckOutModal CheckOut={checkOut} />}
       </section>
+      {/* </CartProvider> */}
     </>
   );
 };
