@@ -4,7 +4,7 @@ const Section3 = () => {
     return (
         <div>
             <section
-                className='bg-[#050609] h-[450px] flex border-2 border-yellow-600  text-[#f5fffa] max-md:items-center'
+                className='bg-[#050609] h-[450px] flex text-[#f5fffa] max-md:items-center'
             // mt-[14rem]
             >
                 <div className=' md:my-10  flex justify-around w-full'>
@@ -31,13 +31,13 @@ const Section3 = () => {
                             <div className='mt-10 flex justify-center'>
                                 <ul className=' flex w-fit gap-4 border p-2  rounded-xl'>
                                     <li
-                                        className='w-[110px] text-center py-2 px-6 border text-lg 
+                                        className='w-[110px] text-center py-2 px-6 text-lg 
                                     rounded-xl text-[#f5fffa] cursor-pointer bg-projectRed-2 transition ease-in delay-75
                                     hover:bg-[#f5fffa] hover:text-projectRed-2 font-semibold'>Fast</li>
                                     <li
-                                        className='w-[110px] text-center py-2 px-6 border text-lg 
+                                        className='w-[110px] text-center py-2 px-6 text-lg 
                                     rounded-xl text-[#f5fffa] cursor-pointer bg-projectRed-2 transition ease-in delay-75 hover:bg-[#f5fffa] hover:text-projectRed-2 font-semibold'>Fresh</li>
-                                    <li className='w-[110px] text-center py-2 px-6 border text-lg 
+                                    <li className='w-[110px] text-center py-2 px-6 text-lg 
                                 rounded-xl text-[#f5fffa] cursor-pointer bg-projectRed-2 transition ease-in delay-75
                                 hover:bg-[#f5fffa] hover:text-projectRed-2 font-semibold'>Flavorful</li>
                                 </ul>

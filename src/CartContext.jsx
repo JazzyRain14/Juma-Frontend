@@ -17,6 +17,27 @@ export const cartReducer = (state, action) => {
       return [...state, action.payload];
     case "REMOVE_FROM_CART":
       return state.filter((item) => item.id !== action.payload.id);
+
+    case "INCREMENT_QUANTITY":
+      return state.map((item) => {
+        if (item._id === action.payload._id) {
+          return {
+            ...item,
+            quantityOfProduct: action.payload.quantityOfProduct.toString(),
+          };
+        }
+        return item;
+      });
+    case "DECREMENT_QUANTITY":
+      return state.map((item) =>
+        item._id === action.payload._id &&
+        parseInt(item.quantityOfProduct, 10) > 1
+          ? {
+              ...item,
+              quantityOfProduct: parseInt(item.quantityOfProduct, 10) - 1,
+            }
+          : item
+      );
     case "CLEAR_CART":
       return [];
     default:

@@ -34,6 +34,8 @@ const AllCart = () => {
     "https://juma-backend-delta.vercel.app/usercontrol/deleteoneproductincart";
   const updateProductQuantity =
     "https://juma-backend-delta.vercel.app/usercontrol/updatequantityofproduct";
+  const endpoint =
+    "https://juma-backend-delta.vercel.app/usercontrol/getcartproduct";
 
   // useEffect(() => {
   //   const getCart = async () => {
@@ -46,33 +48,29 @@ const AllCart = () => {
   //     // console.log(AllCart)
   //   };
   //   getCart();
-  // }, []);
+  // }, []);}
 
   const deleteALLContent = async () => {
     let userId = localStorage.getItem("userId");
-    let userOBJ = { userId };
-    let allContentDeleted = await axios.post(deleteEndpoint, userOBJ);
-    console.log(allContentDeleted);
-    window.location.reload();
+    try {
+      let allContentDeleted = await axios.post(deleteEndpoint, { userId });
+      console.log(allContentDeleted);
+      dispatch({ type: "CLEAR_CART" });
+    } catch (error) {
+      console.error("Failed to clear cart:", error);
+    }
   };
 
   const deleteEachProduct = async (index) => {
     let filteredArray = cart.find((item, ind) => index === ind);
-    const Id = filteredArray._id
-    let oneProductdeleted = await axios.post(
-      deleteEachEndpoint,
-      {Id}
-    );
+    const Id = filteredArray._id;
+    let oneProductdeleted = await axios.post(deleteEachEndpoint, { Id });
     console.log(oneProductdeleted);
     dispatch({ type: "REMOVE_FROM_CART", payload: filteredArray });
-    // let Id = filteredArray[0]._id;
-    // let filteredObject = { Id };
-    // console.log(filteredObject);
-    // window.location.reload();
   };
 
   const goToDetails = (index) => {
-    let filteredArray = cartItems.filter((item, ind) => index == ind);
+    let filteredArray = cartItems.find((item, ind) => index == ind);
     localStorage.setItem("ProductDesc", JSON.stringify(filteredArray));
     let itemCategory = filteredArray[0].productCategory;
     let item_id = filteredArray[0]._id;
@@ -84,51 +82,54 @@ const AllCart = () => {
       setisTrue(false);
     }, 1000);
   };
+
   const checkOut = () => {
     setCheckoutModalIsTrue(!checkoutModalIsTrue);
   };
 
-  const increment = async (index) => {
-    let item = cartItems[index];
-    if (item) {
-      let currentQuantity = parseInt(item.quantityOfProduct);
-      let Id = item._id;
-      if (!isNaN(currentQuantity)) {
-        item.quantityOfProduct = currentQuantity + 1;
-        const quantityOfProduct = JSON.stringify(item.quantityOfProduct);
-        // console.log(quantityOfProduct);
-        let incrementedProduct = await axios.patch(updateProductQuantity, {
-          Id,
-          quantityOfProduct,
-        });
-        console.log(incrementedProduct);
-      } else {
-        console.log("invalid quantity");
-      }
-    } else {
-      console.log("item not found at:", index);
+  const increament = async (productId) => {
+    try {
+      const product = cart.find((item) => item._id === productId);
+
+      let currentQuantity = 1;
+        // parseInt(product.quantityOfProduct, 10);
+      console.log(currentQuantity ++);
+      // const newQuantity = currentQuantity
+
+      // dispatch({
+      //   type: "INCREMENT_QUANTITY",
+      //   payload: { _id: productId, quantityOfProduct: newQuantity },
+      // });
+
+      // const response = await axios.patch(updateProductQuantity, {
+      //   Id: productId,
+      //   quantityOfProduct: newQuantity,
+      // });
+      // console.log("Backend confirmed update:", response.data);
+
+     
+    } catch (error) {
+      console.error("Failed to increment quantity:", error);
     }
   };
 
   const decrement = async (index) => {
-    let item = cartItems[index];
-    if (item) {
-      let currentQuantity = parseInt(item.quantityOfProduct);
-      let Id = item._id;
-      if (!isNaN(currentQuantity) && item.quantityOfProduct > 1) {
-        item.quantityOfProduct = currentQuantity - 1;
-        const quantityOfProduct = JSON.stringify(item.quantityOfProduct);
-        // console.log(quantityOfProduct);
-        let incrementedProduct = await axios.patch(updateProductQuantity, {
-          Id,
-          quantityOfProduct,
-        });
-        console.log(incrementedProduct);
-      } else {
-        console.log("invalid quantity:product reduced to 1");
-      }
-    } else {
-      console.log("item not found at:", index);
+    try {
+      const product = cart[index];
+      const Id = product._id;
+
+      if (product.quantityOfProduct <= 1) return;
+
+      const updatedProductQuantity = await axios.patch(updateProductQuantity, {
+        Id,
+        quantityOfProduct: product.quantityOfProduct + 1,
+      });
+
+      console.log(updatedProductQuantity);
+
+      dispatch({ type: "DECREMENT_QUANTITY", payload: { _id: index } });
+    } catch (error) {
+      console.error("Failed to decrement quantity:", error);
     }
   };
 
@@ -137,7 +138,6 @@ const AllCart = () => {
 
   return (
     <>
-      {/* <CartProvider> */}
       <section className="px-4 pt-4 overflow-auto">
         <div className="my-4 xl:flex flex-row w-full gap-5 lg:grid">
           <div className=" basis-3/4">
@@ -150,7 +150,9 @@ const AllCart = () => {
                   <h1>Loading</h1>
                 ) : ( */}
               {cart.length === 0 ? (
-                <p>Your cart is empty</p>
+                <p className="border text-2xl font-semibold text-center py-5 my-2 rounded-lg bg-projectRed-2/20 text-projectRed-2/80">
+                  Your cart is empty
+                </p>
               ) : (
                 cart.map((item, index) => (
                   <div
@@ -189,7 +191,7 @@ const AllCart = () => {
                               {item.quantityOfProduct}
                             </span>
                             <FaPlus
-                              onClick={() => increment(item._id)}
+                              onClick={() => increament(item._id)}
                               className="text-sm cursor-pointer"
                             />
                           </div>
@@ -308,7 +310,6 @@ const AllCart = () => {
         </div>
         {checkoutModalIsTrue && <CheckOutModal CheckOut={checkOut} />}
       </section>
-      {/* </CartProvider> */}
     </>
   );
 };
